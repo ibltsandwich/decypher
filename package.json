@@ -1,7 +1,16 @@
 {
   "name": "decypher",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  },
   "engines": {
     "node": "10.12.0",
     "npm": "6.4.1"
