@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
+gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'annotate'
 # Use ActiveStorage variant
@@ -49,7 +50,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem 'jquery-rails'
 end
 
 group :test do

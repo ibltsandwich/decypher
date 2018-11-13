@@ -1,28 +1,14 @@
-const path = require('path');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './components/root';
+import configureStore from './store/store'
 
-module.exports = {
-    context: __dirname,
-    entry: './frontend/decypher.jsx',
-    output: {
-        path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['@babel/env', '@babel/react']
-                    }
-                },
-            }
-        ]
-    },
-    devtool: 'source-map',
-    resolve: {
-        extensions: [".js", ".jsx", "*"]
-    }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const store = configureStore(); 
+    const root = document.getElementById('root')
+    // TESTING
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
+    // TESTING
+    ReactDOM.render(<Root store={store}/>, root)
+})
