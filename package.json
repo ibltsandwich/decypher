@@ -2,8 +2,9 @@
   "name": "decypher",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/core": "^7.1.5",
+    "@babel/highlight": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "lodash": "^4.17.11",
