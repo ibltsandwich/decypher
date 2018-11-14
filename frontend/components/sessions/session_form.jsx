@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 class SessionForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = { user: '', password: '' };
+        this.state = { username: '', password: '', email: '' };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -28,19 +30,58 @@ class SessionForm extends React.Component {
                             {error}
                         </li>
                     )
-                )}}
+                })}
             </ul>
         );
     }
 
     render() {
-        <div className="login-form-container">
-            <form onSubmit={this.handleSubmit} className="login-form">
-                SIGN IN TO DECYPHER
-                
-
-
-            </form>
-        </div>
+        let link, email;
+        if (this.props.formType === 'Log In') {
+            link = (<Link to='/signup' >CREATE AN ACCOUNT</Link >);
+            email=""
+        } else {
+            link = (<Link to='/login' >ALREADY HAVE AN ACOUNT? LOG IN HERE</Link>);
+            email = (<label> Email:
+                        <input
+                            type="text"
+                            value={this.state.email}
+                            className="login-input"
+                            onChange={this.update("email")}
+                        />
+                    </label>
+            )
+        }
+        return (
+            <div className="login-form-container">
+                <form onSubmit={this.handleSubmit} className="login-form">
+                    {this.props.formType} TO DECYPHER
+                    <br></br>
+                    {this.renderErrors()}
+                    <label>Username:
+                        <input 
+                            type="text" 
+                            value={this.state.username} 
+                            className="login-input" 
+                            onChange={this.update("username")} />
+                    </label>
+                    {email}
+                    <label>Password:
+                        <input 
+                            type="password" 
+                            value={this.state.password} 
+                            className="login-input" 
+                            onChange={this.update("password")} />
+                    </label>
+                    <input type="submit" value={this.props.formType} className="session-btn"/>
+                        <br></br>
+                        {link}
+                        <br></br>
+                        <a href="#">DEMO LOGIN</a>
+                </form>
+            </div>
+        )
     }
 }
+
+export default SessionForm;
