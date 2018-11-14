@@ -17,14 +17,14 @@
   display: flex;
   flex-direction: column;
   animation-name: form-pop-in;
-  animation-duration: .1s;
+  animation-duration: .08s;
 }
 
 @keyframes form-pop-in {
-  0%   {width: 81.5968px; height: 77.958px; opacity: 0.2}
-  20%  {width: 163.1936px; height: 155.916px; opacity: 0.4}
-  40%  {width: 244.7904px; height: 233.874px; opacity: 0.4}
-  60%  {width: 326.3872px; height: 311.832px; opacity: 0.4}
+  0%   {width: 81.5968px; height: 77.958px; opacity: 0.0}
+  20%  {width: 163.1936px; height: 155.916px; opacity: 0.2}
+  40%  {width: 244.7904px; height: 233.874px; opacity: 0.2}
+  60%  {width: 326.3872px; height: 311.832px; opacity: 0.2}
   100% {width: 407.984px; height: 389.790px; opacity: 1.0}
 }
 
