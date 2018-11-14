@@ -5,7 +5,7 @@ import { login } from '../../actions/session_actions';
 const msp = ({ errors }) => {
     return {
         errors: errors.session,
-        formType: 'Log In' 
+        formType: 'Sign In' 
     };
 }
 

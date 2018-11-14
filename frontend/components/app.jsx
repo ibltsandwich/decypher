@@ -9,6 +9,7 @@ const App = () => {
     return (
         <div>
             <h1>Decypher</h1>
+            
             <Route exact path="/" component={HomeIndex} />
             <AuthRoute path="/login" component={LoginForm} />
             <AuthRoute path="/signup" component={SignupForm} />

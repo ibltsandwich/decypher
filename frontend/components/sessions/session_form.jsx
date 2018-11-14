@@ -36,48 +36,50 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        let link, email;
-        if (this.props.formType === 'Log In') {
-            link = (<Link to='/signup' >CREATE AN ACCOUNT</Link >);
+        let link, email, heading;
+        if (this.props.formType === 'Sign In') {
+            link = (<Link to='/signup' className="session-link">CREATE AN ACCOUNT</Link >);
             email=""
+            heading = (<span className="sess-heading">SIGN IN TO DECYPHER</span>)
         } else {
-            link = (<Link to='/login' >ALREADY HAVE AN ACOUNT? LOG IN HERE</Link>);
-            email = (<label> Email:
-                        <input
-                            type="text"
-                            value={this.state.email}
-                            className="login-input"
-                            onChange={this.update("email")}
-                        />
-                    </label>
-            )
+            link = (<Link to='/login' className="session-link">ALREADY HAVE AN ACCOUNT? LOG IN HERE</Link>);
+            email = (
+                <input
+                type="text"
+                value={this.state.email}
+                className="session-input"
+                onChange={this.update("email")}
+                placeholder="Email"
+                />
+                )
+            heading = (<span className="sess-heading">SIGN UP FOR DECYPHER</span>)
         }
         return (
             <div className="session-screen">
                 <form onSubmit={this.handleSubmit} className="session-form">
-                    {this.props.formType} TO DECYPHER
+                    {heading}
                     <br></br>
                     {this.renderErrors()}
-                    <label>Username:
-                        <input 
-                            type="text" 
-                            value={this.state.username} 
-                            className="session-input" 
-                            onChange={this.update("username")} />
-                    </label>
+                    <input 
+                        type="text" 
+                        value={this.state.username} 
+                        className="session-input" 
+                        onChange={this.update("username")}
+                        placeholder="Username" />
                     {email}
-                    <label>Password:
-                        <input 
-                            type="password" 
-                            value={this.state.password} 
-                            className="session-input" 
-                            onChange={this.update("password")} />
-                    </label>
-                    <input type="submit" value={this.props.formType} className="session-btn"/>
-                        <br></br>
-                        {link}
-                        <br></br>
-                        <a href="#">DEMO LOGIN</a>
+                    <input 
+                        type="password" 
+                        value={this.state.password} 
+                        className="session-input" 
+                        onChange={this.update("password")}
+                        placeholder="Password" />
+
+                    <button type="submit" className="session-btn">{this.props.formType}</button>
+
+                        <div className="sess-links">
+                            {link}
+                            <Link to="#" className="session-link">DEMO LOGIN</Link>
+                        </div>
                 </form>
             </div>
         )
