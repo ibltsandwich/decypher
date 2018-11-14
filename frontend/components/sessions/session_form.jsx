@@ -84,6 +84,6 @@ class SessionForm extends React.Component {
         )
     }
 }
-// {/* <Link className="session-link" onClick={this.props.demoUser}>DEMO LOGIN</Link> */}
+// {/* <Link to="#" className="session-link">DEMO LOGIN</Link> */}
 
 export default SessionForm;
