@@ -1,5 +1,8 @@
-
-.header {
+body {
+  margin: 0;
+  padding: 0;
+}
+.global-header {
   margin: 0;
   padding: 0;
   border: 0;
@@ -14,10 +17,12 @@
 
 .logo {
   text-align: center;
-  position: relative;
-  top: -17px;
+  position: absolute;
+  top: 20px;
   text-decoration: none;
   color: black;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .logo h2{

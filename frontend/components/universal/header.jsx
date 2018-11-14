@@ -19,10 +19,12 @@ export default ({ currentUser, logout, openModal }) => {
     )
   }
   return(
-    <div className="header">
-      <Link to="/" className="logo">
-        <h2>Decypher</h2>
-      </Link>
+    <div className="global-header">
+      <h2>
+        <Link to="/" className="logo">
+          Decypher
+        </Link>
+      </h2>
       <div className="user-btns">
         {greeting}
       </div>

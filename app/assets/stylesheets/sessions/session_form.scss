@@ -1,21 +1,14 @@
-// .session-screen {
-//   position: fixed;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: 2;
-//   background: rgba(0, 0, 0, 0.8);
-// }
-
 .session-form {
-  margin: 1rem auto;
+  // margin: 1rem auto;
   background-color: #e9e9e9;
   width: 407.984px;
   height: 389.790px;
   padding: 21.008px;
   display: flex;
   flex-direction: column;
+}
+
+#from-header {
   animation-name: form-pop-in;
   animation-duration: .08s;
 }
@@ -30,10 +23,12 @@
 
 .sess-heading {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   color: #99a7ee;
   border-bottom: 2px solid #99a7ee;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+  position: relative;
+  top: -3px;
 }
 
 .session-input {
