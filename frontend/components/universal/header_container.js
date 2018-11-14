@@ -1,4 +1,4 @@
-import HomeIndex from './home_index';
+import Header from './header';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { openModal } from '../../actions/modal_actions';
@@ -16,4 +16,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(msp, mdp)(HomeIndex)
+export default connect(msp, mdp)(Header);

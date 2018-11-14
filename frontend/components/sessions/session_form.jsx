@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 
 class SessionForm extends React.Component {
@@ -17,8 +16,7 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.state);
-        this.props.processForm(this.state);
+        this.props.processForm(this.state).then(this.props.closeModal)
     }
 
     renderErrors() {
@@ -36,13 +34,12 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        let link, email, heading;
-        if (this.props.formType === 'Sign In') {
-            link = (<Link to='/signup' className="session-link">CREATE AN ACCOUNT</Link >);
-            email=""
+        const {formType, otherForm, closeModal} = this.props
+        let email, heading;
+        if (formType === 'Sign In') {
+            email = ""
             heading = (<span className="sess-heading">SIGN IN TO DECYPHER</span>)
         } else {
-            link = (<Link to='/login' className="session-link">ALREADY HAVE AN ACCOUNT? LOG IN HERE</Link>);
             email = (
                 <input
                 type="text"
@@ -51,11 +48,12 @@ class SessionForm extends React.Component {
                 onChange={this.update("email")}
                 placeholder="Email"
                 />
-                )
+                    )
             heading = (<span className="sess-heading">SIGN UP FOR DECYPHER</span>)
         }
         return (
             <div className="session-screen">
+                <div onClick={closeModal} className="close-x">X</div>
                 <form onSubmit={this.handleSubmit} className="session-form">
                     {heading}
                     <br></br>
@@ -74,10 +72,10 @@ class SessionForm extends React.Component {
                         onChange={this.update("password")}
                         placeholder="Password" />
 
-                    <button type="submit" className="session-btn">{this.props.formType}</button>
+                    <button type="submit" className="session-btn">{formType}</button>
 
                         <div className="sess-links">
-                            {link}
+                            {otherForm}
                         </div>
                 </form>
             </div>
