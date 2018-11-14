@@ -53,7 +53,7 @@ class SessionForm extends React.Component {
         }
         return (
             <div className="session-screen">
-                <form onSubmit={this.handleSubmit} className="session-form">
+                <form id="from-header" onSubmit={this.handleSubmit} className="session-form">
                     {heading}
                     <br></br>
                     {this.renderErrors()}

@@ -6,8 +6,8 @@ export default ({ currentUser, logout, openModal }) => {
   if (currentUser) {
     greeting = (
       <div>
-        <h3>Hello {currentUser.username}</h3>
-        <button onClick={logout}>Log Out</button>
+        <span>{currentUser.username}</span>
+        <span onClick={logout}>Log Out</span>
       </div>
     )
   } else {
@@ -19,10 +19,12 @@ export default ({ currentUser, logout, openModal }) => {
     )
   }
   return(
-    <div className="header">
-      <Link to="/" className="logo">
-        <h2>Decypher</h2>
-      </Link>
+    <div className="global-header">
+      <h2>
+        <Link to="/" className="logo">
+          Decypher
+        </Link>
+      </h2>
       <div className="user-btns">
         {greeting}
       </div>
