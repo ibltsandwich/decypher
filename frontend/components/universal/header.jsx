@@ -6,8 +6,8 @@ export default ({ currentUser, logout, openModal }) => {
   if (currentUser) {
     greeting = (
       <div>
-        <h3>Hello {currentUser.username}</h3>
-        <button onClick={logout}>Log Out</button>
+        <span>{currentUser.username}</span>
+        <span onClick={logout}>Log Out</span>
       </div>
     )
   } else {
