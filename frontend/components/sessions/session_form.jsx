@@ -78,12 +78,12 @@ class SessionForm extends React.Component {
 
                         <div className="sess-links">
                             {link}
-                            <Link to="#" className="session-link">DEMO LOGIN</Link>
                         </div>
                 </form>
             </div>
         )
     }
 }
+// {/* <Link to="#" className="session-link">DEMO LOGIN</Link> */}
 
 export default SessionForm;
