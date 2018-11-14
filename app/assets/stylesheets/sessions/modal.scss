@@ -8,6 +8,13 @@
   z-index: 10;
 }
 
+.modal-child {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
  .close-x {
   font-family: 'Raleway', sans-serif;
   position: fixed;

@@ -53,7 +53,6 @@ class SessionForm extends React.Component {
         }
         return (
             <div className="session-screen">
-                <div onClick={closeModal} className="close-x">X</div>
                 <form onSubmit={this.handleSubmit} className="session-form">
                     {heading}
                     <br></br>
