@@ -1,5 +1,4 @@
 import React from 'react';
-import { runInThisContext } from 'vm';
 
 
 class SessionForm extends React.Component {
@@ -8,19 +7,16 @@ class SessionForm extends React.Component {
         this.state = { username: '', password: '', email: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
         this.loginDemo = this.loginDemo.bind(this);
-        this.errors = this.props.errors;
     }
-
-    // componentDidUpdate(oldProps) {
-    //     if (this.handleSubmit) {
-    //         this.setState({ errors: [] })
-    //     }
-    // }
 
     update(field){
         return (e) => {
             this.setState({[field]: e.target.value})
         }
+    }
+
+    componentWillUnmount() {
+        this.props.switchForms();
     }
 
     handleSubmit(e) {
@@ -36,18 +32,10 @@ class SessionForm extends React.Component {
         });
     }
 
-    updateErrors() {
-        if (this.errors.length >= 1) {
-            this.errors = [];
-        } else {
-            this.errors = this.props.errors;
-        }
-    }
-
     renderErrors() {
         return(
-            <ul>
-                {this.errors.map((error, idx) => {
+            <ul className="session-errors">
+                {this.props.errors.map((error, idx) => {
                     return (
                         <li key={idx}>
                             {error}
@@ -81,7 +69,6 @@ class SessionForm extends React.Component {
                 <form id="from-header" onSubmit={this.handleSubmit} className="session-form">
                     {heading}
                     <br></br>
-                    {this.updateErrors()}
                     {this.renderErrors()}
                     <input 
                         type="text" 
