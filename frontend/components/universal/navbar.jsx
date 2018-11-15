@@ -6,8 +6,8 @@ export default () => {
     <div className="global-nav">
       <ul className="navbar-btns">
         <li><Link to="#top-songs">TOP SONGS</Link></li>
-        <li className="nav-divider">|</li>
-        <li>ADD A SONG</li>
+        {/* <li className="nav-divider">|</li>
+        <li>ADD A SONG</li> */}
       </ul>
       <ul className="social-media">
 
