@@ -9,7 +9,7 @@
 #
 
 class Artist < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   has_many :albums,
     class_name: :Album
