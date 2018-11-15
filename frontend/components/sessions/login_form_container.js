@@ -25,7 +25,8 @@ const mdp = dispatch => {
             </span>
         ),
         closeModal: () => dispatch(closeModal()),
-        switchForms: () => dispatch(switchForms())
+        switchForms: () => dispatch(switchForms()),
+        login: user => dispatch(login(user))
     };
 };
 

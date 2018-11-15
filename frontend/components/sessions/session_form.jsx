@@ -26,9 +26,8 @@ class SessionForm extends React.Component {
 
     loginDemo(e) {
         e.preventDefault();
-        const {processForm} = this.props;
         this.setState(this.props.demoUser, () => {
-            processForm(this.state).then(this.props.closeModal)
+            this.props.login(this.state).then(this.props.closeModal)
         });
     }
 
