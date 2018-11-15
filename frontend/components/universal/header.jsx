@@ -21,7 +21,7 @@ export default ({ currentUser, logout, openModal }) => {
   return(
     <div className="global-header">
       <input type="text" className="search-bar" placeholder="Search bar placeholder" />
-      {/* <div className="search-icon"><img src='app/assets/images/search-icon.png' /></div> */}
+      {/* <div className="search-icon"><img src={window.searchIcon} /></div> */}
 
       <h2>
         <Link to="/" className="logo">
