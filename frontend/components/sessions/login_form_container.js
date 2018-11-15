@@ -8,6 +8,10 @@ const msp = ({ errors }) => {
     return {
         errors: errors.session,
         formType: 'Sign In',
+        demoUser: {
+            username: "sirdemo",
+            password: "demopassword"
+        }
     };
 };
 
@@ -19,7 +23,7 @@ const mdp = dispatch => {
                 CREATE AN ACCOUNT
             </span>
         ),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
     };
 };
 

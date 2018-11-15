@@ -1,13 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup } from '../../actions/session_actions';
+import { signup, login } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 
 const msp = ({ errors }) => {
     return {
         errors: errors.session,
         formType: 'Sign Up',
+        demoUser: {
+            username: "sirdemo",
+            password: "demopassword"
+        }
     };
 };
 
@@ -19,7 +23,7 @@ const mdp = dispatch => {
                 ALREADY HAVE AN ACCOUNT? SIGN IN HERE
             </span>
         ),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
     };
 };
 

@@ -6,6 +6,7 @@ class SessionForm extends React.Component {
         super(props);
         this.state = { username: '', password: '', email: '' };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.loginDemo = this.loginDemo.bind(this);
     }
 
     update(field){
@@ -17,6 +18,14 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.processForm(this.state).then(this.props.closeModal)
+    }
+
+    loginDemo(e) {
+        e.preventDefault();
+        const {processForm} = this.props;
+        this.setState(this.props.demoUser, () => {
+            processForm(this.state).then(this.props.closeModal)
+        });
     }
 
     renderErrors() {
@@ -34,7 +43,7 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const {formType, otherForm, closeModal} = this.props
+        const {formType, otherForm, demoUser, closeModal} = this.props
         let email, heading;
         if (formType === 'Sign In') {
             email = ""
@@ -73,9 +82,14 @@ class SessionForm extends React.Component {
 
                     <button type="submit" className="session-btn">{formType}</button>
 
-                        <div className="sess-links">
-                            {otherForm}
-                        </div>
+                    <div className="sess-links">
+                        {otherForm}
+                        <span 
+                            className="session-link" 
+                            onClick={this.loginDemo}>
+                            DEMO LOGIN
+                        </span>
+                    </div>
                 </form>
             </div>
         )

@@ -24,7 +24,7 @@ export default ({ currentUser, logout, openModal }) => {
   // }
   return (
     <div>
-      Decypher
+      
     </div>
   )
 }
