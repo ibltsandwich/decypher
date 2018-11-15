@@ -1,0 +1,30 @@
+.global-nav {
+  width: 100%;
+  background: black;
+  color: white;
+  height: 38px;
+  margin-top: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-btns {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.navbar-btns a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-btns li {
+  font-size: 13px;
+  padding: 10px;
+}
+
+.social-media {
+
+}

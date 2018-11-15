@@ -1,0 +1,23 @@
+.top-song-container{
+  background-color: #f7f7f7;
+  height: 677px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-song-chart {
+  border-top: 3px solid black;
+  width: 56%;
+}
+
+.top-song-header {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 25px;
+  margin: 0;
+}
+
+.top-song-list {
+
+}

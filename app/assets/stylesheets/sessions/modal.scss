@@ -15,7 +15,7 @@
   transform: translate(-50%, -50%);
 }
 
- .close-x {
+.close-x {
   font-family: 'Raleway', sans-serif;
   position: fixed;
   top: 5px;
@@ -24,4 +24,14 @@
   font-size: 30px;
   color: white;
   font-weight: 100;
- }
+}
+
+.session-errors {
+  list-style: none;
+  margin-bottom: 5px;
+  padding-left: 2px;
+}
+
+.session-errors li {
+   font-size: 14px;
+}

@@ -48,11 +48,16 @@
   font-weight: 600;
   font-size: 14px;
   background-color: inherit;
+  margin-left: 1px;
 }
 
 .session-btn:hover {
   cursor: pointer;
   background-color: rgba(204,204,204,.2);
+}
+
+.session-btn:focus {
+  outline: none;
 }
 
 .sess-links {

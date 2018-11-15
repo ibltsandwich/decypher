@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
+import { switchForms } from '../../actions/session_actions';
 
 const msp = ({ errors }) => {
     return {
         errors: errors.session,
         formType: 'Sign In',
+        demoUser: {
+            username: "sirdemo",
+            password: "demopassword"
+        }
     };
 };
 
@@ -19,7 +24,8 @@ const mdp = dispatch => {
                 CREATE AN ACCOUNT
             </span>
         ),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        switchForms: () => dispatch(switchForms())
     };
 };
 
