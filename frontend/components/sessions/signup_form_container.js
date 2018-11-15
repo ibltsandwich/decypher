@@ -20,7 +20,7 @@ const mdp = dispatch => {
         processForm: user => dispatch(signup(user)),
         otherForm: (
             <span className="session-link" onClick={() => dispatch(openModal('login'))}>
-                ALREADY HAVE AN ACCOUNT? SIGN IN HERE
+                ALREADY HAVE AN ACCOUNT? SIGN IN
             </span>
         ),
         closeModal: () => dispatch(closeModal()),
