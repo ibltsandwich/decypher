@@ -5,10 +5,10 @@ export const fetchSongs = () => {
   })
 }
 
-export const fetchSong = id => {
+export const fetchSong = song => {
   return $.ajax({
     method: 'GET',
-    url: `api/songs/${id}`
+    url: `api/songs/${song.id}`
   })
 }
 
