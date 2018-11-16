@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class SongForm extends React.Component {
+class NewSongForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {title: '', artist: '', album: ''}
@@ -14,11 +14,39 @@ class SongForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    const title = this.state.title
-    const artist = this.state.artist
-    const newSong = {title: this.state.title, artist:}
     this.props.createSong(this.state)
   }
+
+  render() {
+    return (
+      <div className="whole-add-song-form">
+        <div className='add-song-form-container'>
+          <h1 className="add-song-header">Add Song</h1>
+          <h2 className="primary-info-header">
+            <span className="primary-info">Primary info</span>
+            <span className="required-header">* required</span>
+          </h2>
+          <div className="header-divider"></div>
+          <form className="primary-info-form" onSubmit={this.handleSubmit}>
+            <span>BY*</span>
+            <input type="text" 
+                   onChange={this.update('artist')} 
+                   placeholder="The primary artist, author, creator, etc." 
+                   className="add-song-input"/>
+            <span>TITLE*</span>
+            <input type="text" 
+                  onChange={this.update('title')} 
+                  placeholder="Title" 
+                  className="add-song-input"/>
+            <span>LYRICS*</span>
+            <textarea rows="10" col="100"></textarea>
+            <input className="add-song-submit" type="submit" value="submit"></input>
+          </form>
+        </div>
+      </div>
+    )
+  }
+
 }
 
-export default SongForm;
+export default NewSongForm;

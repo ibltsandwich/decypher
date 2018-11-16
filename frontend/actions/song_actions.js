@@ -4,17 +4,17 @@ export const RECEIVE_ALL_SONGS = 'RECEIVE_ALL_SONGS';
 export const RECEIVE_SONG = 'RECEIVE_SONG';
 
 
-export const receiveAllSongs = albums => {
+export const receiveAllSongs = songs => {
   return {
     type: RECEIVE_ALL_SONGS,
-    albums
+    songs
   }
 }
 
-export const receiveSong = album => {
+export const receiveSong = song => {
   return {
     type: RECEIVE_SONG,
-    album
+    song
   }
 }
 
@@ -24,20 +24,20 @@ export const fetchSongs = () => dispatch => {
   )
 }
 
-export const fetchSong = album => dispatch => {
-  return SongApiUtil.fetchSong(album).then(
+export const fetchSong = song => dispatch => {
+  return SongApiUtil.fetchSong(song).then(
     response => dispatch(receiveSong(response))
   )
 }
 
-export const createSong = album => dispatch => {
-  return SongApiUtil.createSong(album).then(
+export const createSong = song => dispatch => {
+  return SongApiUtil.createSong(song).then(
     response => dispatch(receiveSong(response))
   )
 }
 
-export const updateSong = album => dispatch => {
-  return SongApiUtil.createSong(album).then(
+export const updateSong = song => dispatch => {
+  return SongApiUtil.createSong(song).then(
     response => dispatch(receiveSong(response))
   )
 }

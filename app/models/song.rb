@@ -21,4 +21,12 @@ class Song < ApplicationRecord
 
   has_one :lyric,
     class_name: :Lyric
+
+  def find_artist(artist_name)
+    artist = Artist.find_by(name: artist_name)
+    if artist == nil
+      artist = Artist.create({name: artist_name})
+    end
+    return artist.id
+  end
 end

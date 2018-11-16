@@ -6,8 +6,10 @@ export default ({ currentUser, logout, openModal }) => {
   return (
     <div>
       <TopSongs />
-      <div className="filler">
+      <div className="filler" >
+      <h2>Filler for other content</h2>
       </div>
+      
     </div>
   )
 }
