@@ -19,9 +19,6 @@ class Song < ApplicationRecord
   belongs_to :artist,
     class_name: :Artist
 
-  belongs_to :album,
-    class_name: :Album
-
   has_one :lyric,
     class_name: :Lyric
 end
