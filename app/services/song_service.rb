@@ -1,7 +1,8 @@
-class SongService
-  def initialize(artist_id, album_id, song_id)
-    @artist = Artist.find(artist_id)
-    @album = Album.find(@artist.albums[album_id].id)
-    @song_id = Song.find(@album.songs[song_id].id)
+class LyricsService
+  def initialize(params)
+    @artist = Artist.find(params[:artist_id])
+    @album = Album.find(params[:album_id])
+    @song = Song.find(params[:song_id])
+    @lyrics = Lyrics.find(params)
   end
 end

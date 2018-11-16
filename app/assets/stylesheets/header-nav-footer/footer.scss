@@ -1,0 +1,40 @@
+.footer-container {
+  display: flex;
+  position: relative;
+  bottom: 0px;
+  flex-direction: row;
+  justify-content: center;
+  height: 150px;
+  background-color: black;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  margin: 10px;
+}
+
+.github-logo img{
+  width: 100px; 
+  height: auto;
+  padding: 10px;
+}
+
+.genius-logo img{
+  width: 100px;
+  height: auto;
+  padding: 10px;
+}
+
+.secondary-footer-container {
+  position: relative;
+  height: 120px;
+  bottom: 1.5em;
+  background-color: black;
+  text-align: center;
+}
+
+.secondary-footer-container span{
+  color:white;
+  font-size: 10px;
+}

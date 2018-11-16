@@ -6,11 +6,14 @@
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer          not null
 #
 
 class Artist < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
+  belongs_to :user
+  
   has_many :albums,
     class_name: :Album
 
