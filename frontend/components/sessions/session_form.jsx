@@ -59,6 +59,7 @@ class SessionForm extends React.Component {
                     className="session-input"
                     onChange={this.update("email")}
                     placeholder="Email"
+                    required
                 />
                     )
             heading = (<span className="sess-heading">SIGN UP FOR DECYPHER</span>)
@@ -74,14 +75,16 @@ class SessionForm extends React.Component {
                         value={this.state.username} 
                         className="session-input" 
                         onChange={this.update("username")}
-                        placeholder="Username" />
+                        placeholder="Username" 
+                        required	/>
                     {email}
                     <input 
                         type="password" 
                         value={this.state.password} 
                         className="session-input" 
                         onChange={this.update("password")}
-                        placeholder="Password" />
+                        placeholder="Password" 
+                        required	/>
 
                     <button type="submit" className="session-btn">{formType}</button>
 

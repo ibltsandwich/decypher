@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 demo = User.create({username: "sirdemo", email: "demo@demoman.com", password: "demopassword"})
+
+artist1 = Artist.create({name: "Kendrick Lamar", user_id: 1})
+artist2 = Artist.create({name: "Chance the Rapper", user_id: 1})
+artist3 = Artist.create({name: "Drunken Tiger", user_id: 1})

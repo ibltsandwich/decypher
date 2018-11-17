@@ -6,7 +6,7 @@ class Api::SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
-    @song.artist_id = @song.find_artist(params[:artist_id])
+    @song.artist_id = @song.find_artist(params[:artist_id], current_user.id)
     @song.user_id = current_user.id
 
     if @song.save!

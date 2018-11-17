@@ -1,10 +1,10 @@
 import React from 'react';
 
-
 class NewSongForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: '', artist: '', album: ''}
+    this.state = {id: '', title: '', artist_id: '', lyrics: '', album_id: ''};
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(field){
@@ -12,9 +12,12 @@ class NewSongForm extends React.Component {
       this.setState({ [field]: e.target.value })
     }
   }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createSong(this.state)
+    this.props.createSong(this.state).then(
+        response => this.props.history.push(`songs/${response.song.id}`)
+    )
   }
 
   render() {
@@ -26,20 +29,26 @@ class NewSongForm extends React.Component {
             <span className="primary-info">Primary info</span>
             <span className="required-header">* required</span>
           </h2>
-            <form className="primary-info-form" onSubmit={this.handleSubmit}>
+          <form className="primary-info-form" onSubmit={this.handleSubmit}>
               <div className="primary-info-div">
                 <span>BY*</span>
                 <input type="text" 
-                      onChange={this.update('artist')} 
+                      onChange={this.update('artist_id')} 
                       placeholder="The primary artist, author, creator, etc." 
-                      className="add-song-input"/>
+                      className="add-song-input"
+                      required	/>
                 <span>TITLE*</span>
                 <input type="text" 
                       onChange={this.update('title')} 
                       placeholder="Title" 
-                      className="add-song-input"/>
+                      className="add-song-input"
+                      required	/>
                 <span>LYRICS*</span>
-                <textarea className="add-lyrics" rows="20" col="40"></textarea>
+                <textarea 
+                      className="add-lyrics" 
+                      rows="20" col="40" 
+                      onChange={this.update('lyrics')}
+                      required></textarea>
               </div>
               <div className="submit-divider"></div>
               <button className="add-song-submit" type="submit">Submit</button>
