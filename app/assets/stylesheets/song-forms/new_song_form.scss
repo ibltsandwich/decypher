@@ -30,8 +30,11 @@
   line-height: 140%;
 }
 
+.primary-info-div {
+  
+}
 
-.primary-info-form {
+.primary-info-div {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -47,9 +50,11 @@
 
 .primary-info-form input {
   margin-bottom: 1.5rem;
-  width: 100%;
-  padding: 5px;
+  max-width: 92%;
+  padding: 2px;
   height: 1.6em;
+  color: black;
+  font-size: 15px;
 }
 .primary-info {
   font-weight: 700;
@@ -74,23 +79,43 @@
 
 .add-song-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #757575;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   opacity: 1; /* Firefox */
 }
 
 .add-song-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #757575;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .add-song-input::-ms-input-placeholder { /* Microsoft Edge */
   color: #757575;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
-.add-song-submit {
+.add-lyrics {
+  width: 94%;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 500px;
+  
+}
 
+.submit-divider {
+  border-bottom: 1px solid rgba(154, 154, 154, 0.35);
+  margin: 15px 0;
+}
+
+.add-song-submit {
+  background-color: #262626;
+  color: #ccc;
+  padding: 6px 8px;
+  border: 1px solid #444;
+  font-size: 12px;
+  font-weight: 600;
 }

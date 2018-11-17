@@ -26,22 +26,24 @@ class NewSongForm extends React.Component {
             <span className="primary-info">Primary info</span>
             <span className="required-header">* required</span>
           </h2>
-          <div className="header-divider"></div>
-          <form className="primary-info-form" onSubmit={this.handleSubmit}>
-            <span>BY*</span>
-            <input type="text" 
-                   onChange={this.update('artist')} 
-                   placeholder="The primary artist, author, creator, etc." 
-                   className="add-song-input"/>
-            <span>TITLE*</span>
-            <input type="text" 
-                  onChange={this.update('title')} 
-                  placeholder="Title" 
-                  className="add-song-input"/>
-            <span>LYRICS*</span>
-            <textarea rows="10" col="100"></textarea>
-            <input className="add-song-submit" type="submit" value="submit"></input>
-          </form>
+            <form className="primary-info-form" onSubmit={this.handleSubmit}>
+              <div className="primary-info-div">
+                <span>BY*</span>
+                <input type="text" 
+                      onChange={this.update('artist')} 
+                      placeholder="The primary artist, author, creator, etc." 
+                      className="add-song-input"/>
+                <span>TITLE*</span>
+                <input type="text" 
+                      onChange={this.update('title')} 
+                      placeholder="Title" 
+                      className="add-song-input"/>
+                <span>LYRICS*</span>
+                <textarea className="add-lyrics" rows="20" col="40"></textarea>
+              </div>
+              <div className="submit-divider"></div>
+              <button className="add-song-submit" type="submit">Submit</button>
+            </form>
         </div>
       </div>
     )
