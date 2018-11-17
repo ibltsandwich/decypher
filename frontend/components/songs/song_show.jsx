@@ -3,8 +3,11 @@ import React from 'react';
 class SongShow extends React.Component {
   constructor (props) {
     super(props);
-    this.song = this.props.fetchSong(parseInt(this.props.match.params.songId))
     debugger
+  }
+
+  componentDidMount() {
+    this.props.fetchSong(parseInt(this.props.match.params.songId))
   }
 
   render () {
@@ -12,7 +15,7 @@ class SongShow extends React.Component {
     return (
       <>
         <div className="song-header">
-          <h1>{this.song.name}</h1>
+          <h1 className="song-title">{this.props.song.title}</h1>
         </div>
         <div>
           <h2>FUCK</h2>
