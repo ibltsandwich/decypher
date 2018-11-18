@@ -23,7 +23,7 @@ class SongShow extends React.Component {
   render () {
     return (
       <>
-        <div className="song-header">
+        <div className="song-header-container">
           <h1 className="song-title">{this.props.song.title}</h1>
           <h2 className="song-artist">{this.props.artist.name}</h2>
           <h3 className="song-album">{this.props.album.title}</h3>
