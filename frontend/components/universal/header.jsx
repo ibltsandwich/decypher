@@ -20,7 +20,9 @@ export default ({ currentUser, logout, openModal }) => {
   }
   return(
     <div className="global-header">
-      <input type="text" className="search-bar" placeholder="Search bar placeholder" />
+      <div type="text" className="search-bar" placeholder="Search bar placeholder" >
+        Search coming soon
+      </div>
       {/* <div className="search-icon"><img src={window.searchIcon} /></div> */}
 
       <h2>

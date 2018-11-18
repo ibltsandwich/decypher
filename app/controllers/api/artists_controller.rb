@@ -3,9 +3,9 @@ class Api::ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
     @artist.user_id = current_user.id
 
-    if !@artist.save!
-    #   render 'api/artists/show'
-    # else
+    if @artist.save!
+      render 'api/artists/show'
+    else
       render json: @artist.errors.full_messages, status: 422
     end
   end

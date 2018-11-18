@@ -4,7 +4,7 @@ import { createSong } from '../../actions/song_actions';
 import { fetchArtist, createArtist } from '../../actions/artist_actions';
 import { fetchAlbum, createAlbum } from '../../actions/album_actions'
 
-const msp = state => {
+const msp = (state) => {
   return {
   }
 }

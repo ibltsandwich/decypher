@@ -1,1 +1,0 @@
-json.extract! lyric, :id, :body, :song_id, :user_id

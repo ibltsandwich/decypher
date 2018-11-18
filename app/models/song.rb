@@ -5,20 +5,26 @@
 #  id         :bigint(8)        not null, primary key
 #  title      :string           not null
 #  artist_id  :integer          not null
-#  album_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer          not null
+#  album_id   :integer
+#  lyrics     :text
 #
 
 class Song < ApplicationRecord
-  validates :title, :artist_id, presence: true
+  validates :title, :artist_id, :lyrics, presence: true
 
   belongs_to :user
   
   belongs_to :artist,
     class_name: :Artist
 
-  has_one :lyric,
-    class_name: :Lyric
+  def find_artist(artist_name, user_id)
+    artist = Artist.find_by(name: artist_name)
+    if artist == nil
+      return Artist.create({name: artist_name, user_id: user_id}).id 
+    end
+    return artist.id
+  end
 end

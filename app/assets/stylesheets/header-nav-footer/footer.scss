@@ -1,11 +1,19 @@
+.whole-footer {
+  position: relative;
+  bottom: 0;
+  padding: 1rem 0;
+  width: 100%;
+}
+
 .footer-container {
   display: flex;
-  position: relative;
-  bottom: 0px;
+  bottom: 152px;
   flex-direction: row;
   justify-content: center;
-  height: 150px;
   background-color: black;
+  height: 120px;
+  text-align: center;
+  width: 100%;
 }
 
 .footer-links {
@@ -27,11 +35,10 @@
 }
 
 .secondary-footer-container {
-  position: relative;
   height: 120px;
-  bottom: 1.5em;
   background-color: black;
   text-align: center;
+  width: 100%;
 }
 
 .secondary-footer-container span{
