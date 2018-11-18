@@ -5,9 +5,9 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_ALBUMS:
-      return action.albums;
+      return action.payload.albums;
     case RECEIVE_ALBUM:
-      return merge({}, state, { [action.album.id]: action.album });
+      return merge({}, state, { [action.payload.album.id]: action.payload.album });
     default:
       return state;
   }

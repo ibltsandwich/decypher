@@ -7,10 +7,10 @@ export default (state={}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ALL_ARTISTS:
-      return action.artists;
+      return action.payload.artists;
     case RECEIVE_SONG:
     case RECEIVE_ARTIST:
-      return merge({}, state, { [action.artist.id]: action.artist });
+      return merge({}, state, { [action.payload.artist.id]: action.payload.artist });
     default:
       return state;
   }

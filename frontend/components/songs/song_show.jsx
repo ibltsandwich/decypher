@@ -17,7 +17,6 @@ class SongShow extends React.Component {
   }
   
   render () {
-    debugger
     const {song, artist, album, loggedIn} = this.props;
     return (
       <>

@@ -3,6 +3,7 @@
 }
 
 .song-header {
+  display: flex;
   height: 280px;
   background: rgba(0,0,0,.6);
   max-width: 970px;
@@ -24,14 +25,16 @@
 .song-body-container {
   background-color: #f7f7f7;
   width: 100%;
+  padding-bottom: 20px;
+  height: 100%;
 }
 
 .song-body {
-    background-color: white;
-    max-width: 970px;
-    margin: 0 auto;
-    height: 100%;
-
+  background-color: white;
+  max-width: 970px;
+  margin: 0 auto;
+  height: 100%;
+  padding-bottom: 100px;
 }
 
 .left-body {

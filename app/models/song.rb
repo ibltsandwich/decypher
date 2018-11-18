@@ -14,11 +14,15 @@
 
 class Song < ApplicationRecord
   validates :title, :artist_id, :lyrics, presence: true
-
+  
   belongs_to :user
   
   belongs_to :artist,
     class_name: :Artist
+
+  belongs_to :album,
+    class_name: :Album,
+    optional: true
 
   def find_artist(artist_name, user_id)
     artist = Artist.find_by(name: artist_name)
