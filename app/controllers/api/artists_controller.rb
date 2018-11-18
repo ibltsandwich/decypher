@@ -2,7 +2,6 @@ class Api::ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     @artist.user_id = current_user.id
-
     if @artist.save!
       render 'api/artists/show'
     else

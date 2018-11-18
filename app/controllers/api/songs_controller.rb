@@ -18,6 +18,12 @@ class Api::SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+    if @song
+      @artist = Artist.find(@song.artist_id)
+      if @song.album_id
+        @album = Album.find(@song.album_id)
+      end
+    end
     render 'api/songs/show'
   end
 

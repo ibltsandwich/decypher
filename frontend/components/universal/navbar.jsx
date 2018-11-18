@@ -6,7 +6,7 @@ const Navbar = ({loggedIn}) => {
   return (
     <div className="global-nav">
       <ul className="navbar-btns">
-        <li><Link to="#top-songs">TOP SONGS</Link></li>
+        <li><Link to="/#top-songs">TOP SONGS</Link></li>
         {loggedIn ? 
           (
           <>

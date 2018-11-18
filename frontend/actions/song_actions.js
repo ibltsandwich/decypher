@@ -4,17 +4,17 @@ export const RECEIVE_ALL_SONGS = 'RECEIVE_ALL_SONGS';
 export const RECEIVE_SONG = 'RECEIVE_SONG';
 
 
-export const receiveAllSongs = songs => {
+export const receiveAllSongs = payload => {
   return {
     type: RECEIVE_ALL_SONGS,
-    songs
+    payload
   }
 }
 
-export const receiveSong = song => {
+export const receiveSong = payload => {
   return {
     type: RECEIVE_SONG,
-    song
+    payload
   }
 }
 

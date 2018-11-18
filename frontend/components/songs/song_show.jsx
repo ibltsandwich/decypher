@@ -13,23 +13,35 @@ class SongShow extends React.Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.params.songId !== this.props.match.params.songId) {
       this.props.fetchSong(this.props.match.params.songId);
-    } else if (this.props.song.artist_id && oldProps.artist === "") {
-      this.props.fetchArtist(this.props.song.artist_id)
-    } else if (this.props.song.album_id && oldProps.album === "") {
-      this.props.fetchAlbum(this.props.song.album_id)
     }
   }
   
   render () {
+    debugger
+    const {song, artist, album, loggedIn} = this.props;
     return (
       <>
-        <div className="song-header">
-          <h1 className="song-title">{this.props.song.title}</h1>
-          <h2 className="song-artist">{this.props.artist.name}</h2>
-          <h3 className="song-album">{this.props.album.title}</h3>
+        <div className="song-header-container">
+          <div className="song-header">
+            <img className="song-album-img"></img>
+            <h1 className="song-title">{song.title}</h1>
+            <h2 className="song-artist">{artist.name}</h2>
+            <h3 className="song-album">{album.title}</h3>  
+          </div>
         </div>
-        <div>
-          <h2>{this.props.song.lyrics}</h2>
+        <div className="song-body-container">
+          <div className="song-body">
+            <div className="left-body">
+              {loggedIn ? 
+                <div className='lyrics-header'>Edit Lyrics</div> :
+                <h3 className='lyrics-header'>{song.title.toUpperCase()} LYRICS </h3>}
+              <section className="song-lyrics">
+                <p>
+                  {song.lyrics}
+                </p>
+              </section>
+            </div>
+          </div>
         </div>
       </>
     )
