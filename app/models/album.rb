@@ -20,4 +20,6 @@ class Album < ApplicationRecord
 
   has_many :songs,
     class_name: :Song
+
+  has_one_attached :cover
 end

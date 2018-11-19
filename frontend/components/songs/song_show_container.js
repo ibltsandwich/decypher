@@ -13,7 +13,8 @@ const msp = (state, ownProps) => {
     song,
     artist,
     album,
-    loggedIn: Boolean(state.session.currentUserId)
+    loggedIn: Boolean(state.session.currentUserId),
+    currentUser: state.session.currentUserId
   }
 }
 

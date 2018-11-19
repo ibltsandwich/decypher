@@ -24,6 +24,8 @@ class Song < ApplicationRecord
     class_name: :Album,
     optional: true
 
+  has_one_attached :photo
+
   def find_artist(artist_name, user_id)
     artist = Artist.find_by(name: artist_name)
     if artist == nil

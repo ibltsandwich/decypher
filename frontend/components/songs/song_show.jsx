@@ -12,20 +12,31 @@ class SongShow extends React.Component {
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.params.songId !== this.props.match.params.songId) {
-      this.props.fetchSong(this.props.match.params.songId);
+      this.props.fetchSong(parseInt(this.props.match.params.songId));
     }
   }
   
   render () {
-    const {song, artist, album, loggedIn} = this.props;
+    const {song, artist, album, loggedIn, currentUser} = this.props;
     return (
       <>
         <div className="song-header-container">
           <div className="song-header">
-            <img className="song-album-img"></img>
-            <h1 className="song-title">{song.title}</h1>
-            <h2 className="song-artist">{artist.name}</h2>
-            <h3 className="song-album">{album.title}</h3>  
+            {currentUser === song.user_id ? 
+            <div className="owner-song-album-img">
+              <div className="edit-song-icon">
+                  <i className="fas fa-pen-square"></i>
+              </div>
+            </div> :
+            <div className="song-album-img">
+              <img />
+            </div>}
+
+            <div className="primary-song-info">
+              <h1 className="song-title">{song.title}</h1>
+              <h2 className="song-artist">{artist.name}</h2>
+              <h3 className="song-album">{album.title}</h3>  
+            </div>
           </div>
         </div>
         <div className="song-body-container">
