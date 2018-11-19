@@ -1,9 +1,12 @@
 .song-header-container {
   background-color: honeydew;
   width: 100%;
+  background-position: center;
+  background-size: cover;
 }
 
-.owner-song-album-img {
+.owner-song-album-img-container {
+  background-color: honeydew;
   z-index: 1;
   outline: .15rem solid #9a9a9a;
   width: 220px;
@@ -12,17 +15,34 @@
   float: left;
 }
 
-.owner-song-album-img:hover .edit-song-icon{
+.owner-song-album-img-container:hover + .edit-song-icon{
   display: flex;
+  animation-name: fade-in-edit;
+  animation-duration: .5s;
+}
+
+@keyframes fade-in-edit {
+  0% {opacity: 0}
+
+  100% {opacity: 1}
 }
 
 .fa-pen-square:before {
-  content: "\f14b";
   color: #99a7ee;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   position: absolute;
-  top: 0;
-  right: 0;
+  right: 26px;
+  top: 9px;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.edit-song-icon:hover {
+  display: block;
+  cursor: pointer;
 }
 
 .edit-song-icon {
@@ -67,7 +87,7 @@
   font-size: 2.25em;
   line-height: 1.125;
   font-family: "Palanquin Dark";
-  margin-top: .3em;
+  margin-top: .2em;
 }
 
 .song-artist {
@@ -100,7 +120,7 @@
 }
 
 .left-body {
-  padding: 0 1rem 0 1.5rem;
+  padding: 0 1rem;
   width: 58%;
   box-sizing: border-box;
 }

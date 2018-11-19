@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default ({ currentUser, logout, openModal }) => {
-  let greeting;
+  let headerUser;
   if (currentUser) {
-    greeting = (
+    headerUser = (
       <div>
         <span>{currentUser.username}</span>
         <span onClick={logout}>Log Out</span>
       </div>
     )
   } else {
-    greeting = (
+    headerUser = (
       <div>
         <span onClick={() => dispatch(openModal('signup'))}>SIGN UP</span>
         <span onClick={() => dispatch(openModal('login'))}>SIGN IN</span>
@@ -31,7 +31,7 @@ export default ({ currentUser, logout, openModal }) => {
         </Link>
       </h2>
       <div className="user-btns">
-        {greeting}
+        {headerUser}
       </div>
     </div>
   )

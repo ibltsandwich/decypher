@@ -3,6 +3,7 @@ import SongShow from './song_show';
 import { fetchSong } from '../../actions/song_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { fetchAlbum } from '../../actions/album_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
   const songId = ownProps.match.params.songId;
@@ -22,7 +23,8 @@ const mdp = dispatch => {
   return {
     fetchSong: id => dispatch(fetchSong(id)),
     fetchArtist: id => dispatch(fetchArtist(id)),
-    fetchAlbum: id => dispatch(fetchAlbum(id))
+    fetchAlbum: id => dispatch(fetchAlbum(id)),
+    openModal: modal => dispatch(openModal(modal))
   }
 }
 

@@ -3,6 +3,8 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../sessions/login_form_container';
 import SignupFormContainer from '../sessions/signup_form_container';
+import SongImageFormContainer from '../songs/song_img_form_container';
+import { withRouter } from 'react-router-dom';
 
 function Modal ({modal, closeModal}) {
   if (!modal) {
@@ -15,6 +17,9 @@ function Modal ({modal, closeModal}) {
       break;
     case 'signup':
       component = <SignupFormContainer />;
+      break;
+    case 'songImage':
+      component = <SongImageFormContainer />;
       break;
     default:
       return null;
@@ -29,7 +34,7 @@ function Modal ({modal, closeModal}) {
   );
 }
 
-const msp = state => {
+const msp = (state, ownProps) => {
   return {
     modal: state.ui.modal
   };
@@ -41,4 +46,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(msp, mdp)(Modal)
+export default withRouter(connect(msp, mdp)(Modal))

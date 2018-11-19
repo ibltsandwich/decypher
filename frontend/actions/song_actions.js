@@ -37,7 +37,7 @@ export const createSong = song => dispatch => {
 }
 
 export const updateSong = song => dispatch => {
-  return SongApiUtil.createSong(song).then(
+  return SongApiUtil.updateSong(song).then(
     response => dispatch(receiveSong(response))
   )
 }

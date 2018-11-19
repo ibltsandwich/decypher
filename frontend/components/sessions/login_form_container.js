@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import { switchForms } from '../../actions/session_actions';
+import { clearErrors } from '../../actions/session_actions';
 
 const msp = ({ errors }) => {
     return {
@@ -25,7 +25,7 @@ const mdp = dispatch => {
             </span>
         ),
         closeModal: () => dispatch(closeModal()),
-        switchForms: () => dispatch(switchForms()),
+        clearErrors: () => dispatch(clearErrors()),
         login: user => dispatch(login(user))
     };
 };
