@@ -49,6 +49,11 @@
 .right-body{
   width: 42%;
   position: relative;
+  padding-left: 1rem;
+}
+
+.right-body h1 {
+  padding: 1rem 0;
 }
 
 .lyrics-header {
@@ -63,6 +68,6 @@
 
 .song-album-img {
   outline: .15rem solid #9a9a9a;
-  width: 16vw;
-  height: auto;
+  width: 220px;
+  height: 220px;
 }
