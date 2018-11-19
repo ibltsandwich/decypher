@@ -55,6 +55,6 @@ export const logout = () => dispatch => {
     )
 }
 
-export const switchForms = () => dispatch => {
+export const clearErrors = () => dispatch => {
     dispatch(removeErrors())
 }

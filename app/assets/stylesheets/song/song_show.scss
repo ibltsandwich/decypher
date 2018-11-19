@@ -1,21 +1,100 @@
 .song-header-container {
   background-color: honeydew;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.owner-song-album-img-container {
+  background-color: honeydew;
+  z-index: 1;
+  outline: .15rem solid #9a9a9a;
+  width: 220px;
+  height: 220px;
+  margin: auto 1rem auto -1.25rem;
+  float: left;
+}
+
+.owner-song-album-img-container:hover + .edit-song-icon{
+  display: flex;
+  animation-name: fade-in-edit;
+  animation-duration: .5s;
+}
+
+@keyframes fade-in-edit {
+  0% {opacity: 0}
+
+  100% {opacity: 1}
+}
+
+.fa-pen-square:before {
+  color: #99a7ee;
+  font-size: 2.2rem;
+  position: absolute;
+  right: 26px;
+  top: 9px;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.edit-song-icon:hover {
+  display: block;
+  cursor: pointer;
+}
+
+.edit-song-icon {
+  display: none;
+  z-index: 3;
+  position: relative;
+  right: 0;
+  top: 0;
+}
+
+.song-album-img {
+  z-index: 1;
+  outline: .15rem solid #9a9a9a;
+  width: 220px;
+  height: 220px;
+  margin: auto 1rem auto -1.25rem;
+  float: left;
 }
 
 .song-header {
-  display: flex;
+  display:flex;
   height: 280px;
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 0, 0, 0.6);
   max-width: 970px;
-  margin: 0 auto;
+  padding: 2.25rem 0 1.5rem 0;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.primary-song-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .song-title {
-  color: #ffff64
+  color: #ffff64;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-size: 2.25em;
+  line-height: 1.125;
+  font-family: "Palanquin Dark";
+  margin-top: .2em;
 }
 
 .song-artist {
   color: white;
+  font-size: 1.4em;
+  margin-top: .3em;
+  font-weight: 600;
 }
 
 .song-lyrics {
@@ -41,7 +120,7 @@
 }
 
 .left-body {
-  padding: 0 1rem 0 1.5rem;
+  padding: 0 1rem;
   width: 58%;
   box-sizing: border-box;
 }
@@ -64,10 +143,4 @@
   margin: 1rem 0;
   white-space: pre-wrap;
   line-height: 1.7em;
-}
-
-.song-album-img {
-  outline: .15rem solid #9a9a9a;
-  width: 220px;
-  height: 220px;
 }
