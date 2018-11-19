@@ -4,17 +4,17 @@ export const RECEIVE_ALL_ARTISTS = 'RECEIVE_ALL_ARTISTS';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
 
 
-export const receiveAllArtists = artists => {
+export const receiveAllArtists = payload => {
   return {
     type: RECEIVE_ALL_ARTISTS,
-    artists
+    payload
   }
 }
 
-export const receiveArtist = artist => {
+export const receiveArtist = payload => {
   return {
     type: RECEIVE_ARTIST,
-    artist
+    payload
   }
 }
 

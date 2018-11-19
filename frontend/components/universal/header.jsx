@@ -27,7 +27,7 @@ export default ({ currentUser, logout, openModal }) => {
 
       <h2>
         <Link to="/" className="logo">
-          Decypher
+          D E C Y P H E R
         </Link>
       </h2>
       <div className="user-btns">

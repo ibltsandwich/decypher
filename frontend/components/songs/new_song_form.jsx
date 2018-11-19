@@ -3,7 +3,7 @@ import React from 'react';
 class NewSongForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {id: '', title: '', artist_id: '', lyrics: '', album_id: ''};
+    this.state = {title: '', artist_id: '', lyrics: '', album_id: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -16,7 +16,7 @@ class NewSongForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createSong(this.state).then(
-        response => this.props.history.push(`songs/${response.song.id}`)
+        response => this.props.history.push(`songs/${response.payload.song.id}`)
     )
   }
 
