@@ -40,6 +40,9 @@ class SongShow extends React.Component {
                 </p>
               </section>
             </div>
+            <div className="right-body">
+              <h1>Annotations and song info</h1>
+            </div>
           </div>
         </div>
       </>

@@ -3,7 +3,6 @@ import { RECEIVE_SONG } from '../../actions/song_actions';
 import { merge } from 'lodash';
 
 export default (state={}, action) => {
-  debugger
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ALL_ARTISTS:

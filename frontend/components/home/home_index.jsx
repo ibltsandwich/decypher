@@ -9,7 +9,6 @@ export default ({ currentUser, logout, openModal }) => {
       <h2>Filler for other content</h2>
       </div>
       <TopSongs />
-      
     </div>
   )
 }
