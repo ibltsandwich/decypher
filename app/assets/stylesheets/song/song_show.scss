@@ -15,6 +15,11 @@
   float: left;
 }
 
+.owner-song-album-img-container img {
+  width: 100%;
+  height: 100%;
+}
+
 .owner-song-album-img-container:hover + .edit-song-icon{
   display: flex;
   animation-name: fade-in-edit;
@@ -23,7 +28,6 @@
 
 @keyframes fade-in-edit {
   0% {opacity: 0}
-
   100% {opacity: 1}
 }
 

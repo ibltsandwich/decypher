@@ -10,6 +10,7 @@
 #  user_id    :integer          not null
 #  album_id   :integer
 #  lyrics     :text
+#  photo_url  :text
 #
 
 class Song < ApplicationRecord
