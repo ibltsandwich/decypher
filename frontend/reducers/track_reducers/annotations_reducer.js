@@ -6,8 +6,9 @@ export default (state={}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_SONG:
+      return merge({}, action.payload.annotations)
     case RECEIVE_ANNOTATION:
-      return merge({}, state, action.annotation)
+      return merge({}, state, action.payload.annotation)
     default:
       return state;
   }
