@@ -19,16 +19,18 @@ class Api::SongsController < ApplicationController
   end
 
   def show
-    @song = Song.includes(:album, :artist).find(params[:id])
+    @song = Song.includes(:album, :artist, :annotations).find(params[:id])
     @artist = @song.artist
     @album = @song.album
+    @annotations = @song.annotations
     render 'api/songs/show'
   end
 
   def update
-    @song = Song.includes(:album, :artist).find(params[:id])
+    @song = Song.includes(:album, :artist, :annotations).find(params[:id])
     @artist = @song.artist
     @album = @song.album
+    @annotations = @song.annotations
     
     if @song.update_attributes(song_params)
       render 'api/songs/show'

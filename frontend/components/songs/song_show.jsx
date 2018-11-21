@@ -1,4 +1,5 @@
 import React from 'react';
+import LyricShow from '../annotations/lyric_show_container';
 
 class SongShow extends React.Component {
   constructor (props) {
@@ -54,11 +55,9 @@ class SongShow extends React.Component {
                 {loggedIn ? 
                   <div className='lyrics-header'>Edit Lyrics</div> :
                   <h3 className='lyrics-header'>{song.title.toUpperCase()} LYRICS </h3>}
-                <section className="song-lyrics">
-                  <p>
-                    {song.lyrics}
-                  </p>
-                </section>
+                {/* <section className="song-lyrics"> */}
+                  <LyricShow song={song}/>
+                {/* </section> */}
               </div>
               <div className="right-body">
                 <h1>Annotations and song info</h1>

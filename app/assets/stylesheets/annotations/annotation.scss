@@ -1,0 +1,16 @@
+.annotation{
+  color: green;
+}
+
+.annotation-form-show {
+  display: block;
+  background-color: green;
+  height: 100px;
+  weight: 100px;
+  position: absolute;
+  right: 0;
+}
+
+.annotation-form-hidden {
+  display: none;
+}

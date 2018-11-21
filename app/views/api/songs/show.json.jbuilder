@@ -11,3 +11,13 @@ if @album
     json.extract! @album, :id, :title
   end
 end
+
+if @annotations
+  json.annotations do
+    @annotations.each do |annotation|
+      json.set! annotation.id do 
+        json.extract! annotation, :id, :body, :user_id, :song_id, :start_idx, :end_idx
+      end
+    end
+  end
+end

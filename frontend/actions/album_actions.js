@@ -4,14 +4,14 @@ export const RECEIVE_ALL_ALBUMS = 'RECEIVE_ALL_ALBUMS';
 export const RECEIVE_ALBUM = 'RECEIVE_ALBUM';
 
 
-export const receiveAllArtists = payload => {
+export const receiveAllAlbums = payload => {
   return {
     type: RECEIVE_ALL_ALBUMS,
     payload
   }
 }
 
-export const receiveArtist = payload => {
+export const receiveAlbum = payload => {
   return {
     type: RECEIVE_ALBUM,
     payload
