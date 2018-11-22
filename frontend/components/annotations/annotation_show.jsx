@@ -22,7 +22,7 @@ class AnnotationShow extends React.Component {
       )
     } else {
       return (
-        <h1>HI</h1>
+        null
       )
     }
   }

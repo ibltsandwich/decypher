@@ -50,14 +50,16 @@ class SongShow extends React.Component {
   }
 
   closeAnnoForm() {
+    debugger
     if (window.getSelection().toString() === "") {
-      this.setState({ annoFormShow: false, buttonShow: false })
-      this.annoForm.className = "annotation-form-hidden"
-      
+      this.setState({ annoFormShow: false, buttonShow: false });
+      this.annoForm.className = "annotation-form-hidden";
+      this.props.history.push(`/songs/${this.props.song.id}`);
     }
   }
 
   handleHighlight(e) {
+    this.props.history.push(`/songs/${this.props.song.id}`);
     this.setState({ buttonShow: false, annoFormShow: false })
     this.annoForm.className = "annotation-form-hidden"
     let breakOut = false;
@@ -99,7 +101,7 @@ class SongShow extends React.Component {
       })
     }
     if (document.getElementById(1) && this.props.annotations.length > 0) {
-      const sortedAnno = this.props.annotations.sort((a,b) => a.start_line - b.start_line)
+      const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
       sortedAnno.forEach(anno => {
         let result;
         const { start_idx, end_idx, start_line, end_line } = anno;  
@@ -107,7 +109,8 @@ class SongShow extends React.Component {
           const lyric = this.annotatedLyrics[i].props.children;
           result = <AnnotatedLyric anno={anno}
                                    current_line={i}
-                                   lyric={lyric} />
+                                   lyric={lyric}
+                                   song={this.props.song} />
           this.annotatedLyrics[i] = result;
         }
       })

@@ -6,6 +6,7 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
 
   const handleClick = (e) => {
     // e.preventDefault();
+    e.stopPropagation();
   }
 
   if (anno.start_line === anno.end_line) {
