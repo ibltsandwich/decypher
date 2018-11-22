@@ -2,15 +2,122 @@
   color: green;
 }
 
+.annotation:hover {
+  background-color: yellow;
+}
+
 .annotation-form-show {
   display: block;
-  background-color: green;
-  height: 100px;
-  weight: 100px;
-  position: absolute;
+  height: 400px;
+  width: 400px;
   right: 0;
 }
 
 .annotation-form-hidden {
   display: none;
+}
+
+.annotation-start {
+  font-weight: 600;
+  border-color: #000;
+  color: #000;
+  word-wrap: break-word;
+  word-break: break-word;
+  transition: background-color .3s,border-color .3s;
+  background-color: transparent;
+  border-width: .15rem;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: .9rem;
+  line-height: 1.4rem;
+  margin: 0;
+  text-align: center;
+  padding: .25rem .5rem;
+  vertical-align: top;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-divider {
+  background-color: #99a7ee;
+  bottom: 0;
+  content: '';
+  display: block;
+  left: 0;
+  top: 1rem;
+  width: 4px;
+  margin-right: 15px;
+}
+
+.annotation-form {
+  margin: auto 0;
+}
+
+.annotation-form-container {
+  display: flex;
+  height: 16rem;
+  animation-name: annotation-fade-in-left;
+  animation-duration: .5s;
+  position: relative;
+}
+
+@keyframes annotation-fade-in-left {
+  0% { left: -50px; 
+      opacity: 0 }
+  100% { left: 0;
+      opacity: 1}
+}
+
+
+.annotation-form-text {
+  border: none;
+  color: black;
+  font-size: .97em;
+  font-weight: 400;
+  resize: none;
+  overflow: hidden;
+  box-sizing: content-box;
+  padding: .5rem;
+  background-color: rgba(204, 204, 204, 0.2);
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  height: 184px;
+  width: 350px;
+  margin-bottom: 1em;
+}
+
+.annotation-form-text::placeholder {
+  font-size: 1.3em;
+}
+
+.annotation-form-submit {
+  border-color: #0ecb27;
+  color: #0ecb27;
+  word-wrap: break-word;
+  word-break: break-word;
+  transition: background-color .3s,border-color .3s;
+  background-color: transparent;
+  border-width: .15rem;
+  border-style: solid;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: .9rem;
+  margin: 0;
+  text-align: center;
+  padding: .25rem .5rem;
+  vertical-align: top;
+}
+
+.annotation-form-divider {
+  background-color: #99a7ee;
+  bottom: 0;
+  content: '';
+  display: block;
+  width: 4px;
+  margin-right:10px
 }

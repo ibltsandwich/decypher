@@ -3,7 +3,13 @@ import React from 'react';
 class AnnotationForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {body: "", song_id: props.song.id, start_idx: props.start, end_idx: props.end};
+    this.state = {body: "", 
+                  song_id: props.song.id, 
+                  start_idx: props.start_idx, 
+                  end_idx: props.end_idx,
+                  start_line: parseInt(props.start_line),
+                  end_line: parseInt(props.end_line)
+                 };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -13,20 +19,23 @@ class AnnotationForm extends React.Component {
     }
   }
 
-  componentDidMount() {
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createAnnotation(this.state).then(this.setState({body: ""}));
+    this.props.createAnnotation(this.state)
+        .then(this.setState({body: ""}));
   }
 
   render () {
     return (
       <div className="annotation-form-container">
-        <form onSubmit={this.handleSubmit}>
-            <textarea row="40" col="40" onChange={this.update('body')} value={this.state.body}/>
-            <button type="submit">Save</button>
+        <div className="annotation-form-divider"></div>
+
+        <form onSubmit={this.handleSubmit} className="annotation-form">
+            <textarea className="annotation-form-text" 
+                      onChange={this.update('body')} 
+                      value={this.state.body}
+                      placeholder={this.props.slice}/>
+            <button type="submit" className="annotation-form-submit">Save</button>
         </form>
       </div>
     )

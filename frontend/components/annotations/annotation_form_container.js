@@ -13,7 +13,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    createAnnotation: annotation => dispatch(createAnnotation(annotation))
+    createAnnotation: annotation => dispatch(createAnnotation(annotation)),
+    updateSong: song => dispatch(updateSong(song))
   }
 }
 

@@ -10,10 +10,12 @@
 #  updated_at :datetime         not null
 #  start_idx  :integer
 #  end_idx    :integer
+#  start_line :integer
+#  end_line   :integer
 #
 
 class Annotation < ApplicationRecord
-  validates :body, presence: true
+  validates :body, :start_idx, :end_idx, :start_line, :end_line, presence: true
 
   belongs_to :song
 

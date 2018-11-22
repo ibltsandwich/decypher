@@ -1,11 +1,22 @@
 import React from 'react';
 import AnnotationForm from '../annotations/annotation_form_container';
+import { Route } from 'react-router-dom';
+import AnnotationShow from '../annotations/annotation_show_container';
+import AnnotatedLyric from './annotated_lyric';
 
 class SongShow extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { buttonShow: false, annoFormShow: false, selected: "", start: 0, end: 0};
-    this.annotatedLyrics = [];
+    this.state = { offset: 0, 
+                   buttonShow: false, 
+                   annoFormShow: false, 
+                   selected: "", 
+                   start_idx: 0, 
+                   end_idx: 0,
+                   start_line: 0,
+                   start_end: 0
+                 };
+    this.annotatedLyrics = this.props.song.lyrics;
     this.handleHighlight = this.handleHighlight.bind(this);
     this.annotationFormShow = this.annotationFormShow.bind(this);
     this.closeAnnoForm = this.closeAnnoForm.bind(this);
@@ -14,7 +25,8 @@ class SongShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchSong(parseInt(this.props.match.params.songId))
-    this.anno.addEventListener('click', this.handleHighlight)
+    this.highlightArea.addEventListener('click', this.handleHighlight)
+    this.annotateLyrics();
   }
 
   componentDidUpdate(oldProps) {
@@ -23,80 +35,103 @@ class SongShow extends React.Component {
         oldProps.match.params.songId !== this.props.match.params.songId ||
         oldProps.annotations.length !== this.props.annotations.length) {
       this.props.fetchSong(parseInt(this.props.match.params.songId));
+      this.setState({ annoFormShow: false, buttonShow: false })
+      this.annoForm.className = "annotation-form-hidden";
     }
     if (oldProps.location.pathname !== this.props.location.pathname ||
-        window.getSelection().toString() === "") {
-      this.button.className = "annotation-form-hidden";
+      window.getSelection().toString() === "") {
+        this.annoForm.className = "annotation-form-hidden";
     }
+    this.annotateLyrics();
   }
 
   componentWillUnmount() {
-    this.anno.removeEventListener('click', this.handleHighlight)
+    this.highlightArea.removeEventListener('click', this.handleHighlight)
   }
 
   closeAnnoForm() {
     if (window.getSelection().toString() === "") {
       this.setState({ annoFormShow: false, buttonShow: false })
-      this.button.className = "annotation-form-hidden"
+      this.annoForm.className = "annotation-form-hidden"
+      
     }
   }
 
   handleHighlight(e) {
+    this.setState({ buttonShow: false, annoFormShow: false })
+    this.annoForm.className = "annotation-form-hidden"
     let breakOut = false;
-    let start, end;
+    let start_idx, end_idx, start_line, end_line;
     //start_date1 > :end_date2 OR end_date1 < :start_date2
-    if (window.getSelection().focusOffset > window.getSelection().anchorOffset) {
-      start = window.getSelection().anchorOffset;
-      end = window.getSelection().focusOffset;
-    } else {
-      start = window.getSelection().focusOffset;
-      end = window.getSelection().anchorOffset;
-    }
-    this.props.annotations.forEach(anno => {
-      if (start > anno.end_idx || end < anno.start_idx) {
-        null;
-      } else {
-        breakOut = true;
-      }
-    })
+    // if (this.props.annotations.length > 0) {
+    //   if (window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
+    //     start_line = window.getSelection().anchorNode.parentNode.id;
+    //     start_idx = window.getSelection().anchorOffset;
+    //     end_line = window.getSelection().focusNode.parentNode.id;
+    //     end_idx = window.getSelection().focusOffset;
+    //   } else {
+    //     end_line = window.getSelection().anchorNode.parentNode.id;
+    //     end_idx = window.getSelection().anchorOffset;
+    //     start_line = window.getSelection().focusNode.parentNode.id;
+    //     start_idx = window.getSelection().focusOffset;
+    //   }
+    //   this.props.annotations.forEach(anno => {
+    //     if (start_idx > anno.end_idx && start_line > anno.end_line || 
+    //         end_idx < anno.start_idx && end_line < anno.start_line) {
+    //       null;
+    //     } else {
+    //       breakOut = true;
+    //     }
+    //   })
+    // } 
     if (breakOut) {
       return null;
     } else {
       this.setState({ buttonShow: true })
-      this.button.className = "annotation-form-show"
+      this.annoForm.className = "annotation-form-show"
     }
-    this.setState({
-      selected: window.getSelection().toString(),
-      start: start, end: end
-    });
   }
 
-  annotationFormShow() {
-    let start, end;
-    if (window.getSelection().focusOffset > window.getSelection().anchorOffset) {
-      start = window.getSelection().anchorOffset;
-      end = window.getSelection().focusOffset;
-    } else {
-      start = window.getSelection().focusOffset;
-      end = window.getSelection().anchorOffset;
+  annotateLyrics() {
+    if (this.props.song.lyrics) {
+      this.annotatedLyrics = this.props.song.lyrics.split('\n').map((line, idx) => {
+        return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
+      })
     }
-    this.setState({ annoFormShow: true });
+    if (document.getElementById(1) && this.props.annotations.length > 0) {
+      const sortedAnno = this.props.annotations.sort((a,b) => a.start_line - b.start_line)
+      sortedAnno.forEach(anno => {
+        let result;
+        const { start_idx, end_idx, start_line, end_line } = anno;  
+        for (let i = start_line; i <= end_line; i++) {
+          const lyric = this.annotatedLyrics[i].props.children;
+          result = <AnnotatedLyric anno={anno}
+                                   current_line={i}
+                                   lyric={lyric} />
+          this.annotatedLyrics[i] = result;
+        }
+      })
+    }
   }
   
-  annotateLyrics() {
-    const sortedAnno = this.props.annotations.sort((a, b) => a.start_idx - b.start_idx)
-    const { lyrics } = this.props.song || "";
-    debugger
-    let currentIndex = 0;
-    for (let i = 0; i < sortedAnno.length; i++) {
-      this.annotatedLyrics.push(
-        <span>{lyrics.slice(currentIndex, sortedAnno[i].start_idx)}
-        <a className="annotated">{lyrics.slice(sortedAnno[i].start_idx, sortedAnno[i].end_idx)}</a></span>
-      );
-      currentIndex = sortedAnno[i].end_idx
-    };
-    this.annotatedLyrics.push(lyrics.slice(currentIndex))
-    return this.annotatedLyrics;
+  annotationFormShow() {
+    let start_line, start_idx, end_line, end_idx;
+    if (window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
+      start_line = window.getSelection().anchorNode.parentNode.id;
+      start_idx = window.getSelection().anchorOffset;
+      end_line = window.getSelection().focusNode.parentNode.id;
+      end_idx = window.getSelection().focusOffset;
+    } else {
+      end_line = window.getSelection().anchorNode.parentNode.id;
+      end_idx = window.getSelection().anchorOffset;
+      start_line = window.getSelection().focusNode.parentNode.id;
+      start_idx = window.getSelection().focusOffset;
+    }
+    this.setState({ annoFormShow: true });
+    this.setState({
+      selected: window.getSelection().toString(),
+      start_idx: start_idx, end_idx: end_idx, start_line: start_line, end_line: end_line
+    });
   }
   
   render () {
@@ -105,8 +140,7 @@ class SongShow extends React.Component {
     };
     const {song, artist, album, loggedIn, currentUser, openModal} = this.props;
     const tempTitle = song.title || "";
-    debugger
-    // if (song.id) {
+
       return (
         <div onClick={this.closeAnnoForm}>
           {/* SONG HEADER */}
@@ -138,38 +172,38 @@ class SongShow extends React.Component {
           <div className="song-body-container">
             <div className="song-body">
               {/* LEFT BODY */}
-              <div className="left-body" ref={elem => this.anno = elem}>
+              <div className="left-body" ref={elem => this.highlightArea = elem}>
                 {loggedIn ?
                   <div className='lyrics-header'>Edit Lyrics</div> :
                   <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>}
-                <div className="song-lyrics">
-                 {/* {test}
-                  <p>{song.lyrics}</p> */}
-                  {this.annotatedLyrics}
-                </div>
+                    <div className="song-lyrics">
+                      {this.annotatedLyrics}
+                      {this.annotateLyrics()}
+                    </div>
               </div>
               {/* RIGHT BODY */}
               <div className="right-body">
                 <h1>Annotations and song info</h1>
-                <div ref={elem => this.button = elem} onClick={e => e.stopPropagation()} className="annotation-form-hidden">
+                <div ref={elem => this.annoForm = elem} onClick={e => e.stopPropagation()} className="annotation-form-hidden">
                   {this.state.annoFormShow ? <AnnotationForm slice={this.state.selected}
-                                                             start={this.state.start}
-                                                             end={this.state.end}
+                                                             start_idx={this.state.start_idx}
+                                                             end_idx={this.state.end_idx}
+                                                             start_line={this.state.start_line}
+                                                             end_line={this.state.end_line}
                                                              song={song} /> :
-                  <button onClick={this.annotationFormShow}>Start Annotation</button>}
+                  <div className="button-container">
+                    <div className="button-divider"></div>
+                    <button onClick={this.annotationFormShow} className="annotation-start">Start Annotation</button>
+                  </div>}
                 </div>
-              </div>
+                <div ref={elem => this.annoShow = elem} className="anno-show"></div>
+                  <Route exact path="/songs/:songId/:annotationId" component={AnnotationShow} />
+                </div>
             </div>
           </div>
         </div>
       );
     } 
-    // else {
-    //   return (
-    //     <h1 ref={elem => this.anno = elem}>Loading...</h1>
-    //   )
-    // }
-  // }
 }
 
 export default SongShow;

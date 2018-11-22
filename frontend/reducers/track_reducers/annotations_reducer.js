@@ -2,13 +2,13 @@ import { RECEIVE_ANNOTATION } from '../../actions/annotation_actions';
 import { RECEIVE_SONG } from '../../actions/song_actions';
 import { merge } from 'lodash';
 
-export default (state={}, action) => {
+export default (state=[], action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_SONG:
-      return merge({}, action.payload.annotations)
+      return merge([], action.payload.annotations)
     case RECEIVE_ANNOTATION:
-      return merge({}, state, action.payload.annotation)
+      return merge([], state, action.payload)
     default:
       return state;
   }
