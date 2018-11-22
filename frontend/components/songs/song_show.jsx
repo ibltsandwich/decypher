@@ -50,7 +50,6 @@ class SongShow extends React.Component {
   }
 
   closeAnnoForm() {
-    debugger
     if (window.getSelection().toString() === "") {
       this.setState({ annoFormShow: false, buttonShow: false });
       this.annoForm.className = "annotation-form-hidden";
