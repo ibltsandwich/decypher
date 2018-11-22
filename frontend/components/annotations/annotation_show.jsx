@@ -12,7 +12,6 @@ class AnnotationShow extends React.Component {
 
   render () {
     const {loggedIn, currentUser, annotation, ownProps} = this.props;
-    debugger
     if (annotation) {
       return (
         <div className="annotation-container">
