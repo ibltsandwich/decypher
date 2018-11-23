@@ -1,7 +1,8 @@
-export const fetchSongs = () => {
+export const fetchSongs = (limit) => {
   return $.ajax({
     method: 'GET',
-    url: 'api/songs'
+    url: 'api/songs',
+    data: { limit }
   })
 }
 

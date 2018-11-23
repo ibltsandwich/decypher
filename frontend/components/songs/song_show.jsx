@@ -31,9 +31,9 @@ class SongShow extends React.Component {
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.params.songId !== this.props.match.params.songId ||
-        oldProps.song.lyrics !== this.props.song.lyrics ||
-        oldProps.match.params.songId !== this.props.match.params.songId ||
-        oldProps.annotations.length !== this.props.annotations.length) {
+      oldProps.song.lyrics !== this.props.song.lyrics ||
+      oldProps.match.params.songId !== this.props.match.params.songId ||
+      oldProps.annotations.length !== this.props.annotations.length) {
       this.props.fetchSong(parseInt(this.props.match.params.songId));
       this.setState({ annoFormShow: false, buttonShow: false })
       this.annoForm.className = "annotation-form-hidden";
@@ -41,7 +41,7 @@ class SongShow extends React.Component {
     if (oldProps.location.pathname !== this.props.location.pathname ||
       window.getSelection().toString() === "") {
         this.annoForm.className = "annotation-form-hidden";
-    }
+      }
     this.annotateLyrics();
   }
 
@@ -96,9 +96,13 @@ class SongShow extends React.Component {
   annotateLyrics() {
     if (this.props.song.lyrics) {
       this.annotatedLyrics = this.props.song.lyrics.split('\n').map((line, idx) => {
+        if (line === "") {
+          return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}><br></br></div>)
+        }
         return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
       })
     }
+    debugger
     if (document.getElementById(1) && this.props.annotations.length > 0) {
       const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
       sortedAnno.forEach(anno => {
@@ -106,11 +110,13 @@ class SongShow extends React.Component {
         const { start_idx, end_idx, start_line, end_line } = anno;  
         for (let i = start_line; i <= end_line; i++) {
           const lyric = this.annotatedLyrics[i].props.children;
-          result = <AnnotatedLyric anno={anno}
-                                   current_line={i}
-                                   lyric={lyric}
-                                   song={this.props.song} />
-          this.annotatedLyrics[i] = result;
+          if (lyric) {
+            result = <AnnotatedLyric anno={anno}
+                                     current_line={i}
+                                     lyric={lyric}
+                                     song={this.props.song} />
+            this.annotatedLyrics[i] = result;
+          }
         }
       })
     }
@@ -118,7 +124,9 @@ class SongShow extends React.Component {
   
   annotationFormShow() {
     let start_line, start_idx, end_line, end_idx;
-    if (window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
+    if ((window.getSelection().focusNode.parentNode.id === window.getSelection().anchorNode.parentNode.id &&
+         window.getSelection().focusOffset > window.getSelection().anchorOffset) ||
+         window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
       start_line = window.getSelection().anchorNode.parentNode.id;
       start_idx = window.getSelection().anchorOffset;
       end_line = window.getSelection().focusNode.parentNode.id;

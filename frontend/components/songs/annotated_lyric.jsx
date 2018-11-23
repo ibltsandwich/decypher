@@ -8,10 +8,9 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
     // e.preventDefault();
     e.stopPropagation();
   }
-
   if (anno.start_line === anno.end_line) {
     result = (
-              <div>
+              <div key={current_line} id={current_line}>
                 {lyric.slice(0, anno.start_idx)}
                 <Link to={`/songs/${anno.song_id}/${anno.id}`}
                    onClick={handleClick}
@@ -23,7 +22,7 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
              )
   } else if (current_line === anno.start_line) {
     result = (
-              <div>
+              <div key={current_line} id={current_line}>
                 {lyric.slice(0, anno.start_idx)}
                 <Link to={`/songs/${anno.song_id}/${anno.id}`}
                    onClick={handleClick}
@@ -34,7 +33,7 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
              )
   } else if (current_line === anno.end_line) {
     result = (
-              <div>
+              <div key={current_line} id={current_line}>
                 <Link to={`/songs/${anno.song_id}/${anno.id}`}
                    onClick={handleClick}
                    className="annotation">
@@ -45,7 +44,7 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
              )
   } else {
     result = (
-              <div>
+              <div key={current_line} id={current_line}>
                 <Link to={`/songs/${anno.song_id}/${anno.id}`}
                    onClick={handleClick}
                    className="annotation">

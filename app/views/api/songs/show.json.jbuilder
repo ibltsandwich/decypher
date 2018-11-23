@@ -16,7 +16,7 @@ if @annotations
   json.annotations do
     @annotations.each do |annotation|
       json.set! annotation.id do 
-        json.extract! annotation, :id, :body, :user_id, :song_id, :start_idx, :end_idx, :start_line, :start_idx, :end_line
+        json.extract! annotation, :id, :body, :user_id, :song_id, :start_idx, :end_idx, :start_line, :end_line
       end
     end
   end
