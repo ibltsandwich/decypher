@@ -8,7 +8,7 @@ export default (state={}, action) => {
     case RECEIVE_SONG:
       return merge({}, action.payload.annotations)
     case RECEIVE_ANNOTATION:
-      return merge({}, state, action.payload)
+      return merge({}, state, action.payload.annotations)
     default:
       return state;
   }

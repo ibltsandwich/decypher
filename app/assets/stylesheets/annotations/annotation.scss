@@ -129,3 +129,14 @@
   animation-duration: .5s;
   position: relative;
 }
+
+
+
+.annotation-show-divider {
+  background-color: #99a7ee;
+  bottom: 0;
+  content: '';
+  display: block;
+  width: 4px;
+  margin-right:10px
+}

@@ -3,22 +3,11 @@ import { connect } from 'react-redux';
 import { fetchSongs } from '../../actions/song_actions';
 
 const msp = state => {
-  let songs, artists;
-  if (state.entities.songs) {
-    songs = Object.values(state.entities.songs)
-    artists = state.entities.artists
-  }
-
-  return {
-    songs,
-    artists
-  }
+  return {}
 }
 
 const mdp = dispatch => {
-  return {
-    fetchSongs: (limit) => dispatch(fetchSongs(limit))
-  }
+  return {}
 }
 
 export default connect(msp, mdp)(TopSongs)

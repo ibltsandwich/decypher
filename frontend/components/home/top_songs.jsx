@@ -2,19 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-class TopSongs extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+export default (props) => {
+  const { songs, artists } = props;
 
-  componentDidMount() {
-    this.props.fetchSongs(10);
-  }
-
-  render() {
-    const { songs, artists } = this.props
+  let lis;
+  
+  if (songs) {
     debugger
-    const lis = songs.map((song,idx) => {
+    lis = songs.map((song,idx) => {
       return (<li key={idx} id={`song-${idx}`}>
                 <div className="list-number">{idx+1}</div>
                 <img src={`${song.photo_url}`}></img>
@@ -24,20 +19,18 @@ class TopSongs extends React.Component {
                     <div className="top-song-artist">{artists[song.artist_id].name}</div>
                   </div>
                 </Link>
-              </li>)
-    })
-
-    return(
-      <div className="top-song-container" >
-        <h3 className="top-song-header" id="/#top-songs">TOP SONGS</h3>
-        <div className="top-song-chart">
-          <ul className="top-song-list">
-            {lis}
-          </ul>
-        </div>
-      </div>
-    )
+              </li>);
+    });
   }
-}
 
-export default TopSongs;
+  return(
+    <div className="top-song-container" >
+      <h3 className="top-song-header" id="/#top-songs">TOP SONGS</h3>
+      <div className="top-song-chart">
+        <ul className="top-song-list">
+          {lis}
+        </ul>
+      </div>
+    </div>
+  )
+}

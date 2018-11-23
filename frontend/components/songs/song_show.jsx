@@ -24,17 +24,16 @@ class SongShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchSong(parseInt(this.props.match.params.songId))
+    this.props.fetchSong(this.props.songId)
     this.highlightArea.addEventListener('click', this.handleHighlight)
     this.annotateLyrics();
   }
 
   componentDidUpdate(oldProps) {
-    if (oldProps.match.params.songId !== this.props.match.params.songId ||
+    if (oldProps.songId !== this.props.songId ||
       oldProps.song.lyrics !== this.props.song.lyrics ||
-      oldProps.match.params.songId !== this.props.match.params.songId ||
       oldProps.annotations.length !== this.props.annotations.length) {
-      this.props.fetchSong(parseInt(this.props.match.params.songId));
+      this.props.fetchSong(this.props.songId);
       this.setState({ annoFormShow: false, buttonShow: false })
       this.annoForm.className = "annotation-form-hidden";
     }
@@ -53,7 +52,7 @@ class SongShow extends React.Component {
     if (window.getSelection().toString() === "") {
       this.setState({ annoFormShow: false, buttonShow: false });
       this.annoForm.className = "annotation-form-hidden";
-      this.props.history.push(`/songs/${this.props.song.id}`);
+      this.props.history.push(`/songs/${this.props.songId}`);
     }
   }
 
