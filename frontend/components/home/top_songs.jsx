@@ -8,7 +8,6 @@ export default (props) => {
   let lis;
   
   if (songs) {
-    debugger
     lis = songs.map((song,idx) => {
       return (<li key={idx} id={`song-${idx}`}>
                 <div className="list-number">{idx+1}</div>
