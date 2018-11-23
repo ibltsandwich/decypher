@@ -12,6 +12,15 @@ Ruby on Rails backend with React-Redux frontend.
 Javascript's built-in getSelection API was used for annotations.
 Unforunately, the API had some shortcomings and some workarounds had to be implemented in order to get annotations working semi-properly.
 
+## User Auth
+User signup and login appears as a modal on top of the current page
+
+  ### Sign Up Form
+  ![SignUpForm](https://i.imgur.com/TDNJJF4.png)
+  
+  ### Log In Form
+  ![LogInForm](https://i.imgur.com/v2PONoz.png)
+
 ## Annotations
 Once a selected text is highlighted, the "Start Annotation" button will appear which, when clicked, will show the annotation form. The annotation form contains placeholder text that is equal to the highlighted portion of lyrics.
 After saving, they appear as a link that will direct the user to that annotation's url.
