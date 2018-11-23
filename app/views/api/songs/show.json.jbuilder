@@ -1,4 +1,6 @@
-json.partial! 'api/songs/song', song: @song
+json.songs do 
+  json.partial! 'api/songs/song', song: @song
+end
 
 if @artist
   json.artist do

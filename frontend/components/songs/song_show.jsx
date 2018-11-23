@@ -102,7 +102,6 @@ class SongShow extends React.Component {
         return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
       })
     }
-    debugger
     if (document.getElementById(1) && this.props.annotations.length > 0) {
       const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
       sortedAnno.forEach(anno => {

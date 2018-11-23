@@ -5,6 +5,11 @@ class Api::SongsController < ApplicationController
     else
       @songs = Song.all
     end
+    @artists = []
+    @songs.each do |song|
+      @artists << Artist.select("name, id").where(id: song.artist_id)
+    end
+
     render 'api/songs/index'
   end
 

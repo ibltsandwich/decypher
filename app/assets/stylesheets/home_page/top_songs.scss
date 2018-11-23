@@ -1,6 +1,5 @@
 .top-song-container{
   background-color: #f7f7f7;
-  height: 677px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +8,7 @@
 .top-song-chart {
   border-top: 3px solid black;
   width: 56%;
+  display: flex;
 }
 
 .top-song-header {
@@ -19,11 +19,81 @@
 }
 
 .top-song-list {
-
+  width: 100%;
 }
 
+.top-song-list img {
+  width: 3.4rem;
+  height: 100%;
+}
+
+.top-song-list li {
+  padding: 0 15px;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  line-height: 1.125;
+  align-items: center;
+}
+
+.top-song-list a {
+  color: black;
+  text-decoration: none;
+}
+
+#song-0 img {
+  width: 5rem;
+  height: 100%;
+}
+
+#song-0 .list-number {
+  border: .15rem solid #000;
+}
+
+#song-1 img {
+  width: 5rem;
+  height: 100%;
+}
+
+#song-1 .list-number {
+  border: .15rem solid #000;
+}
+
+#song-2 img {
+  width: 5rem;
+  height: 100%;
+}
+
+#song-2 .list-number {
+  border: .15rem solid #000;
+}
 
 .filler {
   color: white;
    height: 500px;
+}
+
+.top-song-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.top-song-artist {
+  font-size: .9em;
+}
+
+
+.list-number {
+  justify-content: center;
+  width: 2em;
+  min-width: 2em;
+  height: 2em;
+  align-items: center;
+  display: flex;
+  margin-right: 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.top-song-info {
+  margin-left: 1em;
 }

@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import { fetchSongs } from '../../actions/song_actions';
 
 const msp = state => {
-  const songs = Object.values(state.entities.songs) || [];
-  debugger
+  let songs, artists;
+  if (state.entities.songs) {
+    songs = Object.values(state.entities.songs)
+    artists = state.entities.artists
+  }
+
   return {
-    songs
+    songs,
+    artists
   }
 }
 
