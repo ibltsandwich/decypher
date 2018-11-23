@@ -13,6 +13,7 @@ const msp = (state, ownProps) => {
   const album = state.entities.albums[song.album_id] || "";
   const annotations = Object.values(state.entities.annotations) || [];
   return {
+    songId,
     song,
     artist,
     album,

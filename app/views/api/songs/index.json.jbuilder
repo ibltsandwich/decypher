@@ -5,3 +5,13 @@ json.songs do
     end
   end
 end
+
+if @artists
+  json.artists do
+    @artists.each do |artist|
+      json.set! artist[0].id do
+        json.extract! artist[0], :name, :id
+      end
+    end
+  end
+end

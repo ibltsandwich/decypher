@@ -5,9 +5,15 @@ import { openModal } from '../../actions/modal_actions';
 import { fetchSongs } from '../../actions/song_actions';
 
 const msp = state => {
+  let songs, artists;
+  if (state.entities.songs) {
+    songs = Object.values(state.entities.songs)
+    artists = state.entities.artists
+  }
   return {
     currentUser: state.entities.users[state.session.currentUserId],
-    songs: Object.values(state.entities.songs)
+    songs,
+    artists
   }
 }
 
