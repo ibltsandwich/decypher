@@ -12,12 +12,6 @@ class Home extends React.Component {
     this.props.fetchSongs(10);
   }
 
-  componentDidUpdate(oldProps) {
-    if (oldProps.songs.length !== this.props.songs.length) {
-      this.props.fetchSongs(10);
-    }
-  }
-
   render() {
     return (
       <div>
