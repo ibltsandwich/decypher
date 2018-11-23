@@ -15,10 +15,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <TopSongs songs={this.props.songs} artists={this.props.artists}/>
         <div className="filler" >
-          <h2>Filler for other content</h2>
+          <h2><img src={window.geniusNews}></img></h2>
         </div>
+        <TopSongs songs={this.props.songs} artists={this.props.artists}/>
       </div>
     )
   }

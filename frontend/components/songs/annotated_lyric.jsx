@@ -8,6 +8,7 @@ const AnnotatedLyric = ({ lyric, anno, current_line }) => {
     // e.preventDefault();
     e.stopPropagation();
   }
+
   if (anno.start_line === anno.end_line) {
     result = (
               <div key={current_line} id={current_line}>
