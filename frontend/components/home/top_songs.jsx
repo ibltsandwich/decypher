@@ -11,6 +11,12 @@ class TopSongs extends React.Component {
   componentDidMount() {
     this.setState({loading: false})
   }
+
+  componentDidUpdate (oldProps) {
+    if (oldProps.songs.length !== this.props.songs.length) {
+      this.forceUpdate();
+    }
+  }
     
   render () {
     const { songs, artists } = this.props;
@@ -19,16 +25,18 @@ class TopSongs extends React.Component {
     
     if (songs) {
       lis = songs.map((song,idx) => {
-        return (<li key={idx} id={`song-${idx}`}>
-                  <div className="list-number">{idx+1}</div>
-                  <img src={`${song.photo_url}`} alt="cover"></img>
-                  <Link to={`songs/${song.id}`}>
-                    <div className="top-song-info">
-                      <div className="top-song-title">{song.title}</div>
-                      <div className="top-song-artist">{artists[song.artist_id].name}</div>
-                    </div>
-                  </Link>
-                </li>);
+        return (
+          <li key={idx} id={`song-${idx}`}>
+            <div className="list-number">{idx+1}</div>
+            <img src={`${song.photo_url}`}/>
+            <Link to={`songs/${song.id}`}>
+              <div className="top-song-info">
+                <div className="top-song-title">{song.title}</div>
+                <div className="top-song-artist">{artists[song.artist_id].name}</div>
+              </div>
+            </Link>
+          </li>
+        );
       });
     }
 
