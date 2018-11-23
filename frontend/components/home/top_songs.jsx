@@ -13,7 +13,6 @@ class TopSongs extends React.Component {
   }
     
   render () {
-    debugger
     const { songs, artists } = this.props;
 
     let lis;
