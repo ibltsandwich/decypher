@@ -14,9 +14,9 @@ class AnnotationShow extends React.Component {
     const {loggedIn, currentUser, annotation, ownProps} = this.props;
     if (annotation) {
       return (
-        <div className="annotation-container">
-            <h1 className="annotation-header">Genius Annotation</h1>
-            <p className="annotation-body">{annotation.body}</p>
+        <div className="annotation-show-container">
+            <h1 className="annotation-show-header">Genius Annotation</h1>
+            <p className="annotation-show-body">{annotation.body}</p>
         </div>
       )
     } else {

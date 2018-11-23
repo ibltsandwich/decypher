@@ -1,6 +1,10 @@
 class Api::SongsController < ApplicationController
   def index
-    @songs = Song.all
+    if (params[:limit])
+      @songs = Song.all.limit(params[:limit])
+    else
+      @songs = Song.all
+    end
     render 'api/songs/index'
   end
 

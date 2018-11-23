@@ -7,7 +7,6 @@ import Navbar from './universal/navbar';
 import Footer from './universal/footer';
 import NewSongForm from './songs/new_song_form_container';
 import SongShow from './songs/song_show_container';
-import AnnotationShow from './annotations/annotation_show_container';
 import { Route, Link } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
 
