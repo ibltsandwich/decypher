@@ -28,7 +28,7 @@ class TopSongs extends React.Component {
         return (
           <li key={idx} id={`song-${idx}`}>
             <div className="list-number">{idx+1}</div>
-            <img src={`${song.photo_url}`}/>
+            <img className="top-song-cover" src={`${song.photo_url}`}/>
             <Link to={`songs/${song.id}`}>
               <div className="top-song-info">
                 <div className="top-song-title">{song.title}</div>

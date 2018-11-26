@@ -10,7 +10,7 @@ class SongShow extends React.Component {
     this.state = { offset: 0, 
                    buttonShow: false, 
                    annoFormShow: false, 
-                   selected: "", 
+                   selected: "",
                    start_idx: 0, 
                    end_idx: 0,
                    start_line: 0,
