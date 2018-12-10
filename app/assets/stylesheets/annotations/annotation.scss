@@ -1,5 +1,8 @@
 .annotation{
-  color: green;
+  background: #e9e9e9;
+  // background: lightgreen;
+  color: black;
+  text-decoration: none;
 }
 
 .annotation:hover {
@@ -7,10 +10,11 @@
 }
 
 .annotation-form-show {
-  display: block;
-  height: 400px;
-  width: 400px;
+  display: flex;
   right: 0;
+  position: sticky;
+  top: 30%;
+  z-index: 3;
 }
 
 .annotation-form-hidden {
@@ -29,7 +33,6 @@
   border-style: solid;
   border-radius: 0;
   cursor: pointer;
-  display: inline-block;
   font-size: .9rem;
   line-height: 1.4rem;
   margin: 0;
@@ -62,14 +65,16 @@
   height: 16rem;
   animation-name: annotation-fade-in-left;
   animation-duration: .5s;
-  position: relative;
+  position: sticky;
 }
 
 @keyframes annotation-fade-in-left {
   0% { left: -50px; 
-      opacity: 0 }
+      opacity: 0;
+      position: relative; }
   100% { left: 0;
-      opacity: 1}
+      opacity: 1;
+      position: relative}
 }
 
 
@@ -86,7 +91,7 @@
   overflow-x: hidden;
   overflow-wrap: break-word;
   height: 184px;
-  width: 350px;
+  width: 130%;
   margin-bottom: 1em;
 }
 
@@ -105,7 +110,6 @@
   border-style: solid;
   border-radius: 0;
   cursor: pointer;
-  display: inline-block;
   font-size: .9rem;
   margin: 0;
   text-align: center;
@@ -127,7 +131,8 @@
   height: 16rem;
   animation-name: annotation-fade-in-left;
   animation-duration: .5s;
-  position: relative;
+  // position: sticky;
+  // top:30%;
 }
 
 .annotation-show-divider {
@@ -146,4 +151,13 @@
 .annotation-show-info {
   display: flex;
   flex-direction: column;
+}
+
+.anno-show {
+  display: flex;
+  height: 16rem;
+  animation-name: annotation-fade-in-left;
+  animation-duration: .5s;
+  position: sticky;
+  top: 30%;
 }

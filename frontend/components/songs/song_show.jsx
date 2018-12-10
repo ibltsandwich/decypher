@@ -24,7 +24,7 @@ class SongShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchSong(this.props.songId)
+    this.props.fetchSong(this.props.songId);
     this.highlightArea.addEventListener('click', this.handleHighlight)
     this.annotateLyrics();
   }
@@ -33,15 +33,15 @@ class SongShow extends React.Component {
     if (oldProps.songId !== this.props.songId ||
       oldProps.song.lyrics !== this.props.song.lyrics ||
       oldProps.annotations.length !== this.props.annotations.length) {
-      this.props.fetchSong(this.props.songId);
-      this.setState({ annoFormShow: false, buttonShow: false })
-      this.annoForm.className = "annotation-form-hidden";
-    }
-    if (oldProps.location.pathname !== this.props.location.pathname ||
-      window.getSelection().toString() === "") {
+        this.props.fetchSong(this.props.songId);
         this.annoForm.className = "annotation-form-hidden";
+        this.forceUpdate();
       }
-    this.annotateLyrics();
+      if (oldProps.location.pathname !== this.props.location.pathname ||
+        window.getSelection().toString() === "") {
+          this.annoForm.className = "annotation-form-hidden";
+      }
+      this.annotateLyrics();
   }
 
   componentWillUnmount() {
@@ -53,6 +53,10 @@ class SongShow extends React.Component {
       this.setState({ annoFormShow: false, buttonShow: false });
       this.annoForm.className = "annotation-form-hidden";
       this.props.history.push(`/songs/${this.props.songId}`);
+      const a = Array.from(document.getElementsByClassName("annotation"));
+      a.forEach(link => {
+        link.style.backgroundColor = "#e9e9e9";
+      })
     }
   }
 
@@ -60,31 +64,11 @@ class SongShow extends React.Component {
     this.props.history.push(`/songs/${this.props.song.id}`);
     this.setState({ buttonShow: false, annoFormShow: false })
     this.annoForm.className = "annotation-form-hidden"
-    let breakOut = false;
-    let start_idx, end_idx, start_line, end_line;
-    //start_date1 > :end_date2 OR end_date1 < :start_date2
-    // if (this.props.annotations.length > 0) {
-    //   if (window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
-    //     start_line = window.getSelection().anchorNode.parentNode.id;
-    //     start_idx = window.getSelection().anchorOffset;
-    //     end_line = window.getSelection().focusNode.parentNode.id;
-    //     end_idx = window.getSelection().focusOffset;
-    //   } else {
-    //     end_line = window.getSelection().anchorNode.parentNode.id;
-    //     end_idx = window.getSelection().anchorOffset;
-    //     start_line = window.getSelection().focusNode.parentNode.id;
-    //     start_idx = window.getSelection().focusOffset;
-    //   }
-    //   this.props.annotations.forEach(anno => {
-    //     if (start_idx > anno.end_idx && start_line > anno.end_line || 
-    //         end_idx < anno.start_idx && end_line < anno.start_line) {
-    //       null;
-    //     } else {
-    //       breakOut = true;
-    //     }
-    //   })
-    // } 
-    if (breakOut) {
+    let breakout = false;
+    if (window.getSelection().focusNode.parentNode.id === "" || window.getSelection().anchorNode.parentNode.id === "") {
+      breakout = true;
+    }
+    if (breakout) {
       return null;
     } else {
       this.setState({ buttonShow: true })
@@ -101,45 +85,61 @@ class SongShow extends React.Component {
         return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
       })
     }
-    if (document.getElementById(1) && this.props.annotations.length > 0) {
+    if (document.getElementById("1") && this.props.annotations.length > 0) {
       const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
       sortedAnno.forEach(anno => {
         let result;
-        const { start_idx, end_idx, start_line, end_line } = anno;  
-        for (let i = start_line; i <= end_line; i++) {
-          const lyric = this.annotatedLyrics[i].props.children;
-          if (lyric) {
-            result = <AnnotatedLyric anno={anno}
-                                     current_line={i}
-                                     lyric={lyric}
-                                     song={this.props.song} />
-            this.annotatedLyrics[i] = result;
+        let lineSlice = [];
+        this.annotatedLyrics.forEach((line, idx) => {
+          if (parseInt(line.key) === anno.start_line) {
+            lineSlice = this.annotatedLyrics.slice(idx, idx+(anno.end_line - anno.start_line)+1);
+            return false;
           }
+        })
+        if (lineSlice.length > 0) {
+          result = <AnnotatedLyric anno={anno}
+                                    lineSlice={lineSlice}/>
+          this.annotatedLyrics.forEach((line, idx) => {
+            if (parseInt(line.key) === anno.start_line) {
+              this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
+              return false;
+            }
+          })
         }
       })
     }
   }
   
   annotationFormShow() {
-    let start_line, start_idx, end_line, end_idx;
-    if ((window.getSelection().focusNode.parentNode.id === window.getSelection().anchorNode.parentNode.id &&
-         window.getSelection().focusOffset > window.getSelection().anchorOffset) ||
-         window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
-      start_line = window.getSelection().anchorNode.parentNode.id;
-      start_idx = window.getSelection().anchorOffset;
-      end_line = window.getSelection().focusNode.parentNode.id;
-      end_idx = window.getSelection().focusOffset;
+    if (window.getSelection().focusNode) {
+      let start_line, start_idx, end_line, end_idx;
+      if ((window.getSelection().focusNode.parentNode.id === window.getSelection().anchorNode.parentNode.id &&
+          window.getSelection().focusOffset > window.getSelection().anchorOffset) ||
+          window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
+        start_line = window.getSelection().anchorNode.parentNode.id;
+        start_idx = window.getSelection().anchorOffset;
+        end_line = window.getSelection().focusNode.parentNode.id;
+        end_idx = window.getSelection().focusOffset;
+      } else {
+        end_line = window.getSelection().anchorNode.parentNode.id;
+        end_idx = window.getSelection().anchorOffset;
+        start_line = window.getSelection().focusNode.parentNode.id;
+        start_idx = window.getSelection().focusOffset;
+      }
+      this.props.annotations.forEach(anno => {
+        if (anno.end_line == start_line) {
+          start_idx += anno.end_idx;
+          end_idx += anno.end_idx;
+        }
+      })
+      this.setState({ annoFormShow: true });
+      this.setState({
+        selected: window.getSelection().toString(),
+        start_idx: start_idx, end_idx: end_idx, start_line: start_line, end_line: end_line
+      });
     } else {
-      end_line = window.getSelection().anchorNode.parentNode.id;
-      end_idx = window.getSelection().anchorOffset;
-      start_line = window.getSelection().focusNode.parentNode.id;
-      start_idx = window.getSelection().focusOffset;
+      this.setState({buttonShow: false})
     }
-    this.setState({ annoFormShow: true });
-    this.setState({
-      selected: window.getSelection().toString(),
-      start_idx: start_idx, end_idx: end_idx, start_line: start_line, end_line: end_line
-    });
   }
   
   render () {
@@ -186,7 +186,6 @@ class SongShow extends React.Component {
                   <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>}
                     <div className="song-lyrics">
                       {this.annotatedLyrics}
-                      {this.annotateLyrics()}
                     </div>
               </div>
               {/* RIGHT BODY */}
@@ -204,9 +203,10 @@ class SongShow extends React.Component {
                     <button onClick={this.annotationFormShow} className="annotation-start">Start Annotation</button>
                   </div>}
                 </div>
-                <div ref={elem => this.annoShow = elem} className="anno-show"></div>
+                <div ref={elem => this.annoShow = elem} className="anno-show">
                   <Route exact path="/songs/:songId/:annotationId" component={AnnotationShow} />
                 </div>
+              </div>
             </div>
           </div>
         </div>

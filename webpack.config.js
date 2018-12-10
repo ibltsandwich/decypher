@@ -1,18 +1,13 @@
 const path = require('path');
 const webpack = require("webpack");
 
-const plugins = []; // if using any plugins for both dev and production
+let plugins = []; // if using any plugins for both dev and production
 const devPlugins = []; // if using any plugins for development
 
 const prodPlugins = [
     new webpack.DefinePlugin({
         'process.env': {
             'NODE_ENV': JSON.stringify('production')
-        }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: true
         }
     })
 ];
