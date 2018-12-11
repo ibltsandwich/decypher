@@ -53,10 +53,6 @@ class SongShow extends React.Component {
       this.setState({ annoFormShow: false, buttonShow: false });
       this.annoForm.className = "annotation-form-hidden";
       this.props.history.push(`/songs/${this.props.songId}`);
-      const a = Array.from(document.getElementsByClassName("annotation"));
-      a.forEach(link => {
-        link.style.backgroundColor = "#e9e9e9";
-      })
     }
   }
 
@@ -80,9 +76,9 @@ class SongShow extends React.Component {
     if (this.props.song.lyrics) {
       this.annotatedLyrics = this.props.song.lyrics.split('\n').map((line, idx) => {
         if (line === "") {
-          return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}><br></br></div>)
+          return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}><br></br></div>)
         }
-        return (<div id={idx} key={idx} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
+        return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
       })
     }
     if (document.getElementById("1") && this.props.annotations.length > 0) {
@@ -98,7 +94,9 @@ class SongShow extends React.Component {
         })
         if (lineSlice.length > 0) {
           result = <AnnotatedLyric anno={anno}
-                                    lineSlice={lineSlice}/>
+                                    lineSlice={lineSlice}
+                                    pathname={this.props.location.pathname}
+                                    key={`anno${anno.id}`}/>
           this.annotatedLyrics.forEach((line, idx) => {
             if (parseInt(line.key) === anno.start_line) {
               this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
