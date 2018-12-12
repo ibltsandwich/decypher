@@ -15,7 +15,6 @@ class NewSongForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
     this.props.createSong(this.state).then(
         response => this.props.history.push(`songs/${response.payload.songs[Object.keys(response.payload.songs)[0]].id}`)
     )

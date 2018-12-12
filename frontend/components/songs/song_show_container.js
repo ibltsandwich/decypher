@@ -5,6 +5,7 @@ import { fetchArtist } from '../../actions/artist_actions';
 import { fetchAlbum } from '../../actions/album_actions';
 import { openModal } from '../../actions/modal_actions';
 import { createAnnotation } from '../../actions/annotation_actions';
+import { fetchSongComments } from '../../actions/comment_actions';
 
 const msp = (state, ownProps) => {
   const songId = ownProps.match.params.songId;
@@ -30,7 +31,8 @@ const mdp = dispatch => {
     fetchAlbum: id => dispatch(fetchAlbum(id)),
     openModal: modal => dispatch(openModal(modal)),
     updateSong: song => dispatch(updateSong(song)),
-    createAnnotation: annotation => dispatch(createAnnotation(annotation))
+    createAnnotation: annotation => dispatch(createAnnotation(annotation)),
+    fetchSongComments: id => dispatch(fetchSongComments(id))
   }
 }
 

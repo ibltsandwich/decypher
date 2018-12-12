@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import AnnotationShow from './annotation_show';
 import { withRouter } from 'react-router-dom'
+import { fetchAnnoComments } from '../../actions/comment_actions';
 
 const msp = (state, ownProps) => {
   console.log(state)
@@ -14,7 +15,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-
+    fetchAnnoComments: id => dispatch(fetchAnnoComments(id))
   }
 }
 

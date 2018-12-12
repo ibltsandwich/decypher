@@ -15,13 +15,15 @@ export const fetchSongComments = (id) => {
 export const createAnnoComment = comment => {
   return $.ajax({
     method: 'POST',
-    url: `api/annotations/${comment.commentable_id}/comments`
-  }) 
+    url: `api/annotations/${comment.commentable_id}/comments`,
+    data: { comment }
+  })
 }
 
 export const createSongComment = comment => {
   return $.ajax({
     method: 'POST',
-    url: `api/songs/${comment.commentable_id}/comments`
+    url: `api/songs/${comment.commentable_id}/comments`,
+    data: { comment }
   })
 }

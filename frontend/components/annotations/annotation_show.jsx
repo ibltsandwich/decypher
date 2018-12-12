@@ -3,7 +3,10 @@ import React from 'react';
 class AnnotationShow extends React.Component {
   constructor(props) {
     super(props)
+  }
 
+  componentDidMount() {
+    // this.props.fetchComments(this.props.annotation.id);
   }
 
   render () {

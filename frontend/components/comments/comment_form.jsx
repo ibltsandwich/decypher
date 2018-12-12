@@ -3,19 +3,19 @@ import React from 'react';
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {body: ""}
+    this.state = {body: "", commentable_id: "", commentable_type: "Song"}
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(field) {
     return (e) => {
-      this.setState({[field]: e.target.value})
+      this.setState({ [field]: e.target.value, commentable_id: this.props.song.id})
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.createComment
+    this.props.createSongComment(this.state);
   }
 
   render() {
@@ -33,3 +33,5 @@ class CommentForm extends React.Component {
     );
   }
 }
+
+export default CommentForm;

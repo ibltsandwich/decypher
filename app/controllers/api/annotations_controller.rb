@@ -23,7 +23,8 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def show
-    @annotation = Annotation.includes(:song).find(params[:id])
+    @annotation = Annotation.includes(:song, :comments).find(params[:id])
+    @comments = @annotation.comments
     render 'api/annotations/show'
   end
 
