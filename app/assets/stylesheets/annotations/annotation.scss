@@ -137,8 +137,6 @@
 
 .annotation-show-divider {
   background-color: #99a7ee;
-  bottom: 0;
-  content: '';
   display: block;
   width: 4px;
   margin-right:10px
@@ -160,4 +158,57 @@
   animation-duration: .5s;
   position: sticky;
   top: 30%;
+}
+
+.triangle-container {
+  background-color: white;
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  left: -28px;
+  top: 20%;
+  opacity: 0;
+  animation-name: triangle-fade-in-right;
+  animation-duration: .5s;
+  animation-delay: .25s;
+  animation-fill-mode:forwards;
+}
+
+@keyframes triangle-fade-in-right {
+  0% { left: 8px; 
+      opacity: 0;
+    }
+  100% { left: -28px;
+      opacity: 1;
+    }
+}
+
+
+.triangle-top {
+  background-color: #99a7ee;
+  width: 4px;
+  height: 75%;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 8px;
+  top: -5px;
+}
+.triangle-bottom {
+  background-color: #99a7ee;
+  width: 4px;
+  height: 75%;
+  position: absolute;
+  transform: rotate(-45deg);
+  right: 8px;
+  bottom: -5px;
+}
+
+.triangle-tip {
+  background-color: #99a7ee;
+  width: 4px;
+  height: 12%;
+  position: absolute;
+  left: 11px;
+  transform: rotate(45deg);
+  top: 14px;
 }

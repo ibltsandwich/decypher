@@ -24,6 +24,7 @@ class SongShow extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     this.props.fetchSong(this.props.songId);
     this.highlightArea.addEventListener('click', this.handleHighlight)
     this.annotateLyrics();
@@ -37,11 +38,11 @@ class SongShow extends React.Component {
         this.annoForm.className = "annotation-form-hidden";
         this.forceUpdate();
       }
-      if (oldProps.location.pathname !== this.props.location.pathname ||
-        window.getSelection().toString() === "") {
-          this.annoForm.className = "annotation-form-hidden";
-      }
-      this.annotateLyrics();
+    if (oldProps.location.pathname !== this.props.location.pathname ||
+      window.getSelection().toString() === "") {
+        this.annoForm.className = "annotation-form-hidden";
+    }
+    this.annotateLyrics();
   }
 
   componentWillUnmount() {
@@ -81,7 +82,7 @@ class SongShow extends React.Component {
         return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
       })
     }
-    if (document.getElementById("1") && this.props.annotations.length > 0) {
+    if (document.getElementById("0") && this.props.annotations.length > 0) {
       const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
       sortedAnno.forEach(anno => {
         let result;
@@ -156,14 +157,14 @@ class SongShow extends React.Component {
               {currentUser === song.user_id ? 
               <>
               <div className="owner-song-album-img-container">
-                <img src={song.photo_url}></img>
+                {song.photo_url ? <img src={song.photo_url}/> : <img src={window.emptyAlbum}/>}
               </div>
                 <div className="edit-song-icon">
                     <i className="fas fa-pen-square"
                       onClick={() => dispatch(openModal('songImage'))}></i>
                 </div> </>:
               <div className="song-album-img">
-                <img src={song.photo_url}/>
+                {song.photo_url ? <img src={song.photo_url} /> : <img src={window.emptyAlbum} />}
               </div>}
 
               <div className="primary-song-info">
@@ -179,9 +180,10 @@ class SongShow extends React.Component {
             <div className="song-body">
               {/* LEFT BODY */}
               <div className="left-body" ref={elem => this.highlightArea = elem}>
-                {loggedIn ?
-                  <div className='lyrics-header'>Edit Lyrics</div> :
-                  <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>}
+                {/* {loggedIn ?
+                  <div className='lyrics-header'>Edit Lyrics</div> : */}
+                  <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>
+                  {/* } */}
                     <div className="song-lyrics">
                       {this.annotatedLyrics}
                     </div>
@@ -197,7 +199,7 @@ class SongShow extends React.Component {
                                                              end_line={this.state.end_line}
                                                              song={song} /> :
                   <div className="button-container">
-                    <div className="button-divider"></div>
+                    <div className="button-divider"/>
                     <button onClick={this.annotationFormShow} className="annotation-start">Start Annotation</button>
                   </div>}
                 </div>

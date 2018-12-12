@@ -16,6 +16,16 @@ if @album
   end
 end
 
+if @comments
+  json.comments do
+    @comments.each do |comment|
+      json.set! comment.id do
+        json.extract! comment, :id, :body, :user_id, :commentable_id, :commentable_type
+      end
+    end
+  end
+end
+
 if @annotations
   json.annotations do
     @annotations.each do |annotation|

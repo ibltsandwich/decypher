@@ -26,6 +26,7 @@ class Song < ApplicationRecord
     optional: true
 
   has_many :annotations
+  has_many :comments, as: :commentable
 
   def find_artist(artist_name, user_id)
     artist = Artist.find_by(name: artist_name)

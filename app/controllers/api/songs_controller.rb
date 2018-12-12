@@ -1,7 +1,8 @@
 class Api::SongsController < ApplicationController
   def index
     if (params[:limit])
-      @songs = Song.all.limit(params[:limit])
+      # @songs = Song.all.limit(params[:limit])
+      @songs = Song.order("id").limit(params[:limit])
     else
       @songs = Song.all
     end
@@ -28,10 +29,11 @@ class Api::SongsController < ApplicationController
   end
 
   def show
-    @song = Song.includes(:album, :artist, :annotations).find(params[:id])
+    @song = Song.includes(:album, :artist, :annotations, :comments).find(params[:id])
     @artist = @song.artist
     @album = @song.album
     @annotations = @song.annotations
+    @comments = @song.comments
     render 'api/songs/show'
   end
 

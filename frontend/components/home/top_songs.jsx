@@ -5,17 +5,6 @@ import { Link } from 'react-router-dom';
 class TopSongs extends React.Component {
   constructor(props){
     super(props)
-    this.state = {loading: true};
-  }
-
-  componentDidMount() {
-    this.setState({loading: false})
-  }
-
-  componentDidUpdate (oldProps) {
-    if (oldProps.songs.length !== this.props.songs.length) {
-      this.forceUpdate();
-    }
   }
     
   render () {
@@ -28,7 +17,7 @@ class TopSongs extends React.Component {
         return (
           <li key={idx} id={`song-${idx}`}>
             <div className="list-number">{idx+1}</div>
-            <img className="top-song-cover" src={`${song.photo_url}`}/>
+            <img className="top-song-cover" src={song.photo_url ? `${song.photo_url}` : `${window.emptyAlbum}`}/>
             <Link to={`songs/${song.id}`}>
               <div className="top-song-info">
                 <div className="top-song-title">{song.title}</div>

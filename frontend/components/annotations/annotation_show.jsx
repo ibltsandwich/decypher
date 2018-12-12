@@ -11,7 +11,12 @@ class AnnotationShow extends React.Component {
     if (annotation) {
       return (
         <div className="annotation-show-container">
-            <div className="annotation-show-divider"></div>
+            <div className="annotation-show-divider"/>
+            <div className="triangle-container">
+              <div className="triangle-top"/>
+              <div className="triangle-tip"/>
+              <div className="triangle-bottom"/>
+            </div>
             <div className="annotation-show-info">
               <h1 className="annotation-show-header">Decypher Annotation</h1>
               <p className="annotation-show-body">{annotation.body}</p>

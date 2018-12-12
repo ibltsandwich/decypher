@@ -28,8 +28,12 @@ class AnnotationForm extends React.Component {
   render () {
     return (
       <div className="annotation-form-container">
-        <div className="annotation-form-divider"></div>
-
+        <div className="annotation-form-divider"/>
+        <div className="triangle-container">
+          <div className="triangle-top" />
+          <div className="triangle-tip" />
+          <div className="triangle-bottom" />
+        </div>
         <form onSubmit={this.handleSubmit} className="annotation-form">
             <textarea className="annotation-form-text" 
                       onChange={this.update('body')} 

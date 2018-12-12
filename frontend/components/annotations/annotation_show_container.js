@@ -3,9 +3,10 @@ import AnnotationShow from './annotation_show';
 import { withRouter } from 'react-router-dom'
 
 const msp = (state, ownProps) => {
+  console.log(state)
   return {
     loggedIn: Boolean(state.session.currentUserId),
-    currentUser: state.session.currentUserId,
+    currentUser: state.entities.users[state.session.currentUserId],
     annotation: state.entities.annotations[parseInt(ownProps.match.params.annotationId)],
     ownProps
   }
