@@ -3,17 +3,13 @@ class Api::CommentsController < ApplicationController
   def create 
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.username = current_user.username
 
     if @comment.save!
-      render 'api/comments/index'
+      render 'api/comments/show'
     else
       render json: @comment.errors.full_messages, status: 422
     end
-  end
-  
-  def index
-    @comments = Comment.where(commentable_id: params[:id])
-    debugger
   end
 
   private

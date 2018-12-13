@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 import { fetchAnnoComments } from '../../actions/comment_actions';
 
 const msp = (state, ownProps) => {
-  console.log(state)
   return {
     loggedIn: Boolean(state.session.currentUserId),
     currentUser: state.entities.users[state.session.currentUserId],

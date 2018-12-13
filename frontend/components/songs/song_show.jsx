@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import AnnotationShow from '../annotations/annotation_show_container';
 import AnnotatedLyric from './annotated_lyric';
 import CommentForm from '../comments/comment_form_container';
+import CommentsShow from '../comments/comments_show';
 
 class SongShow extends React.Component {
   constructor (props) {
@@ -187,7 +188,12 @@ class SongShow extends React.Component {
                   {/* } */}
                     <div className="song-lyrics">
                       {this.annotatedLyrics}
-                      <CommentForm song={this.props.song}/>
+                      <div className="comments-container">
+                        {loggedIn ? <CommentForm song={this.props.song}/> : null}
+                        <div className="comments-show-container">
+                          <CommentsShow song={this.props.song}/>
+                        </div>
+                      </div>
                     </div>
               </div>
               {/* RIGHT BODY */}

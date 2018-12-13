@@ -13,7 +13,8 @@
 
 class Comment < ApplicationRecord
   validates :body, presence: true
-
+  validates :username, presence: true
+  
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 end
