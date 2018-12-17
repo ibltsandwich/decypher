@@ -34,4 +34,13 @@ if @annotations
       end
     end
   end
+  json.comments do
+    @annotations.each do |annotation|
+      annotation.comments.each do |comment|
+        json.set! comment.id do
+          json.extract! comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
+        end
+      end
+    end
+  end
 end 

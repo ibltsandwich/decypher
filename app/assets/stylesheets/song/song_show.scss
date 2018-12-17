@@ -134,7 +134,7 @@
 
 .left-body {
   padding: 0 1rem;
-  width: 58%;
+  width: 57%;
   box-sizing: border-box;
 }
 
@@ -150,6 +150,12 @@
 
 .lyrics-header {
   padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  height: 2em;
+  background: linear-gradient(to bottom,#fff 80%,rgba(255,255,255,0));
+  width: 100%;
+
 }
 
 .song-lyrics p {

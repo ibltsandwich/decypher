@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CommentForm from './comment_form';
+import CommentForm from './song_comment_form';
 import { createSongComment } from '../../actions/comment_actions';
 import { withRouter } from 'react-router-dom'
 

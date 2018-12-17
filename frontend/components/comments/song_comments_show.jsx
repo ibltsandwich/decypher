@@ -23,7 +23,7 @@ const mdp = dispatch => {
   }
 }
 
-class CommentsShow extends React.Component {
+class SongCommentsShow extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -38,7 +38,7 @@ class CommentsShow extends React.Component {
       let date = Date.now() - Date.parse(comment.created_at);
       let seconds = date/1000;
       let minutes = seconds / 60;
-      let hours = minutes / 60 
+      let hours = minutes / 60;
       if (seconds < 60) {
         if (Math.floor(seconds) === 1) {
           timeAgo = `${Math.floor(seconds)} second ago`  
@@ -82,4 +82,4 @@ class CommentsShow extends React.Component {
   }
 }
 
-export default withRouter(connect(msp, mdp)(CommentsShow));
+export default withRouter(connect(msp, mdp)(SongCommentsShow));

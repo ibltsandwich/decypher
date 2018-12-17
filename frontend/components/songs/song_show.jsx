@@ -3,8 +3,8 @@ import AnnotationForm from '../annotations/annotation_form_container';
 import { Route } from 'react-router-dom';
 import AnnotationShow from '../annotations/annotation_show_container';
 import AnnotatedLyric from './annotated_lyric';
-import CommentForm from '../comments/comment_form_container';
-import CommentsShow from '../comments/comments_show';
+import SongCommentForm from '../comments/song_comment_form_container';
+import SongCommentsShow from '../comments/song_comments_show';
 
 class SongShow extends React.Component {
   constructor (props) {
@@ -43,6 +43,11 @@ class SongShow extends React.Component {
     if (oldProps.location.pathname !== this.props.location.pathname ||
       window.getSelection().toString() === "") {
         this.annoForm.className = "annotation-form-hidden";
+        if (-this.songBody.getBoundingClientRect().top > 50) {
+          this.annoShow.style.top = `${-this.songBody.getBoundingClientRect().top - 40}px`
+        } else {
+          this.annoShow.style.top = "0";
+        }
     }
     this.annotateLyrics();
   }
@@ -63,6 +68,7 @@ class SongShow extends React.Component {
     this.props.history.push(`/songs/${this.props.song.id}`);
     this.setState({ buttonShow: false, annoFormShow: false })
     this.annoForm.className = "annotation-form-hidden"
+    this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
     let breakout = false;
     if (window.getSelection().focusNode.parentNode.id === "" || window.getSelection().anchorNode.parentNode.id === "") {
       breakout = true;
@@ -89,23 +95,25 @@ class SongShow extends React.Component {
       sortedAnno.forEach(anno => {
         let result;
         let lineSlice = [];
-        this.annotatedLyrics.forEach((line, idx) => {
-          if (parseInt(line.key) === anno.start_line) {
-            lineSlice = this.annotatedLyrics.slice(idx, idx+(anno.end_line - anno.start_line)+1);
-            return false;
-          }
-        })
-        if (lineSlice.length > 0) {
-          result = <AnnotatedLyric anno={anno}
-                                    lineSlice={lineSlice}
-                                    pathname={this.props.location.pathname}
-                                    key={`anno${anno.id}`}/>
+        if (anno.song_id === this.props.song.id) {
           this.annotatedLyrics.forEach((line, idx) => {
             if (parseInt(line.key) === anno.start_line) {
-              this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
+              lineSlice = this.annotatedLyrics.slice(idx, idx+(anno.end_line - anno.start_line)+1);
               return false;
             }
           })
+          if (lineSlice.length > 0) {
+            result = <AnnotatedLyric anno={anno}
+                                      lineSlice={lineSlice}
+                                      pathname={this.props.location.pathname}
+                                      key={`anno${anno.id}`}/>
+            this.annotatedLyrics.forEach((line, idx) => {
+              if (parseInt(line.key) === anno.start_line) {
+                this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
+                return false;
+              }
+            })
+          }
         }
       })
     }
@@ -179,19 +187,21 @@ class SongShow extends React.Component {
 
           {/* SONG BODY */}
           <div className="song-body-container">
-            <div className="song-body">
+            <div className="song-body" ref={elem => this.songBody = elem}>
               {/* LEFT BODY */}
               <div className="left-body" ref={elem => this.highlightArea = elem}>
                 {/* {loggedIn ?
                   <div className='lyrics-header'>Edit Lyrics</div> : */}
-                  <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>
                   {/* } */}
                     <div className="song-lyrics">
-                      {this.annotatedLyrics}
+                      <div className="lyrics">
+                        <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>
+                        {this.annotatedLyrics}
+                      </div>
                       <div className="comments-container">
-                        {loggedIn ? <CommentForm song={this.props.song}/> : null}
+                        {loggedIn ? <SongCommentForm song={this.props.song}/> : null}
                         <div className="comments-show-container">
-                          <CommentsShow song={this.props.song}/>
+                          {this.props.song.id ? <SongCommentsShow song={this.props.song}/> : null}
                         </div>
                       </div>
                     </div>
