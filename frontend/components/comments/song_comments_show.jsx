@@ -23,7 +23,7 @@ const mdp = dispatch => {
   }
 }
 
-class CommentsShow extends React.Component {
+class SongCommentsShow extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -82,4 +82,4 @@ class CommentsShow extends React.Component {
   }
 }
 
-export default withRouter(connect(msp, mdp)(CommentsShow));
+export default withRouter(connect(msp, mdp)(SongCommentsShow));

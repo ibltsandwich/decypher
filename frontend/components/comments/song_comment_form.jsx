@@ -15,7 +15,8 @@ class CommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createSongComment(this.state);
+    const comment = Object.assign({}, this.state, { commentable_id: this.props.song.id })
+    this.props.createSongComment(comment);
     this.setState({ body: "" });
   }
 

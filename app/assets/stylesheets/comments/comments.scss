@@ -92,3 +92,20 @@
 .comments-container {
   margin-top: 3em;
 }
+
+.annotation-comment-form-container {
+  background-color: rgba(204,204,204,.2);
+  padding: .75em;
+  margin-top: 2em;
+} 
+
+.annotation-comments-show-container {
+  background-color: rgba(204, 204, 204, 0.2);
+  padding: 1em; 
+}
+
+.annotation-comment-form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}

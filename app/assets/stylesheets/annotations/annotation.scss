@@ -128,9 +128,10 @@
 
 .annotation-show-container {
   display: flex;
-  height: 16rem;
+  height: 100%;
   animation-name: annotation-fade-in-left;
   animation-duration: .5s;
+  width: 100%;
   // position: sticky;
   // top:30%;
 }
@@ -149,15 +150,16 @@
 .annotation-show-info {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .anno-show {
   display: flex;
-  height: 16rem;
   animation-name: annotation-fade-in-left;
   animation-duration: .5s;
   position: sticky;
   top: 30%;
+  width: 90%;
 }
 
 .triangle-container {
@@ -211,4 +213,9 @@
   left: 11px;
   transform: rotate(45deg);
   top: 14px;
+}
+
+.annotation-show-body {
+  word-break: break-word;
+  white-space: pre-wrap;
 }
