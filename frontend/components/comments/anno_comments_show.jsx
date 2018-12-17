@@ -28,9 +28,9 @@ class AnnoCommentsShow extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.fetchAnnoComments(this.props.anno.id)
-  }
+  // componentDidMount() {
+  //   this.props.fetchAnnoComments(this.props.anno.id)
+  // }
 
   render() {
     let comments = this.props.comments.map((comment, idx) => {

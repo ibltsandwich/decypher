@@ -31,7 +31,7 @@ class AnnoCommentForm extends React.Component {
         <form className="annotation-comment-form" onSubmit={this.handleSubmit}>
           <textarea
             
-            className="comment-form-text"
+            className="anno-comment-form-text"
             onChange={this.update('body')}
             placeholder="Suggest an improvement"
             value={this.state.body}

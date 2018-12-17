@@ -12,8 +12,7 @@
 .annotation-form-show {
   display: flex;
   right: 0;
-  position: sticky;
-  top: 30%;
+  position: relative;
   z-index: 3;
 }
 
@@ -157,8 +156,7 @@
   display: flex;
   animation-name: annotation-fade-in-left;
   animation-duration: .5s;
-  position: sticky;
-  top: 30%;
+  position: relative;
   width: 90%;
 }
 
