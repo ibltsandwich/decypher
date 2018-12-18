@@ -1,0 +1,17 @@
+.thumbs-down {
+  transform: rotate(180deg);
+}
+
+.thumbs-down:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.thumbs-up {
+  
+}
+
+.thumbs-up:hover {
+  color: lightgreen;
+  cursor: pointer;
+}

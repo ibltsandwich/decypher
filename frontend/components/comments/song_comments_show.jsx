@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSongComments } from '../../actions/comment_actions';
 import { withRouter } from 'react-router-dom';
+import SongComment from './song_comment_list_item';
 
 const msp = (state, ownProps) => {
   const comments = [];
@@ -19,17 +20,28 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchSongComments: id => dispatch(fetchSongComments(id))
+    fetchSongComments: id => dispatch(fetchSongComments(id)),
   }
 }
 
 class SongCommentsShow extends React.Component {
   constructor(props) {
     super(props)
+    this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchSongComments(this.props.song.id)
+  }
+
+  upvote(e) {
+    e.preventDefault()
+    debugger
+  }
+
+  downvote(e) {
+    e.preventDefault()
   }
 
   render() {
@@ -74,13 +86,8 @@ class SongCommentsShow extends React.Component {
       }
 
       return (
-        <li key={idx} className="comment">
-          <div className="comment-info">
-            <div className="comment-username">{comment.username}</div>
-            <div className="comment-time-ago">{timeAgo}</div>
-          </div>
-          <div className="comment-body">{comment.body}</div>
-        </li>)
+        <SongComment timeAgo={timeAgo} comment={comment} key={idx}/>
+      )
     })
     return (
       <ul className="comments-list">

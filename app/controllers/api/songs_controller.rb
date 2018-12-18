@@ -34,6 +34,7 @@ class Api::SongsController < ApplicationController
     @album = @song.album
     @annotations = @song.annotations
     @comments = @song.comments
+    
     render 'api/songs/show'
   end
 

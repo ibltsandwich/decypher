@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     end
     resources :albums, only: [:index]
     resources :songs, only: [:index, :show, :update] do
-      resources :comments, only: [:create, :index]
+      resources :comments, only: [:create]
     end
     resources :annotations, only: [:create, :update, :show]do
-      resources :comments, only: [:create, :index]
+      resources :comments, only: [:create]
     end
+    resources :upvotes, only: [:create, :update]
   end
 end

@@ -9,6 +9,7 @@
 #  commentable_id   :bigint(8)        not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  username         :string
 #
 
 class Comment < ApplicationRecord
@@ -17,4 +18,6 @@ class Comment < ApplicationRecord
   
   belongs_to :user
   belongs_to :commentable, polymorphic: true
+
+  has_many :upvotes, as: :upvoteable
 end

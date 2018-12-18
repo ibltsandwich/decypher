@@ -23,8 +23,9 @@ class Api::AnnotationsController < ApplicationController
   end
 
   def show
-    @annotation = Annotation.includes(:song, :comments).find(params[:id])
+    @annotation = Annotation.includes(:song, :comments, :upvotes).find(params[:id])
     @comments = @annotation.comments
+    @upvotes = @annotation.upvotes
     render 'api/annotations/show'
   end
 
