@@ -107,11 +107,15 @@ class SongComment extends React.Component {
       })
     }
 
-    // if (this.state.voted && this.state.vote.vote_type === "upvote") {
-    //   this.thumbsUp.style.color = 'lightgreen';
-    // } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
-    //   this.thumbsDown.style.color = 'red';
-    // }
+    if (this.state.voted) {
+      if (this.state.voted && this.state.vote.vote_type === "upvote") {
+        this.thumbsUp.style.color = 'lightgreen';
+        this.thumbsDown.style.color = 'black';
+      } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
+        this.thumbsDown.style.color = 'red';
+        this.thumbsUp.style.color = 'black';
+      }
+    }
 
     return (
       <li className="comment">
