@@ -7,8 +7,6 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_UPVOTES:
-    case RECEIVE_SONG:
-    case RECEIVE_ANNOTATION:
       return merge({}, state, action.payload);
     default:
       return state;

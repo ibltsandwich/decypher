@@ -23,7 +23,11 @@ if @comments
         json.extract! comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
         if comment.upvotes 
           json.upvotes do
-            json.array! comment.upvotes, :id, :user_id, :username, :vote_type
+            comment.upvotes.each do |upvote|
+              json.set! upvote.id do
+                json.extract! upvote, :id, :user_id, :username, :vote_type, :upvoteable_id
+              end
+            end
           end
         end
       end
@@ -38,7 +42,11 @@ if @annotations
         json.extract! annotation, :id, :body, :user_id, :song_id, :start_idx, :end_idx, :start_line, :end_line
         if annotation.upvotes
           json.upvotes do
-            json.array! annotation.upvotes, :id, :user_id, :username, :vote_type
+            annotation.upvotes.each do |upvote|
+              json.set! upvote.id do
+                json.extract! upvote, :id, :user_id, :username, :vote_type, :upvoteable_id
+              end
+            end
           end
         end
       end
@@ -52,7 +60,11 @@ if @annotations
           json.extract! comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
           if comment.upvotes
             json.upvotes do 
-              json.array! comment.upvotes, :id, :user_id, :username, :vote_type
+              comment.upvotes.each do |upvote|
+                json.set! upvote.id do
+                  json.extract! upvote, :id, :user_id, :username, :vote_type, :upvoteable_id
+                end
+              end
             end
           end
         end

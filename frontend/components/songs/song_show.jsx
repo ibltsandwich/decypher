@@ -195,14 +195,16 @@ class SongShow extends React.Component {
           <div className="song-body-container">
             <div className="song-body" ref={elem => this.songBody = elem}>
               {/* LEFT BODY */}
-              <div className="left-body" ref={elem => this.highlightArea = elem}>
+              <div className="left-body">
                 {/* {loggedIn ?
                   <div className='lyrics-header'>Edit Lyrics</div> : */}
                   {/* } */}
                     <div className="song-lyrics">
-                      <div className="lyrics">
+                      <div className="lyrics-container">
                         <h3 className='lyrics-header'>{tempTitle.toUpperCase()} LYRICS </h3>
-                        {this.annotatedLyrics}
+                          <div className="lyrics" ref={elem => this.highlightArea = elem}>
+                            {this.annotatedLyrics}
+                          </div>
                       </div>
                       <div className="comments-container">
                         {loggedIn ? <SongCommentForm song={this.props.song}/> : null}

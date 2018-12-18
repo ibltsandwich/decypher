@@ -5,6 +5,14 @@ class Api::UpvotesController < ApplicationController
     @upvote.user_id = current_user.id
     @upvote.username = current_user.username
     
+    if @upvote.upvoteable_type == "Comment"
+      @comment = Comment.find(@upvote.upvoteable_id)
+      @song = Song.find(@comment.commentable_id)
+    elsif @upvote.upvoteable_type == "Annotation"
+      @annotation = Annotation.find(@upvote.upvoteable_id)
+      @song = Song.find(@annotation.song_id)
+    end
+    
     if @upvote.save!
       render 'api/upvotes/show'
     else
@@ -14,6 +22,13 @@ class Api::UpvotesController < ApplicationController
 
   def update
     @upvote = Upvote.find(params[:id])
+    if @upvote.upvoteable_type == "Comment"
+      @comment = Comment.find(@upvote.upvoteable_id)
+      @song = Song.find(@comment.commentable_id)
+    elsif @upvote.upvoteable_type == "Annotation"
+      @annotation = Annotation.find(@upvote.upvoteable_id)
+      @song = Song.find(@annotation.song_id)
+    end
     
     if @upvote.update_attributes(upvote_params)
       render 'api/upvotes/show'
@@ -22,9 +37,24 @@ class Api::UpvotesController < ApplicationController
     end
   end
 
+  def show 
+    @upvote = Upvote.find(params[:id])
+    if @upvote.upvoteable_type == "Comment"
+      @comment = Comment.find(@upvote.upvoteable_id)
+      @song = Song.find(@comment.commentable_id)
+    elsif @upvote.upvoteable_type == "Annotation"
+      @annotation = Annotation.find(@upvote.upvoteable_id)
+      @song = Song.find(@annotation.song_id)
+    end
+
+    render 'api/upvotes/show'
+  end
+
   def destroy
     @upvote = Upvote.find_by(id: current_user.id)
     @upvote.destroy
+
+    render 'api/upvotes/show'
   end
 
   private

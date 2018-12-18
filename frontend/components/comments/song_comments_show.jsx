@@ -27,21 +27,13 @@ const mdp = dispatch => {
 class SongCommentsShow extends React.Component {
   constructor(props) {
     super(props)
-    this.upvote = this.upvote.bind(this);
-    this.downvote = this.downvote.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchSongComments(this.props.song.id)
   }
 
-  upvote(e) {
-    e.preventDefault()
-    debugger
-  }
-
-  downvote(e) {
-    e.preventDefault()
+  componentDidUpdate(oldProps) {
   }
 
   render() {
