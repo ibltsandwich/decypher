@@ -6,10 +6,15 @@ class AnnotationShow extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  // componentDidMount() {
+  //   this.props.fetchAnnoComments(this.props.annotation.id)
+  // }
   
   render () {
     const {loggedIn, currentUser, annotation, ownProps} = this.props;
-    const annoLink = document.getElementById(`annotation${this.props.annotation.id}`)
+
+    // const annoLink = document.getElementById(`annotation${this.props.annotation.id}`)
     if (annotation) {
       return (
         <div className="annotation-show-container">

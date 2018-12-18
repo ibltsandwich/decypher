@@ -70,9 +70,15 @@ class SongShow extends React.Component {
     this.annoForm.className = "annotation-form-hidden"
     this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
     let breakout = false;
-    if (window.getSelection().focusNode.parentNode.id === "" || window.getSelection().anchorNode.parentNode.id === "") {
-      breakout = true;
-    }
+    this.props.annotations.forEach(anno => {
+      const target = document.getElementById(`annotation${anno.id}`);
+      if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
+        breakout = true;
+      }
+    })
+    // if (window.getSelection().focusNode.parentNode.id === "" || window.getSelection().anchorNode.parentNode.id === "") {
+    //   breakout = true;
+    // }
     if (breakout) {
       return null;
     } else {

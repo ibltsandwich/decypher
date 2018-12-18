@@ -50,6 +50,31 @@
   background-color: rgba(14,203,39,.2);
   cursor: pointer;
 }
+.annotation-comment-submit {
+  border-color: #0ecb27;
+  color: #0ecb27;
+  word-wrap: break-word;
+  word-break: break-word;
+  transition: background-color .3s,border-color .3s;
+  background-color: transparent;
+  border-width: .15rem;
+  border-style: solid;
+  border-radius: 0;
+  display: none;
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1.4rem;
+  text-align: center;
+  padding: .25rem .5rem;
+  vertical-align: top;
+  width: 75px;
+  outline: none;
+}
+
+.annotation-comment-submit:hover {
+  background-color: rgba(14,203,39,.2);
+  cursor: pointer;
+}
 
 
 // showing comments
@@ -122,4 +147,14 @@
   margin-bottom: 1rem;
   resize: none;
   padding: 0.4em
+}
+
+.anno-comment-form-text:focus {
+  box-shadow: #99a7ee 0 0 0.3em inset;
+  outline: 0;
+}
+
+.comment-form-text:focus {
+  box-shadow: #99a7ee 0 0 0.3em inset;
+  outline: 0;
 }
