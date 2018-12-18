@@ -16,6 +16,7 @@ class AnnoCommentForm extends React.Component {
 
   handleClick(e) {
     e.stopPropagation();
+    this.commentSubmit.style.display = "inline-block";``
   }
 
   handleSubmit(e) {
@@ -30,13 +31,14 @@ class AnnoCommentForm extends React.Component {
       <div className="annotation-comment-form-container" onClick={this.handleClick}>
         <form className="annotation-comment-form" onSubmit={this.handleSubmit}>
           <textarea
-            
+            ref={elem => this.commentForm = elem}
+            onClick={this.handleClick}
             className="anno-comment-form-text"
             onChange={this.update('body')}
             placeholder="Suggest an improvement"
             value={this.state.body}
             required />
-          <button className="comment-submit">Submit</button>
+          <button className="annotation-comment-submit" ref={elem => this.commentSubmit = elem}>Submit</button>
         </form>
       </div>
     );
