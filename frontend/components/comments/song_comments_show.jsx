@@ -39,6 +39,8 @@ class SongCommentsShow extends React.Component {
       let seconds = date/1000;
       let minutes = seconds / 60;
       let hours = minutes / 60;
+      let days = hours / 24;
+      let months = days / 30;
       if (seconds < 60) {
         if (Math.floor(seconds) === 1) {
           timeAgo = `${Math.floor(seconds)} second ago`  
@@ -57,11 +59,17 @@ class SongCommentsShow extends React.Component {
         } else {
           timeAgo = `${Math.floor(hours)} hours ago`
         }
-      } else {
-        if (Math.floor(hours) === 1) {
-          timeAgo = `${Math.floor(hours)} day ago`
+      } else if (days < 30) {
+        if (Math.floor(days) === 1) {
+          timeAgo = `${Math.floor(days)} day ago`
         } else {
-          timeAgo = `${Math.floor(hours)} days ago`
+          timeAgo = `${Math.floor(days)} days ago`
+        }
+      } else {
+        if (Math.floor(months) === 1) {
+          timeAgo = `${Math.floor(months)} month ago`
+        } else {
+          timeAgo = `${Math.floor(months)} months ago`
         }
       }
 
