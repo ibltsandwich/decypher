@@ -115,10 +115,10 @@ class SongComment extends React.Component {
       } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
         this.thumbsDown.style.color = 'red';
         this.thumbsUp.style.color = 'black';
-      } else if (this.state.voted === false) {
-        this.thumbsUp.style.color = 'black';
-        this.thumbsDown.style.color = 'black';
-      }
+      } 
+    } else if (this.thumbsUp && this.thumbsDown) {
+      this.thumbsUp.style.color = 'black';
+      this.thumbsDown.style.color = 'black';
     }
 
     return (
