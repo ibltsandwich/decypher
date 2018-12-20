@@ -1,22 +1,23 @@
 # json.extract! @upvote, :id, :user_id, :username, :vote_type, :upvoteable_type
 
 json.upvotes do
-  json.extract! @upvote, :id, :user_id, :username, :vote_type, :upvoteable_id
+  json.extract! @upvote, :id, :user_id, :username, :vote_type, :upvoteable_id, :upvoteable_type
 end
-
 
 if @comment
   json.comments do
-    json.set! @comment.id do
+    @song.comments.each do |comment|
+      json.set! comment.id do
   #     json.extract! @comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
-      if @comment.upvotes 
+        if comment.upvotes 
           json.upvotes do
-            @comment.upvotes.each do |upvote|
+            comment.upvotes.each do |upvote|
               json.set! upvote.id do
                 json.extract! upvote, :id, :user_id, :username, :vote_type, :upvoteable_id
               end
             end
           end
+        end
       end
     end
   end

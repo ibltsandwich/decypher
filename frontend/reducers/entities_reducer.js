@@ -5,7 +5,6 @@ import albums from './track_reducers/albums_reducer';
 import songs from './track_reducers/songs_reducer';
 import annotations from './track_reducers/annotations_reducer';
 import comments from './track_reducers/comments_reducer';
-import upvotes from './track_reducers/upvotes_reducer';
 
 export default combineReducers({
     users,

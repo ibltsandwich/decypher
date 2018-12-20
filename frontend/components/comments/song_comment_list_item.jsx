@@ -51,6 +51,7 @@ class SongComment extends React.Component {
   }
 
   upvote(e) {
+    debugger
     if (this.state.voted && this.state.vote.vote_type === "downvote") {
       this.props.updateUpvote({ id: this.state.vote.id, vote_type: "upvote"}).then(
         response => this.setState({ vote: response.payload.upvotes })
@@ -59,13 +60,13 @@ class SongComment extends React.Component {
       this.thumbsUp.style.color = "lightgreen";
     } else if (this.state.voted && this.state.vote.vote_type === "upvote") {
       this.props.deleteUpvote(this.state.vote).then(
-        () => this.setState({ voted: false, vote: null })
+        response => this.setState({ voted: false, vote: null })
       )
       this.thumbsUp.style.color = "black";
       this.thumbsDown.style.color = "black";
     } else {
       this.props.createUpvote({ vote_type: "upvote", upvoteable_type: "Comment", upvoteable_id: this.props.comment.id }).then(
-        response => this.setState({ vote: response.payload.upvotes })
+        response => this.setState({ voted: true, vote: response.payload.upvotes })
       )
       this.thumbsDown.style.color = "black";
       this.thumbsUp.style.color = "lightgreen";
@@ -87,7 +88,7 @@ class SongComment extends React.Component {
       this.thumbsDown.style.color = "black";
     } else {
       this.props.createUpvote({ vote_type: "downvote", upvoteable_type: "Comment", upvoteable_id: this.props.comment.id }).then(
-        response => this.setState({ vote: response.payload.upvotes })
+        response => this.setState({ voted: true, vote: response.payload.upvotes })
       )
       this.thumbsUp.style.color = "black";
       this.thumbsDown.style.color = "red";
@@ -114,6 +115,9 @@ class SongComment extends React.Component {
       } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
         this.thumbsDown.style.color = 'red';
         this.thumbsUp.style.color = 'black';
+      } else if (this.state.voted === false) {
+        this.thumbsUp.style.color = 'black';
+        this.thumbsDown.style.color = 'black';
       }
     }
 
@@ -126,7 +130,7 @@ class SongComment extends React.Component {
         <div className="comment-body">{comment.body}</div>
         <div className="song-comment-upvote">
           <i className="far fa-thumbs-up thumbs-up" onClick={this.upvote} ref={elem => this.thumbsUp = elem} />
-          {counter === 0 ? '   ' : `  +${counter}  `}
+          {counter === 0 ? '   ' : counter > 0 ? `  +${counter}  ` : `  ${counter}  `}
           <i className="far fa-thumbs-up thumbs-down" onClick={this.downvote} ref={elem => this.thumbsDown = elem}/>
         </div>
       </li>)

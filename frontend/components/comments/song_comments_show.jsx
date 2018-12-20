@@ -29,9 +29,9 @@ class SongCommentsShow extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.fetchSongComments(this.props.song.id)
-  }
+  // componentDidMount() {
+  //   this.props.fetchSongComments(this.props.song.id)
+  // }
 
   componentDidUpdate(oldProps) {
   }

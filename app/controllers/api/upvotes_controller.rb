@@ -4,7 +4,7 @@ class Api::UpvotesController < ApplicationController
     @upvote = Upvote.new(upvote_params)
     @upvote.user_id = current_user.id
     @upvote.username = current_user.username
-    
+
     if @upvote.upvoteable_type == "Comment"
       @comment = Comment.find(@upvote.upvoteable_id)
       @song = Song.find(@comment.commentable_id)
@@ -51,9 +51,15 @@ class Api::UpvotesController < ApplicationController
   end
 
   def destroy
-    @upvote = Upvote.find_by(id: current_user.id)
+    @upvote = Upvote.find(params[:id])
+    if @upvote.upvoteable_type == "Comment"
+      @comment = Comment.find(@upvote.upvoteable_id)
+      @song = Song.find(@comment.commentable_id)
+    elsif @upvote.upvoteable_type == "Annotation"
+      @annotation = Annotation.find(@upvote.upvoteable_id)
+      @song = Song.find(@annotation.song_id)
+    end
     @upvote.destroy
-
     render 'api/upvotes/show'
   end
 

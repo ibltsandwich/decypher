@@ -15,6 +15,7 @@
 class Upvote < ApplicationRecord
   validates :username, presence: true
   validates :vote_type, presence: true
+  validates :user_id, uniqueness: { scope: [:upvoteable_type, :upvoteable_id] }
 
   belongs_to :user
   belongs_to :upvoteable, polymorphic: true
