@@ -22,6 +22,7 @@ class Api::UpvotesController < ApplicationController
 
   def update
     @upvote = Upvote.find(params[:id])
+
     if @upvote.upvoteable_type == "Comment"
       @comment = Comment.find(@upvote.upvoteable_id)
       @song = Song.find(@comment.commentable_id)

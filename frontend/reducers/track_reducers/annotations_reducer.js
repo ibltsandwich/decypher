@@ -17,6 +17,8 @@ export default (state = {}, action) => {
         const { upvoteable_id, id } = action.payload.upvotes;
         delete nextState[upvoteable_id].upvotes[id];
         return nextState;
+      } else {
+        return state;
       }
     default:
       return state;

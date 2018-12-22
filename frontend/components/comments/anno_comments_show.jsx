@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAnnoComments } from '../../actions/comment_actions';
 import { withRouter } from 'react-router-dom';
+import Upvotes from '../upvotes/upvotes';
 
 const msp = (state, ownProps) => {
   const comments = [];
@@ -19,7 +19,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchAnnoComments: id => dispatch(fetchAnnoComments(id))
   }
 }
 
@@ -28,11 +27,8 @@ class AnnoCommentsShow extends React.Component {
     super(props)
   }
 
-  // componentDidMount() {
-  //   this.props.fetchAnnoComments(this.props.anno.id)
-  // }
-
   render() {
+    const { currentUser } = this.props;
     let comments = this.props.comments.map((comment, idx) => {
       let timeAgo = "";
       let date = Date.now() - Date.parse(comment.created_at);
@@ -72,8 +68,12 @@ class AnnoCommentsShow extends React.Component {
             <div className="comment-time-ago">{timeAgo}</div>
           </div>
           <div className="comment-body">{comment.body}</div>
+          <div className="anno-comment-upvote">
+            <Upvotes type='Comment' target={comment} currentUser={currentUser.id} />
+          </div>
         </li>)
     })
+
     return (
       <ul className="comments-list">
         {comments}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSongComments } from '../../actions/comment_actions';
 import { withRouter } from 'react-router-dom';
 import SongComment from './song_comment_list_item';
 
@@ -20,20 +19,12 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchSongComments: id => dispatch(fetchSongComments(id)),
   }
 }
 
 class SongCommentsShow extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  // componentDidMount() {
-  //   this.props.fetchSongComments(this.props.song.id)
-  // }
-
-  componentDidUpdate(oldProps) {
   }
 
   render() {

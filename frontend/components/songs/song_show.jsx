@@ -229,7 +229,7 @@ class SongShow extends React.Component {
                     <button onClick={this.annotationFormShow} className="annotation-start">Start Annotation</button>
                   </div>}
                 </div>
-                <div ref={elem => this.annoShow = elem} className="anno-show">
+                <div ref={elem => this.annoShow = elem} className="anno-show" onClick={e => e.stopPropagation()}>
                   <Route exact path="/songs/:songId/:annotationId" component={AnnotationShow} />
                 </div>
               </div>

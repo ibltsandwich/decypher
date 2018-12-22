@@ -8,7 +8,7 @@ if @comment
   json.comments do
     @song.comments.each do |comment|
       json.set! comment.id do
-  #     json.extract! @comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
+        json.extract! @comment, :id, :body, :user_id, :username, :commentable_type, :commentable_id, :created_at
         if comment.upvotes 
           json.upvotes do
             comment.upvotes.each do |upvote|
