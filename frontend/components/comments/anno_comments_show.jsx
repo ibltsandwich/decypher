@@ -68,9 +68,9 @@ class AnnoCommentsShow extends React.Component {
             <div className="comment-time-ago">{timeAgo}</div>
           </div>
           <div className="comment-body">{comment.body}</div>
-          <div className="anno-comment-upvote">
+          {/* <div className="anno-comment-upvote">
             <Upvotes type='Comment' target={comment} currentUser={currentUser.id} />
-          </div>
+          </div> */}
         </li>)
     })
 
