@@ -33,7 +33,6 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate(oldProps) {
-    console.log("updated")
     this.annotateLyrics();
     if (oldProps.songId !== this.props.songId ||
       oldProps.song.lyrics !== this.props.song.lyrics ||
