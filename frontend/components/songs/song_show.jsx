@@ -33,12 +33,13 @@ class SongShow extends React.Component {
   }
 
   componentDidUpdate(oldProps) {
+    console.log("updated")
+    this.annotateLyrics();
     if (oldProps.songId !== this.props.songId ||
       oldProps.song.lyrics !== this.props.song.lyrics ||
       oldProps.annotations.length !== this.props.annotations.length) {
         this.props.fetchSong(this.props.songId);
         this.annoForm.className = "annotation-form-hidden";
-        this.forceUpdate();
       }
     if (oldProps.location.pathname !== this.props.location.pathname ||
       window.getSelection().toString() === "") {
@@ -49,7 +50,6 @@ class SongShow extends React.Component {
           this.annoShow.style.top = "0";
         }
     }
-    this.annotateLyrics();
   }
 
   componentWillUnmount() {
@@ -76,9 +76,6 @@ class SongShow extends React.Component {
         breakout = true;
       }
     })
-    // if (window.getSelection().focusNode.parentNode.id === "" || window.getSelection().anchorNode.parentNode.id === "") {
-    //   breakout = true;
-    // }
     if (breakout) {
       return null;
     } else {

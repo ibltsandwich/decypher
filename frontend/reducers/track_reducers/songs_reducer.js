@@ -10,7 +10,7 @@ export default (state = {}, action) => {
     case RECEIVE_SONG:
       // return merge({}, state, { [action.payload.song.id]: action.payload.song });
       // return merge({}, state, action.payload.songs);
-      return merge({}, action.payload.songs, action.payload.comments);
+      return merge({}, action.payload.songs);
     default:
       return state;
   }
