@@ -32,3 +32,4 @@ bundle.js.map
 /.vscode
 .DS_Store
 .eslintrc.js
+.ruby-version
