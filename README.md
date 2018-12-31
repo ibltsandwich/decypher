@@ -14,10 +14,10 @@ Unforunately, the API had some shortcomings and some workarounds had to be imple
 
 ![getSelection](https://i.imgur.com/RnlRpPz.png)
 
-Therefore, having the full lyrics in one <p> tag gives the proper indices for whatever is highlighted, but once links to the annotations are added in as <a> tags, this disrupts the API's ability to grab the proper indices. After an inserted <a> tag, the next immediate index doesn't pick up where it left off, and instead resets back to 0. The API doesn't know to ignore HTML tags and can only accurately grab selections that are confined to one set of tags.
+Therefore, having the full lyrics in one ```<p>``` tag gives the proper indices for whatever is highlighted, but once links to the annotations are added in as ```<a>``` tags, this disrupts the API's ability to grab the proper indices. After an inserted ```<a>``` tag, the next immediate index doesn't pick up where it left off, and instead resets back to 0. The API doesn't know to ignore HTML tags and can only accurately grab selections that are confined to one set of tags.
 
 ## Annotations
-The workaround here was to separate each line of the lyrics into it's own <div> tag with an id corresponding to the line number.
+The workaround here was to separate each line of the lyrics into it's own ```<div>``` tag with an id corresponding to the line number.
 This way the index will always start at 0 for each line, and line numbers can be used to accurately map annotations to lyrics.
 
 ![AnnotationHTML](blob:https://imgur.com/d8f3ec63-69ae-44e1-9321-935b4d60c3be)
