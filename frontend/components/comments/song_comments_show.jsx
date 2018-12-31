@@ -72,11 +72,18 @@ class SongCommentsShow extends React.Component {
         <SongComment timeAgo={timeAgo} comment={comment} key={idx}/>
       )
     })
-    return (
-      <ul className="comments-list">
-        {comments}
-      </ul>
-    )
+
+    if (this.props.comments.length > 0) {
+      return (
+        <div className="comments-show-container">
+          <ul className="comments-list">
+            {comments}
+          </ul>
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 }
 

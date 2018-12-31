@@ -204,9 +204,7 @@ class SongShow extends React.Component {
                       </div>
                       <div className="comments-container">
                         {loggedIn ? <SongCommentForm song={this.props.song}/> : null}
-                        <div className="comments-show-container">
-                          {this.props.song.id ? <SongCommentsShow song={this.props.song}/> : null}
-                        </div>
+                        {this.props.song.id ? <SongCommentsShow song={this.props.song}/> : null}
                       </div>
                     </div>
               </div>

@@ -73,11 +73,19 @@ class AnnoCommentsShow extends React.Component {
         </li>)
     })
 
-    return (
-      <ul className="comments-list">
-        {comments}
-      </ul>
-    )
+    if (this.props.comments.length > 0) {
+      return (
+          <div className="annotation-comments-show-container">
+            <ul className="comments-list">
+              {comments}
+            </ul>
+          </div>
+      )
+    } else {
+      return (
+        null
+      )
+    }
   }
 }
 

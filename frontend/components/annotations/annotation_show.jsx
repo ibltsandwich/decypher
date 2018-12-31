@@ -32,9 +32,7 @@ class AnnotationShow extends React.Component {
               </div>
               <div className="anno-comments-container">
                 {loggedIn ? <AnnoCommentForm anno={this.props.annotation} /> : null}
-                <div className="annotation-comments-show-container">
-                  <AnnoCommentsShow anno={this.props.annotation} />
-                </div>
+                <AnnoCommentsShow anno={this.props.annotation} />
               </div>
             </div>
         </div>
