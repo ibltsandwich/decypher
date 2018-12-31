@@ -29,8 +29,10 @@ class Upvotes extends React.Component {
     if (this.props.target) {
       if (this.props.target.upvotes) {
         Object.values(this.props.target.upvotes).forEach(upvote => {
-          if (upvote.user_id === this.props.currentUser) {
-            this.setState({ voted: true, vote: upvote });
+          if (this.props.currentUser) {
+            if (upvote.user_id === this.props.currentUser) {
+              this.setState({ voted: true, vote: upvote });
+            }
           }
         })
       }
@@ -38,46 +40,50 @@ class Upvotes extends React.Component {
   }
 
   upvote(e) {
-    if (this.state.voted && this.state.vote.vote_type === "downvote") {
-      this.props.updateUpvote({ id: this.state.vote.id, vote_type: "upvote" }).then(
-        response => this.setState({ vote: response.payload.upvotes })
-      )
-      this.thumbsDown.style.color = "black";
-      this.thumbsUp.style.color = "lightgreen";
-    } else if (this.state.voted && this.state.vote.vote_type === "upvote") {
-      this.props.deleteUpvote(this.state.vote).then(
-        () => this.setState({ voted: false, vote: null })
-      )
-      this.thumbsUp.style.color = "black";
-      this.thumbsDown.style.color = "black";
-    } else {
-      this.props.createUpvote({ vote_type: "upvote", upvoteable_type: this.props.type, upvoteable_id: this.props.target.id }).then(
-        response => this.setState({ voted: true, vote: response.payload.upvotes })
-      )
-      this.thumbsDown.style.color = "black";
-      this.thumbsUp.style.color = "lightgreen";
+    if(this.props.currentUser) {
+      if (this.state.voted && this.state.vote.vote_type === "downvote") {
+        this.props.updateUpvote({ id: this.state.vote.id, vote_type: "upvote" }).then(
+          response => this.setState({ vote: response.payload.upvotes })
+        )
+        this.thumbsDown.style.color = "black";
+        this.thumbsUp.style.color = "lightgreen";
+      } else if (this.state.voted && this.state.vote.vote_type === "upvote") {
+        this.props.deleteUpvote(this.state.vote).then(
+          () => this.setState({ voted: false, vote: null })
+        )
+        this.thumbsUp.style.color = "black";
+        this.thumbsDown.style.color = "black";
+      } else {
+        this.props.createUpvote({ vote_type: "upvote", upvoteable_type: this.props.type, upvoteable_id: this.props.target.id }).then(
+          response => this.setState({ voted: true, vote: response.payload.upvotes })
+        )
+        this.thumbsDown.style.color = "black";
+        this.thumbsUp.style.color = "lightgreen";
+      }
     }
   }
 
   downvote(e) {
-    if (this.state.voted && this.state.vote.vote_type === "upvote") {
-      this.props.updateUpvote({ id: this.state.vote.id, vote_type: "downvote" }).then(
-        response => this.setState({ vote: response.payload.upvotes })
-      )
-      this.thumbsUp.style.color = "black";
-      this.thumbsDown.style.color = "red";
-    } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
-      this.props.deleteUpvote(this.state.vote).then(
-        () => this.setState({ voted: false, vote: null })
-      )
-      this.thumbsUp.style.color = "black";
-      this.thumbsDown.style.color = "black";
-    } else {
-      this.props.createUpvote({ vote_type: "downvote", upvoteable_type: this.props.type, upvoteable_id: this.props.target.id }).then(
-        response => this.setState({ voted: true, vote: response.payload.upvotes })
-      )
-      this.thumbsUp.style.color = "black";
-      this.thumbsDown.style.color = "red";
+    if(this.props.currentUser) {
+      if (this.state.voted && this.state.vote.vote_type === "upvote") {
+        this.props.updateUpvote({ id: this.state.vote.id, vote_type: "downvote" }).then(
+          response => this.setState({ vote: response.payload.upvotes })
+        )
+        this.thumbsUp.style.color = "black";
+        this.thumbsDown.style.color = "red";
+      } else if (this.state.voted && this.state.vote.vote_type === "downvote") {
+        this.props.deleteUpvote(this.state.vote).then(
+          () => this.setState({ voted: false, vote: null })
+        )
+        this.thumbsUp.style.color = "black";
+        this.thumbsDown.style.color = "black";
+      } else {
+        this.props.createUpvote({ vote_type: "downvote", upvoteable_type: this.props.type, upvoteable_id: this.props.target.id }).then(
+          response => this.setState({ voted: true, vote: response.payload.upvotes })
+        )
+        this.thumbsUp.style.color = "black";
+        this.thumbsDown.style.color = "red";
+      }
     }
   }
 

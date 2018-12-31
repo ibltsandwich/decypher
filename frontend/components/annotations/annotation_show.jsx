@@ -25,12 +25,15 @@ class AnnotationShow extends React.Component {
               <h1 className="annotation-show-header">Decypher Annotation</h1>
               <p className="annotation-show-body">{annotation.body}</p>
               <div className="annotation-upvote">
-                <Upvotes type='Annotation' target={annotation} currentUser={currentUser.id} />
+                {currentUser ? 
+                  <Upvotes type='Annotation' target={annotation} currentUser={currentUser.id} /> : 
+                  <Upvotes type='Annotation' target={annotation}/>
+                }
               </div>
               <div className="anno-comments-container">
                 {loggedIn ? <AnnoCommentForm anno={this.props.annotation} /> : null}
                 <div className="annotation-comments-show-container">
-                  <AnnoCommentsShow anno={this.props.annotation} currentUser={currentUser} />
+                  <AnnoCommentsShow anno={this.props.annotation} />
                 </div>
               </div>
             </div>

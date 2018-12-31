@@ -28,7 +28,6 @@ class AnnoCommentsShow extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.props;
     let comments = this.props.comments.map((comment, idx) => {
       let timeAgo = "";
       let date = Date.now() - Date.parse(comment.created_at);
