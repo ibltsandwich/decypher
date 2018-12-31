@@ -154,9 +154,12 @@ class SongShow extends React.Component {
   }
   
   render () {
-    const songHeaderContainer = {
-      backgroundImage: `url(${this.props.song.photo_url})`,
-    };
+    let songHeaderContainer;
+    if (this.props.song.photo_url) {
+      songHeaderContainer = {
+        backgroundImage: `url(${this.props.song.photo_url})`,
+      };
+    }
     const {song, artist, album, loggedIn, currentUser, openModal} = this.props;
     const tempTitle = song.title || "";
 
