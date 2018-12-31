@@ -44,7 +44,7 @@ class SongShow extends React.Component {
       window.getSelection().toString() === "") {
         this.annoForm.className = "annotation-form-hidden";
         if (-this.songBody.getBoundingClientRect().top > 50) {
-          this.annoShow.style.top = `${-this.songBody.getBoundingClientRect().top - 40}px`
+          this.annoShow.style.top = `${-this.songBody.getBoundingClientRect().top + 60}px`
         } else {
           this.annoShow.style.top = "0";
         }
