@@ -67,7 +67,9 @@ class SongShow extends React.Component {
     this.props.history.push(`/songs/${this.props.song.id}`);
     this.setState({ buttonShow: false, annoFormShow: false })
     this.annoForm.className = "annotation-form-hidden"
-    this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
+    if (window.getSelection.anchorNode) {
+      this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
+    }
     let breakout = false;
     this.props.annotations.forEach(anno => {
       const target = document.getElementById(`annotation${anno.id}`);
