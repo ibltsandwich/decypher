@@ -64,7 +64,7 @@ class SongShow extends React.Component {
   }
 
   handleHighlight(e) {
-    if (window.getSelection.anchorNode) {
+    if (window.getSelection().anchorNode) {
       this.props.history.push(`/songs/${this.props.song.id}`);
       this.setState({ buttonShow: false, annoFormShow: false })
       this.annoForm.className = "annotation-form-hidden"
