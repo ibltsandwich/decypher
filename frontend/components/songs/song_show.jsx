@@ -64,24 +64,24 @@ class SongShow extends React.Component {
   }
 
   handleHighlight(e) {
-    this.props.history.push(`/songs/${this.props.song.id}`);
-    this.setState({ buttonShow: false, annoFormShow: false })
-    this.annoForm.className = "annotation-form-hidden"
     if (window.getSelection.anchorNode) {
-      this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
-    }
-    let breakout = false;
-    this.props.annotations.forEach(anno => {
-      const target = document.getElementById(`annotation${anno.id}`);
-      if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
-        breakout = true;
+      this.props.history.push(`/songs/${this.props.song.id}`);
+      this.setState({ buttonShow: false, annoFormShow: false })
+      this.annoForm.className = "annotation-form-hidden"
+        this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
+        let breakout = false;
+        this.props.annotations.forEach(anno => {
+          const target = document.getElementById(`annotation${anno.id}`);
+          if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
+          breakout = true;
+        }
+      })
+      if (breakout) {
+        return null;
+      } else {
+        this.setState({ buttonShow: true })
+        this.annoForm.className = "annotation-form-show"
       }
-    })
-    if (breakout) {
-      return null;
-    } else {
-      this.setState({ buttonShow: true })
-      this.annoForm.className = "annotation-form-show"
     }
   }
 
