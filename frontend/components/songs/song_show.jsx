@@ -64,11 +64,15 @@ class SongShow extends React.Component {
   }
 
   handleHighlight(e) {
-    if (window.getSelection().anchorNode) {
+    if (window.getSelection().anchorNode.nodeValue) {
       this.props.history.push(`/songs/${this.props.song.id}`);
       this.setState({ buttonShow: false, annoFormShow: false })
       this.annoForm.className = "annotation-form-hidden"
+      if (window.getSelection().anchorNode.parentElement.offsetTop - 423 < 0) {
+        this.annoForm.style.top = 0;
+      } else {
         this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
+      }
         let breakout = false;
         this.props.annotations.forEach(anno => {
           const target = document.getElementById(`annotation${anno.id}`);
