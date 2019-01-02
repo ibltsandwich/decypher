@@ -217,7 +217,7 @@ class SongShow extends React.Component {
               <div className="right-body">
                 <h1>Annotations and song info</h1>
                 <div ref={elem => this.annoForm = elem} onClick={e => e.stopPropagation()} className="annotation-form-hidden">
-                  {this.state.annoFormShow ? <AnnotationForm slice={this.state.selected}
+                  {loggedIn ? this.state.annoFormShow ? <AnnotationForm slice={this.state.selected}
                                                              start_idx={this.state.start_idx}
                                                              end_idx={this.state.end_idx}
                                                              start_line={this.state.start_line}
@@ -226,7 +226,12 @@ class SongShow extends React.Component {
                   <div className="button-container">
                     <div className="button-divider"/>
                     <button onClick={this.annotationFormShow} className="annotation-start">Start Annotation</button>
-                  </div>}
+                  </div> :
+                  <div className="button-container">
+                      <div className="button-divider" />
+                    <button onClick={() => dispatch(openModal('login'))} className="annotation-start">Log In</button>
+                  </div>
+                }
                 </div>
                 <div ref={elem => this.annoShow = elem} className="anno-show" onClick={e => e.stopPropagation()}>
                   <Route exact path="/songs/:songId/:annotationId" component={AnnotationShow} />

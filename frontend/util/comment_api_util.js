@@ -27,3 +27,10 @@ export const createSongComment = comment => {
     data: { comment }
   })
 }
+
+export const deleteSongComment = comment => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `api/songs/${comment.commentable_id}/comments/${comment.id}`
+  })
+}

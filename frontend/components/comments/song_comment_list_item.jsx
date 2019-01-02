@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { deleteSongComment } from '../../actions/comment_actions';
 // import { createUpvote, updateUpvote, deleteUpvote } from '../../actions/upvote_actions';
 // import { fetchSong } from '../../actions/song_actions';
 import Upvotes from '../upvotes/upvotes';
@@ -13,6 +14,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
+    deleteSongComment: comment => dispatch(deleteSongComment(comment))
   }
 }
 
@@ -20,10 +22,21 @@ const mdp = dispatch => {
 class SongComment extends React.Component {
   constructor(props) {
     super(props)
+    this.showMenu = this.showMenu.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
+  }
+
+  showMenu(e) {
+    e.stopPropagation();
+    this.dropDown.hidden = !this.dropDown.hidden;
+  }
+
+  deleteComment(e) {
+    this.props.deleteSongComment(this.props.comment);
   }
 
   render() {
-    const { comment, currentUser } = this.props;
+    const { comment, currentUser, deleteSongComment } = this.props;
     let timeAgo = "";
     let date = Date.now() - Date.parse(comment.created_at);
     let seconds = date / 1000;
@@ -62,7 +75,7 @@ class SongComment extends React.Component {
         timeAgo = `${Math.floor(months)} months ago`
       }
     }
-    
+
     return (
       <li className="comment">
         <div className="comment-info">
@@ -70,8 +83,16 @@ class SongComment extends React.Component {
           <div className="comment-time-ago">{timeAgo}</div>
         </div>
         <div className="comment-body">{comment.body}</div>
-        <div className="song-comment-upvote">
-          <Upvotes type='Comment' target={comment} currentUser={currentUser}/>
+        <div className="comment-foot">
+          <div className="song-comment-upvote">
+            <Upvotes type='Comment' target={comment} currentUser={currentUser}/>
+          </div>
+          { currentUser === comment.user_id ?
+            <div ref={elem => this.dropContainer = elem}>
+              <button onClick={this.showMenu} className="comment-dropdown"><i className="fas fa-angle-down"></i></button>
+              <span className="comment-delete" hidden ref={elem => this.dropDown = elem} onClick={this.deleteComment}>Delete</span>
+            </div> : null
+          }
         </div>
       </li>)
   }

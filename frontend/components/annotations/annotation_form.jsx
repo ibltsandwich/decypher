@@ -15,7 +15,11 @@ class AnnotationForm extends React.Component {
 
   update(field) {
     return e => {
-      this.setState({[field]: e.target.value});
+      if (e.target.value.trim() !== "") {
+        this.setState({[field]: e.target.value});
+      } else {
+        e.target.value = "";
+      }
     }
   }
 
@@ -38,7 +42,8 @@ class AnnotationForm extends React.Component {
             <textarea className="annotation-form-text" 
                       onChange={this.update('body')} 
                       value={this.state.body}
-                      placeholder={this.props.slice}/>
+                      placeholder={this.props.slice}
+                      required/>
             <button type="submit" className="annotation-form-submit">Save</button>
         </form>
       </div>
