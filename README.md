@@ -29,3 +29,10 @@ After saving, they appear as a link that will direct the user to that annotation
 
 <img src="https://i.imgur.com/qGS3Z9J.png" alt="AnnotationForm" width="700"/>
 
+## Comments and Upvotes
+
+Users can submit comments on song show pages and upvote or dowvote comments. Comments can also be submitted on annotations to suggest improvements. Users may delete comments that they have authored.
+
+<img src="https://i.imgur.com/50RK5Ol.png" alt="song-comments" width="500"/>
+
+<img src="https://i.imgur.com/A2pZhkP.png" alt="anno-comments" width="500"/>
