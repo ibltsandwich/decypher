@@ -6,7 +6,7 @@ import { deleteSongComment } from '../../actions/comment_actions';
 // import { fetchSong } from '../../actions/song_actions';
 import Upvotes from '../upvotes/upvotes';
 
-const msp = (state, ownProps) => {
+const msp = (state) => {
   return {
     currentUser: state.session.currentUserId
   }
@@ -24,18 +24,21 @@ class SongComment extends React.Component {
     super(props)
     this.showMenu = this.showMenu.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
+    this.hideDropDown = this.hideDropDown.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', () => {
-      this.dropDown.hidden = true;
-    });
+    document.addEventListener('mouseup', this.hideDropDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', () => {
+    document.removeEventListener('mouseup', this.hideDropDown);
+  }
+
+  hideDropDown(e) {
+    if (this.dropDown) {
       this.dropDown.hidden = true;
-    });
+    }
   }
 
   showMenu(e) {
@@ -44,12 +47,13 @@ class SongComment extends React.Component {
   }
 
   deleteComment(e) {
+    e.stopPropagation();
     this.dropDown.hidden = true;
     this.props.deleteSongComment(this.props.comment);
   }
 
   render() {
-    const { comment, currentUser, deleteSongComment } = this.props;
+    const { comment, currentUser } = this.props;
     let timeAgo = "";
     let date = Date.now() - Date.parse(comment.created_at);
     let seconds = date / 1000;
@@ -105,7 +109,7 @@ class SongComment extends React.Component {
           { currentUser === comment.user_id ?
             <div ref={elem => this.dropContainer = elem}>
               <button onClick={this.showMenu} className="comment-dropdown"><i className="fas fa-angle-down"></i></button>
-              <span className="comment-delete" hidden ref={elem => this.dropDown = elem} onClick={this.deleteComment} onBlur={() => this.dropDown.hidden=true}>Delete</span>
+              <span className="comment-delete" hidden ref={elem => this.dropDown = elem} onClick={this.deleteComment}>Delete</span>
             </div> : null
           }
         </div>
