@@ -32,6 +32,7 @@ class SongComment extends React.Component {
   }
 
   deleteComment(e) {
+    this.dropDown.hidden = true;
     this.props.deleteSongComment(this.props.comment);
   }
 
@@ -47,8 +48,7 @@ class SongComment extends React.Component {
     if (seconds < 60) {
       if (Math.floor(seconds) < 0) {
         timeAgo = `0 seconds ago`
-      }
-      if (Math.floor(seconds) === 1) {
+      } else if (Math.floor(seconds) === 1) {
         timeAgo = `${Math.floor(seconds)} second ago`
       } else {
         timeAgo = `${Math.floor(seconds)} seconds ago`
