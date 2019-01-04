@@ -45,6 +45,9 @@ class SongComment extends React.Component {
     let days = hours / 24;
     let months = days / 30;
     if (seconds < 60) {
+      if (Math.floor(seconds) < 0) {
+        timeAgo = `0 seconds ago`
+      }
       if (Math.floor(seconds) === 1) {
         timeAgo = `${Math.floor(seconds)} second ago`
       } else {
@@ -79,6 +82,8 @@ class SongComment extends React.Component {
     if (timeAgo < 0) {
       timeAgo = 0;
     }
+
+    console.log(timeAgo);
 
     return (
       <li className="comment">
