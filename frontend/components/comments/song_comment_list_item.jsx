@@ -76,6 +76,10 @@ class SongComment extends React.Component {
       }
     }
 
+    if (timeAgo < 0) {
+      timeAgo = 0;
+    }
+
     return (
       <li className="comment">
         <div className="comment-info">
