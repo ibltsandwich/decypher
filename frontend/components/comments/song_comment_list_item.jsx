@@ -26,6 +26,18 @@ class SongComment extends React.Component {
     this.deleteComment = this.deleteComment.bind(this);
   }
 
+  componentDidMount() {
+    document.addEventListener('mousedown', () => {
+      this.dropDown.hidden = true;
+    });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', () => {
+      this.dropDown.hidden = true;
+    });
+  }
+
   showMenu(e) {
     e.stopPropagation();
     this.dropDown.hidden = !this.dropDown.hidden;
@@ -79,12 +91,6 @@ class SongComment extends React.Component {
       }
     }
 
-    if (timeAgo < 0) {
-      timeAgo = 0;
-    }
-
-    console.log(timeAgo);
-
     return (
       <li className="comment">
         <div className="comment-info">
@@ -99,7 +105,7 @@ class SongComment extends React.Component {
           { currentUser === comment.user_id ?
             <div ref={elem => this.dropContainer = elem}>
               <button onClick={this.showMenu} className="comment-dropdown"><i className="fas fa-angle-down"></i></button>
-              <span className="comment-delete" hidden ref={elem => this.dropDown = elem} onClick={this.deleteComment}>Delete</span>
+              <span className="comment-delete" hidden ref={elem => this.dropDown = elem} onClick={this.deleteComment} onBlur={() => this.dropDown.hidden=true}>Delete</span>
             </div> : null
           }
         </div>
