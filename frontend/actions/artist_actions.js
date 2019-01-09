@@ -18,8 +18,8 @@ export const receiveArtist = payload => {
   }
 }
 
-export const fetchArtists = () => dispatch => {
-  return ArtistApiUtil.fetchArtists().then(
+export const fetchArtists = (letter) => dispatch => {
+  return ArtistApiUtil.fetchArtists(letter).then(
     response => dispatch(receiveAllArtists(response))
   )
 }

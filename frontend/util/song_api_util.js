@@ -14,9 +14,10 @@ export const fetchSong = id => {
 }
 
 export const createSong = song => {
+  debugger
   return $.ajax({
     method: 'POST',
-    url: `api/artists/${song.artist_id}/songs`,
+    url: `api/songs`,
     data: { song }
   })
 }

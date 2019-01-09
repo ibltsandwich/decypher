@@ -1,0 +1,32 @@
+.artist-list-container {
+  margin-left: 20px;
+}
+
+.artist-list-nav {
+  color: white;
+  margin: 1em 0;
+}
+
+.artist-list-header {
+  font-family: 'Teko', sans-serif;
+  color: white;
+  font-size: 3em;
+  font-weight: 500;
+  line-height: 100%;
+  padding-top: 1px;
+  margin-bottom: 10px;
+}
+
+.specified-artist-list {
+  color: #5ba7c2
+}
+
+.specified-artist-list li{
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.specified-artist-list li a {
+  color: #5ba7c2;
+  text-decoration: none;
+}

@@ -16,7 +16,7 @@ class Api::SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
-    @song.artist_id = @song.find_artist(params[:artist_id], current_user.id)
+    @song.artist_id = @song.find_artist(params[:song][:artist_id], current_user.id)
     @artist = Artist.find(@song.artist_id)
     @song.user_id = current_user.id
     @album = nil

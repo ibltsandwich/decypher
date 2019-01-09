@@ -15,7 +15,7 @@ class Api::ArtistsController < ApplicationController
   end
 
   def index
-    @artists = Artist.all
+    @artists = Artist.where('name ilike ?', "#{params[:letter]}%")
     render 'api/artists/index'
   end
 
