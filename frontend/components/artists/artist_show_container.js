@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import ArtistShow from './artist_show'
 
 const msp = (state, ownProps) => {
-  debugger
   return {
     
   }
