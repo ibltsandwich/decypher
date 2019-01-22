@@ -14,9 +14,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="filler" >
-          <h2><img src={window.geniusNews}></img></h2>
+      <div className="home-body">
+        <div className="news">
+          <div className="main-story">
+          </div>
+          {/* <img src={window.geniusNews}></img> */}
         </div>
         <TopSongs songs={this.props.songs} artists={this.props.artists}/>
       </div>

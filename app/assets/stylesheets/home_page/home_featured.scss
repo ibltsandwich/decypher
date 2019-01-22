@@ -1,0 +1,21 @@
+.home-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.news {
+  background: white;
+  width: 100%;
+  height: auto;
+  padding: 1em;
+}
+
+.news img {
+  width: 100%;
+  height:auto;
+}
+
+// .main-story {
+//   width: 40%;
+//   background-image: url("https://images.genius.com/bbdd506c00ccfbdc5a3b5b2d1763eb8a.1920x1080x1.jpg");
+// }
