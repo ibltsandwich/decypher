@@ -1,0 +1,62 @@
+.artist-header-container {
+  background: honeydew;
+  max-height: 18em;
+  height: 11em;
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-header-filler {
+  width: 55%;
+  position: relative;
+  padding: 1em;
+}
+
+.artist-img-container {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.artist-body-container {
+  background: #f7f7f7;
+  padding-bottom: 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-name {
+  font-size: 3em;
+  font-family: 'Teko', sans-serif;
+  margin-bottom: .5em;
+}
+
+.artist-img {
+  border: 1px solid #38ef51;
+  border-radius: 50%;
+  width: 11em;
+  height: 11em;
+  position: relative;
+  bottom: -2em;
+  margin: 0 auto;
+}
+
+.artist-bio-info {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3em;
+}
+
+.artist-bio {
+  background: #fff;
+  padding: 1em;
+}
+
+.artist-song-info {
+  width: 55%;
+  padding: 0 1em;
+  padding-top: 3em;
+}

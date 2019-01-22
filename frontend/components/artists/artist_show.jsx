@@ -14,22 +14,38 @@ class ArtistShow extends React.Component {
   }
   
   render() {
-    console.log(this.state.artist)
     const color ={
       color: 'white'
     }
-    return (
-      <div className="song-header-container">
-          <div className="song-album-img">
-
+    if (this.state.artist) {
+    return <div>
+        <div className="artist-header-container">
+          <div className="artist-img-container">
+            <div className="artist-img" />
           </div>
-        <h1 >This is the artist show page</h1>
-        {this.state.artist ? 
-        <h1>{this.state.artist.name}</h1> :
-        null }
-        <h1>COMING SOON</h1>
-      </div>
-    )
+          <div className="artist-header-filler">
+          </div>
+        </div>
+        <div className="artist-body-container">
+          <section className="artist-bio-info">
+            <h1 className="artist-name">
+              {this.state.artist.name}
+            </h1>
+            <div className="artist-bio">
+              <h3>
+                About "{this.state.artist.name}"
+              </h3>
+              <p>{this.state.artist.bio}</p>
+            </div>
+          </section>
+          <section className="artist-song-info">
+            <h1>POPULAR {this.state.artist.name.toUpperCase()} SONGS</h1>
+          </section>
+        </div>
+      </div>;
+    } else {
+      return null
+    }
   }
 }
 
