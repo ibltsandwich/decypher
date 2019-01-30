@@ -21,7 +21,9 @@ class ArtistShow extends React.Component {
     return <div>
         <div className="artist-header-container">
           <div className="artist-img-container">
-            <div className="artist-img" />
+            <div className="artist-img" src={this.state.artist.artist_img}>
+              <img className="artist-pic" src={this.state.artist.artist_img}/>
+            </div>
           </div>
           <div className="artist-header-filler">
           </div>

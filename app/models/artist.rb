@@ -7,6 +7,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer          not null
+#  bio        :string
+#  artist_img :string
 #
 
 class Artist < ApplicationRecord

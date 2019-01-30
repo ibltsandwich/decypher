@@ -12,7 +12,7 @@ user2 = User.create({username: "testuser", email: "test@user.com", password: "te
 
 artist1 = Artist.create({name: "Kendrick Lamar", user_id: 1})
 artist2 = Artist.create({name: "Chance the Rapper", user_id: 1})
-artist3 = Artist.create({name: "Ariana Grande", user_id: 3})
+artist3 = Artist.create({name: "Ariana Grande", user_id: 3, artist_img: "https://images.genius.com/219c1ba6dea2575f6eb1803896877f57.580x580x1.png"})
 artist4 = Artist.create({name: "Queen", user_id: 2})
 artist5 = Artist.create({name: "Drake", user_id: 2})
 artist6 = Artist.create({name: "Ed Sheeran", user_id: 2})
