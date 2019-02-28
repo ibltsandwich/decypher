@@ -9,7 +9,6 @@ class TopSongs extends React.Component {
     
   render () {
     const { songs, artists } = this.props;
-
     let lis;
     
     if (songs) {

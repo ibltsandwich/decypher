@@ -20,8 +20,9 @@ class ArtistShow extends React.Component {
     if (this.state.artist) {
     return <div>
         <div className="artist-header-container">
+          <div className="artist-header-img-container" style={{ backgroundImage: `url(${this.state.artist.header_img})` }}/>
           <div className="artist-img-container">
-            <div className="artist-img" src={this.state.artist.artist_img}>
+            <div className="artist-img">
               <img className="artist-pic" src={this.state.artist.artist_img}/>
             </div>
           </div>
