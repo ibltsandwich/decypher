@@ -18,15 +18,21 @@ class ArtistShow extends React.Component {
       color: 'white'
     }
     if (this.state.artist) {
-    return <div>
-        <div className="artist-header-container">
-          <div className="artist-header-img-container" style={{ backgroundImage: `url(${this.state.artist.header_img})` }}/>
-          <div className="artist-img-container">
-            <div className="artist-img">
-              <img className="artist-pic" src={this.state.artist.artist_img}/>
+      let bio = this.state.artist.bio.split("\n").map((paragraph, idx) => {
+        if (paragraph.length > 0) {
+          return <p key={idx}>{paragraph}</p>
+        }
+      })
+    return <div className="artist-show-container">
+        <div className="artist-header-img" style={{ backgroundImage: `url(${this.state.artist.header_img})` }}>
+          <div className="artist-header-container">
+            <div className="artist-img-container">
+              <div className="artist-img">
+                <img className="artist-pic" src={this.state.artist.artist_img}/>
+              </div>
             </div>
-          </div>
-          <div className="artist-header-filler">
+            <div className="artist-header-filler">
+            </div>
           </div>
         </div>
         <div className="artist-body-container">
@@ -38,7 +44,7 @@ class ArtistShow extends React.Component {
               <h3>
                 About "{this.state.artist.name}"
               </h3>
-              <p>{this.state.artist.bio}</p>
+              {bio}
             </div>
           </section>
           <section className="artist-song-info">
