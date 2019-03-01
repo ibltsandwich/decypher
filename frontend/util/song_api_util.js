@@ -1,8 +1,8 @@
-export const fetchSongs = (limit) => {
+export const fetchSongs = (limit, artist_id) => {
   return $.ajax({
     method: 'GET',
     url: 'api/songs',
-    data: { limit }
+    data: { limit, artist_id }
   })
 }
 

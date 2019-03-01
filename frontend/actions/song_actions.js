@@ -18,8 +18,8 @@ export const receiveSong = payload => {
   }
 }
 
-export const fetchSongs = (limit) => dispatch => {
-  return SongApiUtil.fetchSongs(limit).then(
+export const fetchSongs = (limit, artistId) => dispatch => {
+  return SongApiUtil.fetchSongs(limit, artistId).then(
     response => dispatch(receiveAllSongs(response))
   )
 }

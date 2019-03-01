@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import SongShow from './song_show';
+import { withRouter } from 'react-router-dom';
 import { fetchSong, updateSong } from '../../actions/song_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { fetchAlbum } from '../../actions/album_actions';
@@ -36,4 +37,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(msp, mdp)(SongShow);
+export default withRouter(connect(msp, mdp)(SongShow));

@@ -11,8 +11,11 @@ class ArtistShow extends React.Component {
   componentDidMount() {
     this.props.fetchArtist(this.props.artistId).then(
       response => this.setState({artist: response.payload.artist})
+    );
+    this.props.fetchSongs(10, this.props.artistId).then(
+      response => this.setState({songs: response.payload})
     )
-  }
+  };
 
   openBio(e) {
     e.preventDefault();

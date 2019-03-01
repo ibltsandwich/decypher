@@ -1,7 +1,9 @@
 class Api::SongsController < ApplicationController
   def index
-    if (params[:limit])
+    if (params[:limit] && params[:artist_id])
       # @songs = Song.all.limit(params[:limit])
+      @songs = Song.where(artist_id: params[:artist_id]).limit(params[:limit])
+    elsif (params[:limit])
       @songs = Song.order("id").limit(params[:limit])
     else
       @songs = Song.all

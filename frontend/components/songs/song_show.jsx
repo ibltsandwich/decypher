@@ -1,6 +1,6 @@
 import React from 'react';
 import AnnotationForm from '../annotations/annotation_form_container';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import AnnotationShow from '../annotations/annotation_show_container';
 import AnnotatedLyric from './annotated_lyric';
 import SongCommentForm from '../comments/song_comment_form_container';
@@ -190,8 +190,9 @@ class SongShow extends React.Component {
 
               <div className="primary-song-info">
                 <h1 className="song-title">{song.title}</h1>
-                <h2 className="song-artist">{artist.name}</h2>
-                <h3 className="song-album">{album.title}</h3>  
+                {/* {artist.name ? <h2 className="song-artist" onClick={() => this.props.history.push(`/artists/${artist.name[0]}/${artist.id}`)}>{artist.name}</h2> : null} */}
+                {artist.name ? <Link to={`/artists/${artist.name[0]}/${artist.id}`} onClick={e => e.stopPropagation()} className="song-artist">{artist.name}</Link> : null}
+                <h3 className="song-album">{album.title}</h3>
               </div>
             </div>
           </div>
@@ -245,7 +246,7 @@ class SongShow extends React.Component {
           </div>
         </div>
       );
-    } 
-}
+    };
+};
 
 export default SongShow;
