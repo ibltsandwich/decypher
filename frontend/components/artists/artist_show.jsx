@@ -13,7 +13,7 @@ class ArtistShow extends React.Component {
       response => this.setState({artist: response.payload.artist})
     );
     this.props.fetchSongs(10, this.props.artistId).then(
-      response => this.setState({songs: response.payload})
+      response => this.setState({songs: response.payload.songs})
     )
   };
 
@@ -49,10 +49,23 @@ class ArtistShow extends React.Component {
             return <p key={idx}>{paragraph}</p>
           }
         })
-        // shortenedBio.push(<span key="10000" className="open-bio" onClick={this.openBio}> read more >></span>)
       };
 
-    return <div className="artist-show-container">
+      let songs;
+
+      if (this.state.songs) {
+        songs = Object.values(this.state.songs).map((song, idx) => {
+           return <li key={idx} className="artist-song-list-item">
+                    <img className="artist-song-list-item-image" src={song.photo_url}></img>
+                    <div className="artist-song-list-item-info">
+                      <span className="artist-song-list-item-title">{song.title}</span>
+                      <span className="artist-song-list-item-artist">{this.state.artist.name}</span>
+                    </div>
+                  </li>
+        });
+      };
+
+      return <div className="artist-show-container">
         <div className="artist-header-img" style={{ backgroundImage: `url(${this.state.artist.header_img})` }}>
           <div className="artist-header-container">
             <div className="artist-img-container">
@@ -80,7 +93,10 @@ class ArtistShow extends React.Component {
             </div>
           </section>
           <section className="artist-song-info">
-            <h1>POPULAR {this.state.artist.name.toUpperCase()} SONGS</h1>
+            <h1 className="artist-song-list-header">POPULAR {this.state.artist.name.toUpperCase()} SONGS</h1>
+            <ul className="artist-song-list">
+              {songs}
+            </ul>
           </section>
         </div>
       </div>;

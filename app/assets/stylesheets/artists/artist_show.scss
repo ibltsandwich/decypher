@@ -108,3 +108,43 @@
   cursor: pointer;
   color: #a8b4f0;
 }
+
+.artist-song-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artist-song-list-header {
+  margin-bottom: 1em;
+}
+
+.artist-song-list-item {
+  display: flex;
+  background-color: #fff;
+  min-width: 225px;
+  min-height: 56.25px;
+  width: 48%;
+  margin: 0 1%;
+}
+
+.artist-song-list-item-info {
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+}
+
+.artist-song-list-item-image {
+  height: 75px;
+  min-width: 75px;
+  width: 75px;
+}
+
+.artist-song-list-item-title {
+  font-family: Teko;
+  font-size: 1.5em;
+}
+
+.artist-song-list-item-artist {
+  font-weight: 500;
+  font-size: .7em;
+}
