@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 class ArtistShow extends React.Component {
@@ -55,12 +56,14 @@ class ArtistShow extends React.Component {
 
       if (this.state.songs) {
         songs = Object.values(this.state.songs).map((song, idx) => {
-           return <li key={idx} className="artist-song-list-item">
+           return <li key={idx}>
+                    <Link to={`/songs/${song.id}`} className="artist-song-list-item">
                     <img className="artist-song-list-item-image" src={song.photo_url}></img>
                     <div className="artist-song-list-item-info">
                       <span className="artist-song-list-item-title">{song.title}</span>
                       <span className="artist-song-list-item-artist">{this.state.artist.name}</span>
                     </div>
+                    </Link>
                   </li>
         });
       };
