@@ -30,9 +30,11 @@ class Song < ApplicationRecord
 
   def find_artist(artist_name, user_id)
     artist = Artist.find_by(name: artist_name)
+    
     if artist == nil
       return Artist.create({name: artist_name, user_id: user_id}).id 
     end
+
     return artist.id
   end
 end

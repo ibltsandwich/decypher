@@ -29,7 +29,3 @@ song8 = Song.create({title: "R.E.M", lyrics: File.read(Rails.root + 'db/rem.txt'
 song9 = Song.create({title: "Switch", lyrics: File.read(Rails.root + 'db/switch.txt'), artist_id: 7, photo_url: "https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2F68d505210dfe645f563d657a5dd75757.1000x1000x1.jpg", user_id: 3})
 song10 = Song.create({title: "East Atlanta Love Letter", lyrics: File.read(Rails.root + 'db/east_atlanta_love_letter.txt'), artist_id: 7, photo_url: "https://t2.genius.com/unsafe/300x300/https%3A%2F%2Fimages.genius.com%2F68d505210dfe645f563d657a5dd75757.1000x1000x1.jpg", user_id: 3})
 
-# song5
-# song6
-# song7
-# song8
