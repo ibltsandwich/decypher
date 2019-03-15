@@ -25,6 +25,9 @@ export default () => {
         <span className="all-artist-list-label">ALL ARTISTS: </span>
         <ul className="all-artist-list">
           {list}
+          <li className='artist-letter' key='27'>
+            <Link to='/artists/0' className='artist-letter-link'>#</Link>
+          </li>
         </ul>
       </footer>
     </div>

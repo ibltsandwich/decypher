@@ -4,8 +4,14 @@ import { fetchArtists } from '../../actions/artist_actions';
 import { Link } from 'react-router-dom';
 
 const msp = (state, ownProps) => {
+  let letter;
+  if (ownProps.match.params.artistLetter === '0') {
+    letter = '#';
+  } else {
+    letter = ownProps.match.params.artistLetter;
+  }
   return {
-    letter: ownProps.match.params.artistLetter,
+    letter,
     artists: state.entities.artists
   }
 }
@@ -47,7 +53,7 @@ class ArtistList extends React.Component {
       list = artists.map((artist, idx) => {
         return (
           <li key={idx}>
-            <Link to={`/artists/${this.props.letter}/${artist.id}`}>{artist.name}</Link>
+            <Link to={`/artists/${artist.name[0]}/${artist.id}`}>{artist.name}</Link>
           </li>
         )
       })
