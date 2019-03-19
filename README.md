@@ -9,14 +9,16 @@ Decypher allows users to upload and annotate song lyrics.
 
 
 ## Technologies Used
-Ruby on Rails backend with React-Redux frontend.
+Ruby on Rails backend with PostgreSQL database and React-Redux frontend.
+Javascript's built-in getSelection method was used for annotations.
 
-Javascript's built-in getSelection API was used for annotations.
-Unforunately, the API had some shortcomings and some workarounds had to be implemented in order to get annotations working properly. For example, highlighting an area and calling window.getSelection() provides you with the start and end indices of your selection, but only within the confines of the parent HTML Element.
+## getSelection()
+
+Unfortunately, the method had some shortcomings and some workarounds had to be implemented in order to get annotations working properly. For example, highlighting an area and calling ```window.getSelection()``` provides you with the start and end indices of your selection, but only within the confines of the parent HTML Element.
 
 <img src=https://i.imgur.com/RnlRpPz.png alt="getSelection" width="200"/>
 
-Therefore, having the full lyrics in one ```<p>``` tag gives the proper indices for whatever is highlighted, but once links to the annotations are added in as ```<a>``` tags, this disrupts the API's ability to grab the proper indices. After an inserted ```<a>``` tag, the next immediate index doesn't pick up where it left off, and instead resets back to 0. The API doesn't know to ignore HTML tags and can only accurately grab selections that are confined to one set of tags.
+Therefore, having the full lyrics in one ```<p>``` tag gives the proper indices for whatever is highlighted, but once links to the annotations are nested in as ```<a>``` tags, this disrupts the API's ability to grab the proper indices. After an inserted ```<a>``` tag, the next immediate index doesn't pick up where it left off, and instead resets back to 0. The method doesn't know to ignore HTML tags and can only accurately grab selections that are confined to one set of tags.
 
 ## Annotations
 The workaround here was to separate each line of the lyrics into it's own ```<div>``` tag with an id corresponding to the line number.
