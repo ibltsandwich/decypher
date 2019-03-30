@@ -58,12 +58,14 @@
 }
 
 .song-album-img {
+  background: honeydew;
   z-index: 1;
   outline: .15rem solid #9a9a9a;
   width: 220px;
   height: 220px;
   margin: auto 1rem auto -1.25rem;
   float: left;
+
 }
 
 .song-album-img img {
