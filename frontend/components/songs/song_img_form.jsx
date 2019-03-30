@@ -33,7 +33,7 @@ class SongImageForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="session-form" id="from-header">
           <h1 className="song-image-form-header">SONG IMAGE URL</h1>
           <label className="song-art-url">SONG ART URL</label>
-          <input type="text" className="song-img-form-input" onChange={this.update('photo_url')}></input>
+          <input type="text" className="song-img-form-input" onChange={this.update('photo_url')} required></input>
           <button type="submit" className="song-img-submit">Save</button>
         </form>
       </div>

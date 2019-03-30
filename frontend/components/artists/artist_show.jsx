@@ -30,27 +30,29 @@ class ArtistShow extends React.Component {
     if (this.state.artist) {
       let shortenedBio;
       let bio;
-      bio = this.state.artist.bio.split("\n").map((paragraph, idx) => {
-        if (paragraph.length > 0) {
-          return <p key={idx}>{paragraph}</p>
-        } else {
-          return null;
-        }
-      })
-
-      if (this.state.artist.bio.length > 325) {
-        let shortened = this.state.artist.bio.slice(0,325).split("\n")
-        shortenedBio = shortened.map((paragraph, idx) => {
-          if (idx === shortened.length - 1) {
-            return <p key={idx}>
-                    {paragraph}...
-                    <span key="10000" className="open-bio" onClick={this.openBio}> read more >></span>
-                   </p>
-          } else {
+      if (this.state.artist.bio) {
+        bio = this.state.artist.bio.split("\n").map((paragraph, idx) => {
+          if (paragraph.length > 0) {
             return <p key={idx}>{paragraph}</p>
+          } else {
+            return null;
           }
         })
-      };
+  
+        if (this.state.artist.bio.length > 325) {
+          let shortened = this.state.artist.bio.slice(0,325).split("\n")
+          shortenedBio = shortened.map((paragraph, idx) => {
+            if (idx === shortened.length - 1) {
+              return <p key={idx}>
+                      {paragraph}...
+                      <span key="10000" className="open-bio" onClick={this.openBio}> read more >></span>
+                     </p>
+            } else {
+              return <p key={idx}>{paragraph}</p>
+            }
+          })
+        };
+      }
 
       let songs;
 
@@ -58,7 +60,7 @@ class ArtistShow extends React.Component {
         songs = Object.values(this.state.songs).map((song, idx) => {
            return <li key={idx}>
                     <Link to={`/songs/${song.id}`} className="artist-song-list-item">
-                    <img className="artist-song-list-item-image" src={song.photo_url}></img>
+                    <img className="artist-song-list-item-image" src={song.photo_url ? song.photo_url : window.emptyAlbum}></img>
                     <div className="artist-song-list-item-info">
                       <span className="artist-song-list-item-title">{song.title}</span>
                       <span className="artist-song-list-item-artist">{this.state.artist.name}</span>
@@ -73,7 +75,7 @@ class ArtistShow extends React.Component {
           <div className="artist-header-container">
             <div className="artist-img-container">
               <div className="artist-img">
-                <img className="artist-pic" src={this.state.artist.artist_img}/>
+                <img className="artist-pic" src={this.state.artist.artist_img ? this.state.artist.artist_img : window.emptyAlbum}/>
               </div>
             </div>
             <div className="artist-header-filler">
