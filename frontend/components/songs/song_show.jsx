@@ -28,18 +28,16 @@ class SongShow extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0)
     this.props.fetchSong(this.props.songId);
-    this.highlightArea.addEventListener('click', this.handleHighlight)
-    this.annotateLyrics();
+    this.highlightArea.addEventListener('click', this.handleHighlight);
   }
 
   componentDidUpdate(oldProps) {
-    this.annotateLyrics();
     if (oldProps.songId !== this.props.songId ||
       oldProps.song.lyrics !== this.props.song.lyrics ||
       oldProps.annotations.length !== this.props.annotations.length) {
         this.props.fetchSong(this.props.songId);
         this.annoForm.className = "annotation-form-hidden";
-      }
+    }
     if (oldProps.location.pathname !== this.props.location.pathname ||
       window.getSelection().toString() === "") {
         this.annoForm.className = "annotation-form-hidden";
@@ -66,26 +64,28 @@ class SongShow extends React.Component {
   handleHighlight(e) {
     if (window.getSelection().anchorNode.nodeValue) {
       this.props.history.push(`/songs/${this.props.song.id}`);
-      this.setState({ buttonShow: false, annoFormShow: false })
-      this.annoForm.className = "annotation-form-hidden"
+      this.setState({ buttonShow: false, annoFormShow: false });
+      this.annoForm.className = "annotation-form-hidden";
       if (window.getSelection().anchorNode.parentElement.offsetTop - 423 < 0) {
         this.annoForm.style.top = 0;
       } else {
         this.annoForm.style.top = `${window.getSelection().anchorNode.parentElement.offsetTop-423}px`
       }
-        let breakout = false;
-        this.props.annotations.forEach(anno => {
-          const target = document.getElementById(`annotation${anno.id}`);
-          if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
+
+      let breakout = false;
+      this.props.annotations.forEach(anno => {
+        const target = document.getElementById(`annotation${anno.id}`);
+        if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
           breakout = true;
         }
-      })
+      });
+
       if (breakout) {
         return null;
       } else {
-        this.setState({ buttonShow: true })
-        this.annoForm.className = "annotation-form-show"
-      }
+        this.setState({ buttonShow: true });
+        this.annoForm.className = "annotation-form-show";
+      };
     }
   }
 
@@ -94,12 +94,14 @@ class SongShow extends React.Component {
       this.annotatedLyrics = this.props.song.lyrics.split('\n').map((line, idx) => {
         if (line === "") {
           return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}><br></br></div>)
-        }
-        return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
-      })
-    }
+        } else {
+          return (<div id={idx} key={`${idx}`} ref={(ref) => this[`line${idx}`] = ref}>{line}</div>)
+        };
+      });
+    };
     if (document.getElementById("0") && this.props.annotations.length > 0) {
-      const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line)
+      const sortedAnno = this.props.annotations.slice(0).sort((a,b) => a.start_line - b.start_line);
+
       sortedAnno.forEach(anno => {
         let result;
         let lineSlice = [];
@@ -107,41 +109,51 @@ class SongShow extends React.Component {
           this.annotatedLyrics.forEach((line, idx) => {
             if (parseInt(line.key) === anno.start_line) {
               lineSlice = this.annotatedLyrics.slice(idx, idx+(anno.end_line - anno.start_line)+1);
-              return false;
+              return result;
             }
           })
           if (lineSlice.length > 0) {
             result = <AnnotatedLyric anno={anno}
-                                      lineSlice={lineSlice}
-                                      pathname={this.props.location.pathname}
-                                      key={`anno${anno.id}`}/>
+                          lineSlice={lineSlice}
+                          pathname={this.props.location.pathname}
+                          key={`anno${anno.id}`}/>
             this.annotatedLyrics.forEach((line, idx) => {
               if (parseInt(line.key) === anno.start_line) {
                 this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
-                return false;
+                return result;
               }
-            })
-          }
-        }
-      })
-    }
-  }
+            });
+          };
+        };
+      });
+    };
+  };
   
   annotationFormShow() {
-    if (window.getSelection().focusNode) {
+    const { focusNode, anchorNode, anchorOffset, focusOffset, baseNode } = window.getSelection();
+
+    if (focusNode) {
       let start_line, start_idx, end_line, end_idx;
-      if ((window.getSelection().focusNode.parentNode.id === window.getSelection().anchorNode.parentNode.id &&
-          window.getSelection().focusOffset > window.getSelection().anchorOffset) ||
-          window.getSelection().focusNode.parentNode.id > window.getSelection().anchorNode.parentNode.id) {
-        start_line = window.getSelection().anchorNode.parentNode.id;
-        start_idx = window.getSelection().anchorOffset;
-        end_line = window.getSelection().focusNode.parentNode.id;
-        end_idx = window.getSelection().focusOffset;
+      let valid = true;
+
+      if ((focusNode.parentNode.id === anchorNode.parentNode.id &&
+          focusOffset > anchorOffset) ||
+          focusNode.parentNode.id > anchorNode.parentNode.id) {
+        start_line = anchorNode.parentNode.id;
+        start_idx = anchorOffset;
+        end_line = focusNode.parentNode.id;
+        end_idx = focusOffset;
+      } else if ((focusOffset === anchorOffset && focusNode.parentNode.id === anchorNode.parentNode.id) ||
+        focusNode.parentNode.id === "" || anchorNode.parentNode.id === "") {
+        start_line = anchorNode.parentNode.id;
+        start_idx = anchorOffset;
+        end_line = focusNode.previousSibling.id;
+        end_idx = baseNode.length;
       } else {
-        end_line = window.getSelection().anchorNode.parentNode.id;
-        end_idx = window.getSelection().anchorOffset;
-        start_line = window.getSelection().focusNode.parentNode.id;
-        start_idx = window.getSelection().focusOffset;
+        end_line = anchorNode.parentNode.id;
+        end_idx = anchorOffset;
+        start_line = focusNode.parentNode.id;
+        start_idx = focusOffset;
       }
       this.props.annotations.forEach(anno => {
         if (anno.end_line == start_line) {
@@ -149,17 +161,24 @@ class SongShow extends React.Component {
           end_idx += anno.end_idx;
         }
       })
-      this.setState({ annoFormShow: true });
-      this.setState({
-        selected: window.getSelection().toString(),
-        start_idx: start_idx, end_idx: end_idx, start_line: start_line, end_line: end_line
-      });
+      
+      if (valid) {
+        this.setState({ annoFormShow: true });
+        this.setState({
+          selected: window.getSelection().toString(),
+          start_idx: start_idx, end_idx: end_idx, start_line: start_line, end_line: end_line
+        });
+      } else {
+        this.closeAnnoForm();
+        this.setState({ buttonShow: false });
+      }
     } else {
-      this.setState({buttonShow: false})
+      this.setState({ buttonShow: false });
     }
   }
   
   render () {
+    this.annotateLyrics();
     let songHeaderContainer;
     if (this.props.song.photo_url) {
       songHeaderContainer = {
@@ -190,7 +209,6 @@ class SongShow extends React.Component {
 
               <div className="primary-song-info">
                 <h1 className="song-title">{song.title}</h1>
-                {/* {artist.name ? <h2 className="song-artist" onClick={() => this.props.history.push(`/artists/${artist.name[0]}/${artist.id}`)}>{artist.name}</h2> : null} */}
                 {artist.name ? <Link to={`/artists/${artist.name[0]}/${artist.id}`} onClick={e => e.stopPropagation()} className="song-artist">{artist.name}</Link> : null}
                 <h3 className="song-album">{album.title}</h3>
               </div>
