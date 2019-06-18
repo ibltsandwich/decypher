@@ -14,7 +14,6 @@ class AnnotationForm extends React.Component {
   }
 
   update(field) {
-    debugger
     return e => {
       if (e.target.value.trim() !== "") {
         this.setState({[field]: e.target.value});
