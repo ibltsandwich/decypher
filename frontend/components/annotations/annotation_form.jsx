@@ -15,18 +15,20 @@ class AnnotationForm extends React.Component {
 
   update(field) {
     return e => {
-      if (e.target.value.trim() !== "") {
-        this.setState({[field]: e.target.value});
+      if (e.target.value.trim() === "") {
+        this.setState({ [field]: "" });
       } else {
-        e.target.value = "";
+        this.setState({ [field]: e.target.value });
       }
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createAnnotation(this.state)
-        .then(this.setState({body: ""}));
+    if (this.state.body.trim() !== "") {
+      this.props.createAnnotation(this.state)
+          .then(this.setState({body: ""}));
+    }
   }
 
   render () {

@@ -111,7 +111,6 @@ class SongShow extends React.Component {
           this.annotatedLyrics.forEach((line, idx) => {
             if (parseInt(line.key) === anno.start_line) {
               lineSlice = this.annotatedLyrics.slice(idx, idx+(anno.end_line - anno.start_line)+1);
-              return result;
             }
           })
           if (lineSlice.length > 0) {
@@ -122,7 +121,6 @@ class SongShow extends React.Component {
             this.annotatedLyrics.forEach((line, idx) => {
               if (parseInt(line.key) === anno.start_line) {
                 this.annotatedLyrics.splice(idx, (anno.end_line - anno.start_line)+1, result);
-                return result;
               }
             });
           };
