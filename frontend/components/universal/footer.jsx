@@ -16,8 +16,10 @@ export default () => {
     <div className="whole-footer">
       <footer className="footer-container">
         <ul className="footer-links">
-          <li className="genius-logo"><a href="http://genius.com"><img src={window.geniusLogo} /></a></li>
-          <li className="github-logo"><a href="https://github.com/ibltsandwich/decypher"><img src={window.githubLogo} /></a></li>
+          <li className="portfolio-logo"><a href="http://www.brian-lee.me" target="_blank"><img src={window.portfolioLogo} /></a></li>
+          <li className="github-logo"><a href="https://github.com/ibltsandwich/decypher" target="_blank"><img src={window.githubLogo} /></a></li>
+          <li className="linkedin-logo"><a href="https://linkedin.com/in/brian-lee2" target="_blank"><img src={window.linkedinLogo} /></a></li>
+          <li className="genius-logo"><a href="http://genius.com" target="_blank"><img src={window.geniusLogo} /></a></li>
         </ul>
         <span>Created by Brian Lee</span>
       </footer>
