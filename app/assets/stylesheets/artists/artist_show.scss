@@ -129,6 +129,11 @@
   margin: 0 1%;
   text-decoration: none;
   color: black;
+  transition: background-color .2s ease-in;
+}
+
+.artist-song-list-item:hover {
+  background-color: #e7e7e7;
 }
 
 .artist-song-list-item-info {
