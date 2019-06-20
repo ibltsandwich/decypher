@@ -44,7 +44,7 @@ const AnnotatedLyric = props => {
             <div key={lineSlice[0].key} id={lineSlice[0].key}>
               {lineSlice[0].props.children.slice(0, anno.start_idx)}
               <Link to={`/songs/${anno.song_id}/${anno.id}`}
-                onClick={e => e.stopPropagation}
+                onClick={e => e.stopPropagation()}
                 className="annotation"
                 id={`annotation${anno.id}`}>
                 {fillLyrics()}
