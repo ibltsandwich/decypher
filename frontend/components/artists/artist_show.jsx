@@ -15,7 +15,7 @@ class ArtistShow extends React.Component {
     );
     this.props.fetchSongs(10, this.props.artistId).then(
       response => this.setState({songs: response.payload.songs})
-    )
+    );
   };
 
   openBio(e) {
@@ -24,9 +24,6 @@ class ArtistShow extends React.Component {
   }
   
   render() {
-    const color ={
-      color: 'white'
-    }
     if (this.state.artist) {
       let shortenedBio;
       let bio;
@@ -70,8 +67,10 @@ class ArtistShow extends React.Component {
         });
       };
 
+      const headerImage = this.state.artist.header_img ? `url(${this.state.artist.header_img})` : null;
+
       return <div className="artist-show-container">
-        <div className="artist-header-img" style={{ backgroundImage: `url(${this.state.artist.header_img})` }}>
+        <div className="artist-header-img" style={{ backgroundImage: {headerImage} }}>
           <div className="artist-header-container">
             <div className="artist-img-container">
               <div className="artist-img">
