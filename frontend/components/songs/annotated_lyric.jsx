@@ -5,17 +5,21 @@ const AnnotatedLyric = props => {
   const fillLyrics = () => {
     const {lineSlice, anno} = props;
     let result = "";
+
     for (let i = 0; i < lineSlice.length; i++) {
       const lyric = lineSlice[i].props.children;
       if (lyric) {
-        if (i === 0) {
+        if (lyric.type === "br") {
+          result += '\n';
+        } else if (i === 0) {
           result += lyric.slice(anno.start_idx);
+          result += '\n';
         } else if (i === lineSlice.length - 1) {
           result += lyric.slice(0, anno.end_idx);
         } else {
           result += lyric;
+          result += '\n';
         }
-        result += '\n';
       } else {
         null;
       }
