@@ -76,7 +76,7 @@ class SongShow extends React.Component {
         let breakout = false;
         this.props.annotations.forEach(anno => {
           const target = document.getElementById(`annotation${anno.id}`);
-          if (window.getSelection().getRangeAt(0).intersectsNode(target)) {
+          if (window.getSelection().getRangeAt(0).intersectsNode(target) && target !== null) {
             breakout = true;
           }
         });
